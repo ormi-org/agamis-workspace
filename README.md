@@ -2,7 +2,7 @@
 
 Workspace is an host application for serving as .
 It is based on :
-- NodeJS
+- NodeJS : 18.17.1
 - TypeScript
 - Angular
 - JVM runtime
