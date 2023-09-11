@@ -1,6 +1,6 @@
 {
-  "name": "pomme",
-  "version": "0.0.0",
+  "name": "org.openrichmedia.agamis.workspace",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {},
   "private": true,

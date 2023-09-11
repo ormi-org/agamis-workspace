@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  node18lts-0923-dev:
+    container_name: node18lts-0923-dev
+    image: reg.docker.openrichmedia.org/agamis-workspace-node18lts-dev:0923
+    volumes:
+      - projects:/root/projects
+      - $HOME/.ssh:/root/.ssh:ro
+    command: tail -f /dev/null
+    
+volumes:
+  projects:
+    
