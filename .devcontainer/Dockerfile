@@ -7,10 +7,10 @@ LABEL description="An image for dev environment packed with Node 18.17 and PNPM"
 
 ARG PLANTUML_VERSION=1.2023.10
 ARG NODEJS_VERSION=18
-ARG SHELL=bash
+ARG SHELL=/bin/bash
 
 # Install JDK & dependencies
-RUN apt update && apt install -y openjdk-17-jdk graphviz ca-certificates curl gnupg
+RUN apt update && apt install -y openjdk-17-jdk graphviz ca-certificates curl gnupg git
 # Install NODE
 RUN mkdir -p /etc/apt/keyrings
 RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
