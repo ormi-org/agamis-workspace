@@ -1,5 +1,8 @@
 {
   "extends": "nx/presets/npm.json",
+  "cli": {
+    "packageManager": "pnpm"
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",
@@ -36,7 +39,7 @@
     }
   },
   "installation": {
-    "version": "16.7.4"
+    "version": "16.8.1"
   },
   "generators": {
     "@nx/angular:application": {
@@ -52,5 +55,9 @@
     "@nx/angular:component": {
       "style": "sass"
     }
+  },
+  "affected": {
+    "defaultBase": "develop"
   }
 }
+

@@ -1,9 +1,9 @@
-FROM debian:bullseye
+FROM ubuntu:22.04
 
 LABEL org.openrichmedia="The Open Rich Media Initiative"
 LABEL name="reg.docker.openrichmedia.org/agamis-workspace-node18lts-dev:0923"
 LABEL version="1.0"
-LABEL description="An image for dev environment packed with Node 18.17 and PNPM"
+LABEL description="An image for dev environment packed with Node 18.17, PNPM, Plantuml, Git"
 
 ARG PLANTUML_VERSION=1.2023.10
 ARG NODEJS_VERSION=18
