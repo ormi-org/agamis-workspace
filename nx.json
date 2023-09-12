@@ -1,50 +1,19 @@
 {
-  "extends": "nx/presets/npm.json",
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "cli": {
-    "packageManager": "pnpm"
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "accessToken": "N2ZjZDRlOGMtMjc0NC00OWNiLWFmYmMtMTMzM2IwMDUzZTgxfHJlYWQtd3JpdGU="
+        "cacheableOperations": [],
+        "accessToken": "MzY0YjBiZWEtMTgxZi00YThmLWIwOGMtZDE1ZTQ4YTNhMmNhfHJlYWQtd3JpdGU="
       }
     }
   },
-  "targetDefaults": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "test": {
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/jest.preset.js"
-      ]
-    },
-    "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
-      ]
-    }
-  },
-  "installation": {
-    "version": "16.8.1"
+  "affected": {
+    "defaultBase": "develop"
   },
   "generators": {
     "@nx/angular:application": {
-      "style": "sass",
+      "style": "css",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
@@ -54,11 +23,20 @@
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
-      "style": "sass"
+      "style": "css"
     }
   },
-  "affected": {
-    "defaultBase": "develop"
+  "targetDefaults": {
+    "test": {
+      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.js"
+      ]
+    }
   }
 }
-
