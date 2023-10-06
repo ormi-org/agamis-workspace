@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { NavBarComponent } from './components/navBar/nav-bar.component';
+// import { AuthService } from './services/AuthService';
+// import { CompanyService } from './services/CompanyService';
+// import { SearchService } from './services/SearchService';
 
 @NgModule({
   declarations: [
