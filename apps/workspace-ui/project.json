@@ -19,8 +19,12 @@
           "apps/workspace-ui/src/favicon.ico",
           "apps/workspace-ui/src/assets"
         ],
-        "styles": ["apps/workspace-ui/src/styles.sass"],
-        "scripts": []
+        "styles": [
+          "apps/workspace-ui/src/styles.sass",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+        ],
+        "scripts": [ "node_modules/bootstrap/dist/js/bootstrap.min.js"]
       },
       "configurations": {
         "production": {

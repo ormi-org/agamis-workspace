@@ -1,3 +1,4 @@
 {
     "npm.packageManager": "pnpm",
+    "cmake.configureOnOpen": false,
 }
