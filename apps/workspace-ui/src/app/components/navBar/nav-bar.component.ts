@@ -18,6 +18,13 @@ export class NavBarComponent {
     private router: Router
   ) { }
 
+    activeTab = 1;
+  
+    selectTab(tabNumber: number): void {
+      this.activeTab = tabNumber;
+    }
+  
+  
   // onSearch(query: string): void {
   //   this.searchService.search(query).subscribe(results => {
   //     // Traitez les résultats ici, par exemple en naviguant vers une page de résultats

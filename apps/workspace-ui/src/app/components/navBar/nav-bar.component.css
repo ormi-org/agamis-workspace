@@ -1,1 +1,20 @@
 @import "~font-awesome/css/font-awesome.css";
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tabs button {
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .tabs button.active {
+    border-bottom: 2px solid blue;
+  }
+  

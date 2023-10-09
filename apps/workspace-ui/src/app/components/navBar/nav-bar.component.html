@@ -30,6 +30,23 @@
           </a>
       </div>
     </div>
+
+    
     
   </nav>
+
+  <div class="tabs bg-secondary">
+    <button (click)="selectTab(1)" [class.active]="activeTab === 1">Sessions</button>
+    <button (click)="selectTab(2)" [class.active]="activeTab === 2">Applications</button>
+
+  </div>
   
+  <div class="tab-content">
+    <div *ngIf="activeTab === 1">
+      Contenu de l'onglet 1
+    </div>
+    <div *ngIf="activeTab === 2">
+      Contenu de l'onglet 2
+    </div>
+  </div>
+
