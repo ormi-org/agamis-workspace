@@ -9,7 +9,7 @@ export class CompanyService {
   constructor(private http: HttpClient) { }
 
   getCompanyDetails() {
-    // Adaptez l'URL selon le backend/API
+    // Besoin d'adapter l'URL selon le backend/API
     return this.http.get('/api/company-details');
   }
 }
