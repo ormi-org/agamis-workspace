@@ -8,6 +8,9 @@ import { NavBarComponent } from './components/navBar/nav-bar.component';
 // import { AuthService } from './services/AuthService';
 // import { CompanyService } from './services/CompanyService';
 // import { SearchService } from './services/SearchService';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -18,8 +21,13 @@ import { NavBarComponent } from './components/navBar/nav-bar.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    library.add(faCoffee); // Permet d'ajouter d'autres Icones
+}
+}
