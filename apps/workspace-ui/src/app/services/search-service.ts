@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  getCompanyDetails() {
-    // Besoin d'adapter l'URL selon le backend/API
-    return this.http.get('/api/company-details');
+  search(query: string) {
+    // Adaptez l'URL selon l' backend/API
+    return this.http.get(`/api/search?query=${query}`);
   }
 }
