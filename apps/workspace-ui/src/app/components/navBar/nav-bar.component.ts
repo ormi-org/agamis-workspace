@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-// import { SearchService } from './../../services/SearchService';
-// import { AuthService } from './../../services/AuthService';
-// import { CompanyService } from './../../services/CompanyService';
+import { AuthService } from '../../services/auth-service';
+import { SearchService } from '../../services/search-service';
+import { OrganisationService } from '../../services/organisation-service';
+import { TabManagementService } from '../../services/tab-management-service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,16 +15,20 @@ export class NavBarComponent {
   constructor(
     // private searchService: SearchService,
     // private authService: AuthService,
-    // private companyService: CompanyService,
-    private router: Router
+    // private organisationService: OrganisationService,
+    private router: Router,
+    // private tabService: TabManagementService
   ) { }
 
-    activeTab = 1;
+
   
-    selectTab(tabNumber: number): void {
-      this.activeTab = tabNumber;
-    }
-  
+  // selectTab(tabNumber: number): void {
+  //   this.tabService.setActiveTab(tabNumber);
+  // }
+
+  // get activeTab(): number {
+  //   return this.tabService.getActiveTab();
+  // }
   
   // onSearch(query: string): void {
   //   this.searchService.search(query).subscribe(results => {
@@ -44,8 +49,8 @@ export class NavBarComponent {
   //   return this.authService.isAuthenticated;
   // }
 
-  // fetchCompanyDetails(): void {
-  //   this.companyService.getCompanyDetails().subscribe(details => {
+  // fetchOrganisationDetails(): void {
+  //   this.organisationService.getOrganisationDetails().subscribe(details => {
   //     // Traitez les détails de l'entreprise ici
   //   });
   // }

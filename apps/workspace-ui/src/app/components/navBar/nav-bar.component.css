@@ -1,20 +1,73 @@
-@import "~font-awesome/css/font-awesome.css";
 
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #343a40;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  margin-right: 1rem;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Search form */
+.form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Tabs */
 .tabs {
-    display: flex;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .tabs button {
-    padding: 10px 20px;
-    border: none;
-    border-bottom: 2px solid transparent;
-    background: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .tabs button.active {
-    border-bottom: 2px solid blue;
-  }
-  
+  display: flex;
+  background-color: #6c757d;
+  padding: 0.5rem;
+}
+
+.tabs button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tabs button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tab-content div {
+  display: none;
+}
+
+/* If using Angular, you'd use ngIf to control visibility */
+/* Add your logic to display content based on active tab */
