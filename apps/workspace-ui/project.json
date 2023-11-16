@@ -20,7 +20,9 @@
           "apps/workspace-ui/src/assets"
         ],
         "styles": [
-          "apps/workspace-ui/src/styles.sass"
+          "apps/workspace-ui/src/styles.sass",
+          "apps/workspace-ui/src/app/components/navBar/nav-bar.component.sass"
+
         ],
         "scripts": []
       },

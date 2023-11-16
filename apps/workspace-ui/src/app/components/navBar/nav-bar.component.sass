@@ -1,0 +1,91 @@
+// Estimated color variables based on the zoomed-in maquette
+$color-navbar-background: #000 // Black for navbar background
+$color-navbar-text: #fff // White for text on navbar
+$color-primary: #ffd700 // Gold color for accents and active elements
+$color-inactive-tab: #eae5d6 // Light grey for inactive tabs
+$color-active-tab: #f5f1e4 // Brighter grey for active tabs
+$color-tab-text: #333 // Dark grey for text in tabs
+$color-background: #fff5e1 // Off-white/beige for the background
+
+.custom-navbar 
+  display: flex
+  justify-content: space-between
+  align-items: center
+  background-color: $color-navbar-background
+  padding: 10px
+
+  .navbar-left 
+    display: flex
+    align-items: center
+
+    .navbar-logo 
+      width: 50px
+      height: auto
+      margin-right: 10px
+    
+
+    h2 
+      color: $color-navbar-text
+      font-size: 24px
+    
+  
+
+  .navbar-search 
+    input[type="search"] 
+      padding: 8px 50px
+      border: none
+      border-radius: 10px
+      background-color: $color-background
+      color: Black
+    
+  
+
+  .navbar-right 
+    display: flex
+
+    .nav-item 
+      margin-left: 20px
+
+      a 
+        display: flex
+        align-items: center
+        text-decoration: none
+        color: $color-navbar-text
+
+        i 
+          margin-right: 5px
+        
+
+        label 
+          cursor: pointer
+        
+      
+    
+  
+
+
+.custom-tabs 
+  display: flex
+  justify-content: flex-start
+  background-color: $color-primary
+
+  button 
+    background-color: $color-inactive-tab
+    border: none
+    padding: 10px 20px
+    margin-right: 5px // Spacing between tabs
+    cursor: pointer
+    font-weight: bold
+    color: $color-tab-text
+
+    &.active 
+      background-color: $color-active-tab
+      color: $color-navbar-background
+    
+  
+
+
+.tab-content 
+  padding: 20px
+  background-color: $color-background
+
