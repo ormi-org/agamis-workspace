@@ -8,39 +8,45 @@ a
 
 h3,h2,h1,p
   font-family: 'Poppins', sans-serif
-  color: #f3efe2
+  color: #f5f1e4
 
 
 
 .sidebar
+  // display: none
   font-family: 'Poppins', sans-serif
   position: absolute
   width: 17em
   height: 100%
   top: 0
+  margin: 0
   overflow: hidden
-  background-color: #000
+  background-color: #1e1e1e
   -webkit-transform: translateZ(0)
   visibility: visible
   -webkit-backface-visibility: hidden
+  z-index: -1
 
   header
     width: 100%
     display: block
     padding: 0.75em 1em
+
+    h2
+      margin-bottom: 0
     
     
 
 .sidebar-nav
   font-family: 'Poppins', sans-serif
   position: left
-  background-color: #000
+  background-color: #1e1e1e
   height: 100%
   font-weight: 400
   font-size: 1.5em
   overflow: auto
   padding-bottom: 6em
-  z-index: 9
+  z-index: 10
   overflow: hidden
   -webkit-overflow-scrolling: touch
 
@@ -62,7 +68,7 @@ h3,h2,h1,p
         background-color: #313131
         border-radius: 0em 2em 2em 0em
         font-size: 0.75em
-        padding: 1.05em 1em
+        padding: .75em 1em .75em .25em
         position: relative
         display: block
         margin-bottom: .5em
@@ -79,28 +85,19 @@ h3,h2,h1,p
         display: inline
         vertical-align: middle
 
-  // & > ul > li > a:after
-  //   content: '\f125'
-  //   font-family: ionicons
-  //   font-size: 0.5em
-  //   width: 10px
-  //   color: #fff
-  //   position: absolute
-  //   right: 0.75em
-  //   top: 45%
-
 .nav-flyout
-  display: block
+  display: none
   position: absolute
   background-color: #313131
   z-index: 10
   left: 17em
-  right: 59%
+  width: 19em
   top: 0
   height: 100%
   list-style: none
-  display: block
-  // padding: 0.75em
+  padding-left: 0
+  margin-top: 0
+  
 
   li
     margin-left: 0
@@ -108,12 +105,13 @@ h3,h2,h1,p
     display: inline-block
     width: 100%
 
-    a
+    a, p
       color: #f3efe2
-      background-color: #313131
+      background-color: #52575c
       border-radius: 0em 2em 2em 0em
       font-size: 0.75em
-      // padding: 1.05em 1em
+      padding: .1em
+      padding-left: 1em
       position: relative
       display: block
       margin-bottom: .5em
@@ -122,17 +120,16 @@ h3,h2,h1,p
 
     p
       font-size: 1.2em
+      width: 85%
 
       &:hover
         background-color: rgba(0, 0, 0, 0.9)
 
-  
+  h2
+    font-family: 'Poppins', sans-serif
+    color: #f5f1e4
+    padding-left: .75em
 
 
-    a:hover
-      background-color: rgba(255, 255, 255, 0.05)
-
-  // & ul > li:hover
-  //   .nav-flyout
-
-
+.hover:hover + .nav-flyout
+  display: block
