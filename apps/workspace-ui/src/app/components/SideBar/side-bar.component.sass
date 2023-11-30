@@ -1,7 +1,7 @@
+
+  
 a
   text-decoration: none
-
-  &:hover
 
 .app
   height: 100%
@@ -10,7 +10,16 @@ h3,h2,h1,p
   font-family: 'Poppins', sans-serif
   color: #f5f1e4
 
+.menu_title
+  margin-top: 1em
 
+.projects_title
+  margin-top: 0.5em
+  margin-bottom: 0.75em
+
+.small_arrow_buttons
+  float: right
+  margin-right: 0.5em
 
 .sidebar
   // display: none
@@ -68,7 +77,7 @@ h3,h2,h1,p
         background-color: #313131
         border-radius: 0em 2em 2em 0em
         font-size: 0.75em
-        padding: .75em 1em .75em .25em
+        padding: 1em 1em 1em .75em
         position: relative
         display: block
         margin-bottom: .5em
@@ -77,6 +86,8 @@ h3,h2,h1,p
 
         &:hover
           background-color: #f79147
+          > .nav-flyout
+            display: block
 
       i
         font-size: 1.8em
@@ -86,7 +97,7 @@ h3,h2,h1,p
         vertical-align: middle
 
 .nav-flyout
-  display: none
+  display: block
   position: absolute
   background-color: #313131
   z-index: 10
@@ -98,8 +109,11 @@ h3,h2,h1,p
   padding-left: 0
   margin-top: 0
   
+  ul
+    padding: 0
+    list-style-type: none
 
-  li
+    li
     margin-left: 0
     padding-left: 0
     display: inline-block
@@ -124,6 +138,7 @@ h3,h2,h1,p
 
       &:hover
         background-color: rgba(0, 0, 0, 0.9)
+  
 
   h2
     font-family: 'Poppins', sans-serif
@@ -131,5 +146,7 @@ h3,h2,h1,p
     padding-left: .75em
 
 
-.hover:hover + .nav-flyout
-  display: block
+// truc
+
+#hover_sidebar:hover + .nav-flyout
+      display: block

@@ -6,3 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-bar.component.sass'],
 })
 export class SideBarComponent {}
+
+
