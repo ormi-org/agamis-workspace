@@ -8,7 +8,9 @@ export class AuthService {
   isAuthenticated = false;
 
   login() {
-    // Implémentez la logique de connexion ici
+     // Implémentez la logique de connexion ici
+     throw new Error("> AuthService#login() < Method not implemented");
+
   }
 
   logout() {

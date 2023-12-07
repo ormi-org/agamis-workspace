@@ -1,0 +1,159 @@
+// Estimated color variables based on the zoomed-in maquette
+$color-navbar-background: #1e1e1e // Black for navbar background
+$color-navbar-text: #fff // White for text on navbar
+$color-primary: #ffd03b // Gold color for accents and active elements
+$color-inactive-tab: #eae5d6 // Light grey for inactive tabs
+$color-active-tab: #f5f1e4 // Brighter grey for active tabs
+$color-tab-text: #333 // Dark grey for text in tabs
+$color-background: #f5f1e4 // Off-white/beige for the background
+
+.custom-navbar 
+  display: flex
+  justify-content: space-between
+  align-items: center
+  background-color: $color-navbar-background
+  // padding: 10px
+
+  .navbar-left 
+    display: flex
+    align-items: center
+
+    .navbar-logo 
+      width: 50px
+      height: auto
+      margin-right: 10px
+    
+
+    h2 
+      color: $color-navbar-text
+      font-size: 24px
+    
+  
+
+  .navbar-search 
+    input[type="search"] 
+      padding: 8px 50px
+      border: none
+      border-radius: 10px
+      background-color: $color-background
+      color: Black
+    
+  
+
+  .navbar-right 
+    display: flex
+
+    .nav-item 
+      margin-left: 20px
+
+      a 
+        display: flex
+        align-items: center
+        text-decoration: none
+        color: $color-navbar-text
+
+        i 
+          margin-right: 5px
+        
+
+        label 
+          cursor: pointer
+        
+      
+    
+  
+
+
+.custom-tabs 
+  display: flex
+  justify-content: flex-start
+  background-color: $color-primary
+
+  button 
+    background-color: $color-inactive-tab
+    border: none
+    padding: 10px 20px
+    margin-right: 5px // Spacing between tabs
+    cursor: pointer
+    font-weight: bold
+    color: $color-tab-text
+
+    &.active 
+      background-color: $color-active-tab
+      color: $color-navbar-background
+    
+  
+
+
+.tab-content 
+  padding: 20px
+  background-color: $color-background
+
+
+.dropdown 
+  position: relative
+  /* Autres styles nécessaires */
+
+.dropdown-menu 
+  display: none
+  position: absolute
+  z-index: 1000
+  top: 100% // ou la hauteur appropriée pour aligner avec le bas du bouton déclencheur
+  right: 0 // cela alignera le bord droit du menu déroulant avec le bord droit du bouton déclencheur
+  background: white
+  border: 1px solid black
+  // Assurez-vous que le menu ne dépasse pas la largeur de la vue
+  max-width: calc(100vw - 100%) // 100vw est la largeur de la fenêtre, et 100% est la largeur du conteneur parent.
+
+.dropdown-menu.show 
+  display: block
+
+.navbar-search 
+  .search-container 
+    display: flex
+    align-items: center
+    position: relative
+
+    .imageSearch 
+      position: absolute
+      left: 10px 
+      height: 20px 
+      width: 20px
+    
+
+    input[type="search"] 
+      padding-left: 30px 
+
+  
+
+/* svg-path */
+.svg-path 
+  position: absolute
+  width: 27px
+  height: 31px
+  left: 14.93px
+  top: 10.56px
+  background-color: rgba(245, 241, 228, 1)
+
+  /* Notif button */
+.notif-button
+  position: absolute
+  width: 31.96px
+  height: 34.93px
+  left: 1713px
+  top: 8px
+
+ 
+.svg-path-29 
+  position: absolute
+  width: 24px
+  height: 23px
+  left: 1541px
+  top: 15px
+  background-color: rgba(245, 241, 228, 1)
+
+.custom-tabs 
+  display: flex
+  justify-content: flex-start
+  background-color: $color-primary // Votre couleur de fond jaune
+  min-height: 50px // Hauteur minimum pour s'assurer que le conteneur est visible
