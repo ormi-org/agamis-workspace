@@ -8,7 +8,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileTabComponent } from './components/profile-tab/profile-tab.component';
 
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from './components/sidebar-tab/sidebar-tab.component';
 // import { Authservice } from './services/auth-service';
 // import { OrganisationService } from './services/organisation-service';
 // import { SearchService } from './services/search-service';

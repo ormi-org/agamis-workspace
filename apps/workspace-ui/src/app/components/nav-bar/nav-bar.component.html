@@ -1,4 +1,4 @@
-<!-- Partie NavBar -->
+s<!-- Partie NavBar -->
 <nav class="custom-navbar">
   <!-- Section gauche de la barre de navigation : contient le logo et le titre -->
   <div class="navbar-left">
@@ -64,27 +64,44 @@
             </g>
           </g>
         </svg>
-        <label for="notif">Notifications</label>
+        
       </a>
     </div>
     
     <!-- Menu utilisateur déroulant -->
     <div class="nav-item">
       <div class="nav-item dropdown">
+        
         <!-- Bouton pour basculer le menu utilisateur -->
-        <a href="#" class="dropdown-toggle" (click)="toggleUserMenu()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M4 20C4 16.134 7.13401 13 11 13H13C16.866 13 20 16.134 20 20V21H4V20Z"/>
-          </svg>
-        </a>
+        <div  class="dropdown-toggle" (click)="toggleUserMenu($event)">
+          <!-- Avatar et nom d'utilisateur -->
+          <div class="user-details">
+            <p class="pseudo">Chauncey</p>
+            <img *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" class="avatar-icon-nav">
+            <ng-template #defaultAvatar>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 20C4 16.134 7.13401 13 11 13H13C16.866 13 20 16.134 20 20V21H4V20Z"/>
+              </svg>
+            </ng-template>
+            
+          </div>
+        </div>
         
         <!-- Menu déroulant utilisateur qui apparaît au clic -->
         <div class="dropdown-menu" *ngIf="showUserMenu" style="display: block; position: absolute; z-index: 1000; background: white; border: 1px solid black;">
-          <button (click)="openProfile()">Profile</button>
-          <!-- <button (click)="openAccountSettings()">Account Settings</button>
-          <button (click)="openSessions()">Sessions</button> -->
-          <!-- Ajouter ici d'autres options si nécessaire -->
+          <div class="user-info">
+            <span class="user-email">chauncey.von@snuffies.com</span>
+            <span class="user-projects">Projects: 4</span>
+          </div>
+          <ul class="menu-items">
+            <li><button (click)="openProfile()">Profile</button></li>
+            <!-- <li><button (click)="openAccountSettings()">Account settings</button></li>
+            <li><button (click)="openNotifications()">Notifications</button></li>
+            <li><button (click)="openOrganization()">My organization</button></li>
+            <li><button (click)="openSessions()">Sessions</button></li>
+            <li><button (click)="openLogout()">Logout</button></li> -->
+          </ul>
         </div>
       </div>
       
@@ -103,7 +120,23 @@
     <!-- Bouton pour fermer l'onglet -->
     <span class="remove-tab" (click)="removeTab(tab.id)">×</span>
   </button>
+  
 </ng-container>
+
+  <!-- Bouton et formulaire pour ajouter un nouvel onglet -->
+  <div class="add-tab-button">
+    <!-- Bouton pour afficher le formulaire d'ajout d'un nouvel onglet -->
+    <button *ngIf="!showNewTabInput" (click)="showNewTabInput = true">+</button>
+    <!-- Formulaire pour entrer le titre du nouvel onglet -->
+    <div *ngIf="showNewTabInput" class="add-tab-form">
+      <input type="text" [(ngModel)]="newTabTitle" placeholder="Nom du nouvel onglet">
+      <!-- Bouton pour ajouter l'onglet -->
+      <button (click)="addTab()">Ajouter</button>
+      <!-- Bouton pour annuler l'ajout d'un nouvel onglet -->
+      <button (click)="showNewTabInput = false">Annuler</button>
+    </div>
+  </div>
+  
 </div>
 
 <!-- Message indiquant qu'aucun onglet n'est présent -->
@@ -112,20 +145,6 @@
 </div>
 
 
-
-<!-- Bouton et formulaire pour ajouter un nouvel onglet -->
-<div class="add-tab-button">
-  <!-- Bouton pour afficher le formulaire d'ajout d'un nouvel onglet -->
-  <button *ngIf="!showNewTabInput" (click)="showNewTabInput = true">+</button>
-  <!-- Formulaire pour entrer le titre du nouvel onglet -->
-  <div *ngIf="showNewTabInput" class="add-tab-form">
-    <input type="text" [(ngModel)]="newTabTitle" placeholder="Nom du nouvel onglet">
-    <!-- Bouton pour ajouter l'onglet -->
-    <button (click)="addTab()">Ajouter</button>
-    <!-- Bouton pour annuler l'ajout d'un nouvel onglet -->
-    <button (click)="showNewTabInput = false">Annuler</button>
-  </div>
-</div>
 
 
  <!-- Contenu des onglets -->
@@ -144,8 +163,12 @@
   <div class="tab-content" *ngIf="(activeTab$ | async) === tab.id">
      <!-- Charge le ProfileTabComponent si le composant associé à l'onglet est ProfileTabComponent -->
     <ng-container *ngIf="tab.component === 'ProfileTabComponent'">
-      <app-profile-tab></app-profile-tab>
+      <div class="profile-layout">
+        <aside class="sidebar">
+          <app-sidebar-tab></app-sidebar-tab>
+        </aside>
+        <app-profile-tab></app-profile-tab>
+      </div>
     </ng-container>
   </div>
 </ng-container>
-

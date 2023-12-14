@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabManagementService, Tab } from '../../services/tab-management-service';
 import { Observable } from 'rxjs';
+import { AvatarService } from '../../services/avatar-service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,6 +15,7 @@ export class NavBarComponent {
   showUserMenu = false;
   // Propriété Observable pour suivre l'onglet actif
   activeTab$: Observable<number | null>;
+  avatarSrc: string | ArrayBuffer | null | undefined;
 
   /**
    * Construit une instance de NavBarComponent.
@@ -22,11 +24,14 @@ export class NavBarComponent {
    */
   constructor(
     private router: Router,
-    private tabService: TabManagementService
+    private tabService: TabManagementService,
+    private avatarService: AvatarService
   ) {
     // Initialisation de l'Observable avec celui du service
-    this.activeTab$ = this.tabService.activeTabId$; 
-  }
+    this.activeTab$ = this.tabService.activeTabId$;
+    this.avatarService.currentAvatar.subscribe(avatar => {
+    this.avatarSrc = avatar; 
+  });}
 
   /**
    * Active un onglet spécifié par son ID.
@@ -76,7 +81,8 @@ export class NavBarComponent {
   /**
    * Bascule la visibilité du menu utilisateur.
    */
-  toggleUserMenu(): void {
+  toggleUserMenu(event: MouseEvent): void {
+    event.stopPropagation();
     this.showUserMenu = !this.showUserMenu;
   }
 
