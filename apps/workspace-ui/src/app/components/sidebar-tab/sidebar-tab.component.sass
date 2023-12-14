@@ -1,0 +1,111 @@
+// Variables de couleur
+$color-dark: #333
+$color-light: #ecf0f1
+$color-accent: #f39c12
+$color-hover: #f39c12
+$color-background: #646f6f
+
+// Conteneur du panneau latéral
+.sidebar 
+  width: 250px // Largeur du panneau latéral
+  height: 100%// Hauteur totale de la vue
+  
+  color: $color-light
+
+  
+  overflow-y: auto // Défilement vertical si nécessaire
+
+  // Logo en haut du panneau
+  .logo-container 
+    
+    padding: 20px
+    text-align: center
+    color: $color-dark
+    
+    
+  
+
+  // Style pour la barre de recherche dans le panneau latéral
+  .search-container 
+    padding: 10px
+    background-color: $color-accent // Couleur d'accentuation pour la barre de recherche
+
+    input[type='search'] 
+      width: 100%
+      border: none
+      padding: 5px
+      margin-top: 10px
+    
+  
+
+  // Styles pour la navigation dans le panneau latéral
+  .sidebar-nav 
+    ul 
+      list-style-type: none
+      padding: 0
+      margin: 0
+
+      li 
+        margin-left: 0px
+        margin-right: 5px
+        margin-top: 5px
+        margin-bottom: 5px
+        a 
+          padding: 15px
+          display: flex
+          align-items: center
+          color: $color-light
+          background-color: $color-background
+          text-decoration: none
+          transition: background-color 0.3s
+
+          &:hover, &.active 
+            background-color: $color-hover
+          
+
+          i 
+            margin-right: 10px
+         
+
+        
+        
+      
+    
+  
+
+  // Bouton de fermeture pour les onglets mobiles
+  .close-tab 
+    display: none // Cachez par défaut, montrez seulement pour les vues mobiles si nécessaire
+  
+
+
+// Style pour le contenu principal
+.content 
+  margin-left: 250px // Laissez de la place pour le panneau latéral
+  padding: 20px
+  background-color: $color-background // Couleur de fond pour le contenu
+
+.avatar-icon-side
+  width: 60px 
+  height: 60px 
+  object-fit: cover 
+  border-radius: 50% 
+  margin-right: 10px 
+
+// Media queries pour les écrans plus petits
+@media (max-width: 768px) 
+  .sidebar 
+    width: 100% // Pleine largeur pour les écrans mobiles
+    height: auto
+
+    .close-tab 
+      display: block // Montrer le bouton de fermeture
+      padding: 10px
+      text-align: right
+    
+  
+
+  .content 
+    margin-left: 0 // Le contenu prend toute la largeur pour les écrans mobiles
+  
+

@@ -1,0 +1,28 @@
+
+<!-- sidebar.component.html -->
+<aside class="sidebar">
+    <div class="logo-container">
+      <label class="Settings">User Settings</label>
+      <img *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" class="avatar-icon-side">
+      <ng-template #defaultAvatar>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M4 20C4 16.134 7.13401 13 11 13H13C16.866 13 20 16.134 20 20V21H4V20Z"/>
+        </svg>
+      </ng-template>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a routerLink="/profile" routerLinkActive="active"><i class="ri-profile-line"></i> Profile </a>
+          
+        </li>
+        <li><a routerLink="/account" routerLinkActive="active"><i class="ri-account-circle-line"></i> Account </a></li>
+        <li><a routerLink="/organization" routerLinkActive="active"><i class="ri-account-circle-line"></i> My organizations </a></li>
+        <li><a routerLink="/notifications" routerLinkActive="active"><i class="ri-account-circle-line"></i> Notifications</a></li>
+        <li><a routerLink="/sessions" routerLinkActive="active"><i class="ri-account-circle-line"></i> Sessions </a></li>
+        <!-- Plus de liens ici -->
+      </ul>
+    </nav>
+  </aside>
+  
