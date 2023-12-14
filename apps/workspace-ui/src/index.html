@@ -11,3 +11,26 @@
     <app-root></app-root>
   </body>
 </html>
+
+<script>
+  function sidebarProjects() {
+    if (document.getElementById('projects').style.display == "block") {
+      document.getElementById('projects').style.display = "none";
+    }
+    else {
+      document.getElementById('projects').style.display = "block";
+      document.getElementById('collab').style.display = "none";
+    }
+  };
+
+  function sidebarCollab() {
+    if (document.getElementById('collab').style.display == "block") {
+      document.getElementById('collab').style.display = "none";
+    }
+    else {
+      document.getElementById('collab').style.display = "block";
+      document.getElementById('projects').style.display = "none";
+    }
+  };
+  
+  </script>

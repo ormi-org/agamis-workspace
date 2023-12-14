@@ -19,3 +19,4 @@ describe('SideBarComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
