@@ -6,13 +6,15 @@ $border-color: #ddd
 
 // Typography
 $font-family: 'Arial', sans-serif
-$font-size: 14px
+$font-size: 11px
 
 // Layout
 $content-width: 800px
 
+*
+  background-color: rgba(234, 229, 214, 1)
+
 body 
-  background-color: $background-color
   font-family: $font-family
   font-size: $font-size
   color: $text-color
@@ -22,7 +24,7 @@ body
   width: $content-width
   margin: 0 auto
   padding: 20px
-  background-color: #fff
+
   border: 1px solid $border-color
 
 .section 
@@ -33,6 +35,7 @@ body
   display: flex
   align-items: center
   margin-bottom: 20px
+  margin-left:5px
 
   img 
     border-radius: 50%
@@ -45,8 +48,14 @@ body
   
   
 //localization
-.localization-text-container
-  width : 500px
+.localization
+  display: flex
+  align-items: center
+  margin-bottom: 20px
+  margin-left:5px
+  padding-left: 50px
+
+
 
 .localization-container
   display : wrap
@@ -68,18 +77,32 @@ body
 
 .localization
   display : flex 
-  margin : 50px
 
+.input_timezone
+  
+  height: 31px
+  left: 720px
+  top: 470px
+  border-radius: 4px
+  background-color: rgba(245, 241, 228, 1)
+  border: 1px solid rgba(212, 206, 191, 1)
+  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.18)  
 
+.input_language
 
+  height: 31px
+  left: 720px
+  top: 470px
+  border-radius: 4px
+  background-color: rgba(245, 241, 228, 1)
+  border: 1px solid rgba(212, 206, 191, 1)
+  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.18)
 
   
 /* frame */
 .frame 
-  width: 118px
-  height: 31px
-  left: 844px
-  top: 156px
+  width: 100%
+  height: 100%
   border-radius: 35px
   background-color: rgba(245, 241, 228, 1)
   border: 1px solid rgba(212, 206, 191, 1)
@@ -90,7 +113,7 @@ body
 
 /* frame-12 */
 .frame-12 
-  width: 1200px //1628
+  
   height: 493px
   left: 285px
   top: 421px
@@ -98,37 +121,8 @@ body
   display : flex
   margin : 50px
 
-  /* title-5 */
-.title-5 
-  width: 259px
-  height: 68px
-  left: 285px
-  top: 421px
-  color: rgba(30, 30, 30, 1)
-  font-family: 'Poppins'
-  font-style: normal
-  font-size: 21px
-  font-weight: 700
-  line-height: 1.2
-  letter-spacing: 0px
-  text-decoration: none
-  text-transform: none
 
-/* desc-3 */
-.desc-3 
-  width: 402px
-  height: 55px
-  left: 285px
-  top: 489px
-  color: rgba(30, 30, 30, 1)
-  font-family: 'Poppins'
-  font-style: normal
-  font-size: 14px
-  font-weight: 700
-  line-height: 1.2
-  letter-spacing: 0px
-  text-decoration: none
-  text-transform: none
+
 
 /* fullname-grp-1 */
 .fullname-grp-1 
@@ -157,7 +151,7 @@ body
   color: rgba(30, 30, 30, 1)
   font-family: 'Poppins'
   font-style: normal
-  font-size: 14px
+  font-size: $font-size
   font-weight: 700
   line-height: 1.2
   letter-spacing: 0px
@@ -172,7 +166,7 @@ body
   color: rgba(82, 87, 92, 1)
   font-family: 'Poppins'
   font-style: italic
-  font-size: 12px
+  font-size: $font-size
   font-weight: 700
   line-height: 1.2
   letter-spacing: 0px
@@ -181,7 +175,7 @@ body
 
 /* email-grp-1 */
 .email-grp-1 
-  width: 758px
+  width: 100%
   height: 79px
   left: 720px
   top: 531px
@@ -195,7 +189,7 @@ body
   color: rgba(30, 30, 30, 1)
   font-family: 'Poppins'
   font-style: normal
-  font-size: 14px
+  font-size: $font-size
   font-weight: 700
   line-height: 1.2
   letter-spacing: 0px
@@ -207,18 +201,36 @@ body
 
 
 
-.general-text-settings-container
-  width : 500px
+
 
 .general-profile-settings-container
   display : wrap
 
+textarea 
+  width: 400px /* Largeur désirée */
+  height: 200px /* Hauteur désirée */
 
 /* separator-1 */
 .separator-1 
-  position: absolute
-  width: 1200px
+  width: 100%
   height: 1px
-  left: 285px
-  top: 913px
-  background-color: rgba(82, 87, 92, 1)
+  background-color: black
+
+.avatar-icon 
+  width: 100px 
+  height: 100px 
+  object-fit: cover 
+  border-radius: 50% 
+  margin-right: 10px 
+
+
+  /* Bio */
+.bio 
+  width: 452px
+  height: 100px
+  left: 720px
+  top: 470px
+  border-radius: 4px
+  background-color: rgba(245, 241, 228, 1)
+  border: 1px solid rgba(212, 206, 191, 1)
+  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.18)
