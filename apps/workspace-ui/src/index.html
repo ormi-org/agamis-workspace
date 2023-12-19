@@ -14,22 +14,45 @@
 
 <script>
   function sidebarProjects() {
-    if (document.getElementById('projects').style.display == "block") {
-      document.getElementById('projects').style.display = "none";
+    var projectsSidebar = document.getElementById('projects'); 
+    var collabSidebar = document.getElementById('collab');
+    var projectsButtonColor = document.getElementById('projectsButton');
+    var collabButtonColor = document.getElementById('collabButton');
+
+    if (projectsSidebar.style.display == "block") {
+      projectsSidebar.style.display = "none";
+
+      projectsButtonColor.style.backgroundColor = "#313131";
+
     }
     else {
-      document.getElementById('projects').style.display = "block";
-      document.getElementById('collab').style.display = "none";
+      projectsSidebar.style.display = "block";
+      projectsButtonColor.style.backgroundColor = "#f79147";
+
+      collabSidebar.style.display = "none";
+      collabButtonColor.style.backgroundColor = "#313131";
+
     }
   };
 
   function sidebarCollab() {
-    if (document.getElementById('collab').style.display == "block") {
-      document.getElementById('collab').style.display = "none";
+    var projectsSidebar = document.getElementById('projects'); 
+    var collabSidebar = document.getElementById('collab');
+    var projectsButtonColor = document.getElementById('projectsButton');
+    var collabButtonColor = document.getElementById('collabButton');
+
+    if (collabSidebar.style.display == "block") {
+      collabSidebar.style.display = "none";
+      collabButtonColor.style.backgroundColor = "#313131";
+
     }
     else {
-      document.getElementById('collab').style.display = "block";
-      document.getElementById('projects').style.display = "none";
+      collabSidebar.style.display = "block";
+      collabButtonColor.style.backgroundColor = "#f79147";
+
+      projectsSidebar.style.display = "none";
+      projectsButtonColor.style.backgroundColor = "#313131";
+
     }
   };
   
