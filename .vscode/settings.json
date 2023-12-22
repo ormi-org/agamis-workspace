@@ -1,3 +1,4 @@
 {
     "npm.packageManager": "pnpm",
+    "editor.detectIndentation": false
 }
