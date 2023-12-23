@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AgamisLogoSvgComponent } from '../../shared/svg/agamis-logo.svg.component';
-import { OpenedEyeSvgComponent } from '../../shared/svg/opened-eye.svg.component';
-import { LoadingSpinSvgComponent } from '../../shared/svg/loading-spin.svg.component';
-import { Color } from '../../common/color';
+import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
+import { OpenedEyeSvgComponent } from '../../../shared/svg/opened-eye.svg.component';
+import { LoadingSpinSvgComponent } from '../../../shared/svg/loading-spin.svg.component';
+import { Color } from '../../../common/color';
 import { RouterLink } from '@angular/router';
 
 @Component({

@@ -1,4 +1,5 @@
 {
     "npm.packageManager": "pnpm",
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2
 }
