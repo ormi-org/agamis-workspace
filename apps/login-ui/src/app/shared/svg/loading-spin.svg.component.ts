@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Color } from "../../common/color";
+import Color from "../../common/color";
 
 @Component({
   standalone: true,

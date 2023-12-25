@@ -6,7 +6,9 @@ import { isDevMode } from '@angular/core';
 async function prepare() {
   if (isDevMode()) {
     const { worker } = await import('./mocks/browser');
-    return worker.start();
+    worker.start({
+      onUnhandledRequest: "bypass"
+    });
   }
   return Promise.resolve();
 }
@@ -14,13 +16,3 @@ async function prepare() {
 prepare().then(() => {
   bootstrapApplication(AppComponent, appConfig);
 });
-
-// (async () => {
-//   const app = await createApplication(appConfig);
-
-//   const appElement = createCustomElement(AppComponent, {
-//     injector: app.injector,
-//   });
-
-//   customElements.define('agamis-ws-login-root', appElement);
-// })();

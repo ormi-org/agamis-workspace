@@ -1,23 +1,28 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
-import { OpenedEyeSvgComponent } from '../../../shared/svg/opened-eye.svg.component';
-import { LoadingSpinSvgComponent } from '../../../shared/svg/loading-spin.svg.component';
-import { Color } from '../../../common/color';
+import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Observable, catchError, take, throwError } from 'rxjs';
+import Color from '../../../common/color';
+import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
+import { LoadingSpinSvgComponent } from '../../../shared/svg/loading-spin.svg.component';
+import { OpenedEyeSvgComponent } from '../../../shared/svg/opened-eye.svg.component';
+import ApiErrorResponse from '../../models/api-error-response';
+import { AuthenticationService } from '../../services/authentication.service';
+import LogApiErrorResponse from '../../../common/functions/log-api-error-response';
+import { ContextService } from '../../services/context.service';
+import Context from '../../services/models/context';
+import { GoogleLogoSvgComponent } from '../../../shared/svg/google-logo.svg.component';
+import { GithubLogoSvgComponent } from '../../../shared/svg/github-logo.svg.component';
 
 @Component({
   selector: 'agamis-ws-login-page-login',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    AgamisLogoSvgComponent,
-    OpenedEyeSvgComponent,
-    LoadingSpinSvgComponent,
-    RouterLink,
-  ],
   template: `
     <div>
       <div class="content">
@@ -29,21 +34,38 @@ import { RouterLink } from '@angular/router';
             <h1>Sign in</h1>
           </div>
           <div class="org-label">
-            <p>{{ '@' + orgName }}</p>
+            <p>{{ '@' + (getLoginContext() | async)?.orgName }}</p>
           </div>
         </div>
-        <div class="body">
+        <form
+          class="body"
+          [formGroup]="loginForm"
+          (ngSubmit)="handleLocalLogin()"
+        >
           <div class="field">
-            <label>Username - or - email</label>
-            <input type="text" [(ngModel)]="identifier" />
+            <label for="identifier">Username - or - email</label>
+            <input
+              id="identifier"
+              name="identifier"
+              type="text"
+              formControlName="identifier"
+              autocomplete="username"
+            />
           </div>
           <div class="field">
-            <label>Password</label>
+            <label for="password">Password</label>
             <input
+              id="password"
+              name="password"
               [type]="hidePassword ? 'password' : 'text'"
-              [(ngModel)]="password"
+              formControlName="password"
+              autocomplete="current-password"
             />
-            <button (click)="hidePassword = !hidePassword" class="tail-button">
+            <button
+              type="button"
+              (click)="hidePassword = !hidePassword"
+              class="tail-button"
+            >
               <agamis-ws-login-svg-opened-eye
                 [fillColor]="
                   hidePassword ? Color.SOFT_EMPHASIS : Color.PRIMARY_ONE
@@ -52,52 +74,129 @@ import { RouterLink } from '@angular/router';
             </button>
           </div>
           <div class="actions">
-            <a class="lost-pass" [routerLink]="['/password-reset']"
-              >I lost my password</a
-            >
-            <button
-              (click)="handleLogin()"
-              [class]="['submit', loading ? 'loading' : '']"
-            >
-              <agamis-ws-login-svg-loading-spin/>
-              Sign in
-            </button>
+            <button type="button" class="lost-pass" (click)="goToResetView()">I lost my password</button>
+            <div>
+              <span class="error-msg">{{ errorMessage }}</span>
+              <agamis-ws-login-svg-loading-spin *ngIf="loading" />
+              <button type="submit" class="submit" [disabled]="loading">
+                Sign in
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
         <div class="or-separator">
           <div class="separator"></div>
           <span>OR</span>
           <div class="separator"></div>
         </div>
         <div class="alt-login">
-          <h2>{{ orgName }}</h2>
+          <h2>{{ (getLoginContext() | async)?.orgName }}</h2>
           <div class="group">
-            <a [href]="">Tyria's heroes keycloak</a>
+            <a [href]="">keycloak main instance</a>
           </div>
           <div class="separator"></div>
+          <h2>Third parties</h2>
           <div class="group">
-            <a [href]="">Google</a>
-            <a [href]="">GitHub</a>
+            <a [href]=""
+              ><agamis-ws-login-svg-google-logo class="icon" />
+              <span>Google</span></a
+            >
+            <a [href]=""
+              ><agamis-ws-login-svg-github-logo class="icon" />
+              <span>GitHub</span></a
+            >
           </div>
         </div>
       </div>
     </div>
   `,
   styleUrl: './login-page.component.scss',
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AgamisLogoSvgComponent,
+    OpenedEyeSvgComponent,
+    LoadingSpinSvgComponent,
+    RouterLink,
+    GoogleLogoSvgComponent,
+    GithubLogoSvgComponent,
+  ],
 })
 export class LoginPageComponent {
   Color = Color;
 
-  @Input()
-  orgName: string = "Tyria's heroes";
-
-  identifier: string = '';
-  password: string = '';
+  loginForm = new FormGroup({
+    identifier: new FormControl(''),
+    password: new FormControl(''),
+  });
 
   hidePassword: boolean = true;
   loading: boolean = false;
+  errorMessage: string | undefined = undefined;
 
-  handleLogin() {
+  constructor(
+    private authenticationService: AuthenticationService,
+    private contextService: ContextService,
+    private logApiErrorResponse: LogApiErrorResponse
+  ) {}
+
+  getLoginContext(): Observable<Context> {
+    return this.contextService.getContext();
+  }
+
+  goToResetView(): void {
+    console.debug('-- LoginPageComponent#goToResetView() > entering method');
+    this.contextService.getContext()
+    .pipe(
+      take(1)
+    )
+    .subscribe((ctx: Context) => {
+      console.debug('-- LoginPageComponent#goToResetView() - pushing context');
+      this.contextService.setContext({
+        ...ctx,
+        view: 'reset',
+      });
+    }).unsubscribe();
+  }
+
+  handleLocalLogin() {
+    console.debug('>> LoginPageComponent#handleLocalLogin() > entering method');
     this.loading = true;
+    delete this.errorMessage;
+    console.debug(
+      '-- LoginPageComponent#handleLocalLogin() - verifying input credentials'
+    );
+    const { identifier, password } = this.loginForm.value;
+    if (!identifier || !password) {
+      console.error(
+        '<< LoginPageComponent#handleLocalLogin() < no credentials provided'
+      );
+      this.errorMessage = 'Please provide your credentials';
+      this.loading = false;
+      return;
+    }
+    console.debug(
+      '-- LoginPageComponent#handleLocalLogin() - using local authentication'
+    );
+    this.authenticationService
+      .localAuthenticate(identifier, password)
+      .pipe(
+        catchError((error: ApiErrorResponse) => {
+          console.debug(
+            '<< LoginPageComponent#handleLocalLogin() < catched an error : ' +
+              this.logApiErrorResponse.apply(error)
+          );
+          this.loading = false;
+          this.errorMessage = error.message;
+          return throwError(() => error);
+        })
+      )
+      .subscribe(() => {
+        console.debug(
+          '<< LoginPageComponent#handleLocalLogin() < successful login'
+        );
+        this.loading = false;
+      });
   }
 }

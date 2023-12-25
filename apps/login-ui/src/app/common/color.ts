@@ -1,4 +1,4 @@
-export enum Color {
+enum Color {
   PRIMARY_ONE = '#1E1E1E',
   PRIMARY_TWO = '#FFD03B',
   PRIMARY_THREE = '#5266FF',
@@ -11,3 +11,5 @@ export enum Color {
   SOFT_EMPHASIS = '#D4CEBF',
   STRONG_EMPHASIS = '#52575C',
 }
+
+export default Color;

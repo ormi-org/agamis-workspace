@@ -1,0 +1,23 @@
+@import '../styles/constants';
+@import '../styles/animations';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-width: 566px;
+  width: 566px;
+
+  > agamis-ws-login-svg-loading-spin {
+    width: 35px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    animation: fadeIn 0.2s linear, spin 1s linear infinite;
+  }
+}
