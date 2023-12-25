@@ -44,8 +44,9 @@ $color-background: #646f6f
       list-style-type: none
       padding: 0
       margin: 0
-
+  
       li 
+        width: calc(100% - 5px) // Réduit la largeur de 5px
         margin-left: 0px
         margin-right: 5px
         margin-top: 5px
@@ -58,6 +59,9 @@ $color-background: #646f6f
           background-color: $color-background
           text-decoration: none
           transition: background-color 0.3s
+          border-top-right-radius: 10px
+          border-bottom-right-radius: 10px
+         
 
           &:hover, &.active 
             background-color: $color-hover
@@ -91,6 +95,9 @@ $color-background: #646f6f
   object-fit: cover 
   border-radius: 50% 
   margin-right: 10px 
+  
+a svg
+  padding-right: 5px
 
 // Media queries pour les écrans plus petits
 @media (max-width: 768px) 
@@ -108,4 +115,3 @@ $color-background: #646f6f
   .content 
     margin-left: 0 // Le contenu prend toute la largeur pour les écrans mobiles
   
-
