@@ -1,0 +1,49 @@
+stages:
+  - prepare
+  - lint
+  - test
+  - build
+  - e2e
+
+variables:
+  NODE_VERSION: '16.8.1' # ou la version que vous utilisez
+
+prepare:
+  stage: prepare
+  image: node:$NODE_VERSION
+  script:
+    - npm install
+  only:
+    - /^feat\/.*$/
+
+lint:
+  stage: lint
+  image: node:$NODE_VERSION
+  script:
+    - npx nx lint
+  only:
+    - /^feat\/.*$/
+
+test:
+  stage: test
+  image: node:$NODE_VERSION
+  script:
+    - npx nx test
+  only:
+    - /^feat\/.*$/
+
+build:
+  stage: build
+  image: node:$NODE_VERSION
+  script:
+    - npx nx build
+  only:
+    - /^feat\/.*$/
+    
+e2e:
+  stage: e2e
+  image: node:$NODE_VERSION
+  script:
+    - npx nx e2e workspace-ui-e2e
+  only:
+    - /^feat\/.*$/
