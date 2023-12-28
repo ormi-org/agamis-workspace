@@ -7,18 +7,15 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/workspace-ui",
         "index": "apps/workspace-ui/src/index.html",
         "main": "apps/workspace-ui/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/workspace-ui/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
         "assets": [
           "apps/workspace-ui/src/favicon.ico",
           "apps/workspace-ui/src/assets"
@@ -27,7 +24,10 @@
           "node_modules/normalize.css/normalize.css",
           "apps/workspace-ui/src/styles.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/workspace-ui/webpack.config.ts"
+        }
       },
       "configurations": {
         "production": {
@@ -43,7 +43,10 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/workspace-ui/webpack.prod.config.ts"
+          }
         },
         "development": {
           "buildOptimizer": false,
@@ -57,7 +60,11 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:module-federation-dev-server",
+      "options": {
+        "port": 4200,
+        "publicHost": "http://localhost:4200"
+      },
       "configurations": {
         "production": {
           "buildTarget": "workspace-ui:build:production"
@@ -66,10 +73,7 @@
           "buildTarget": "workspace-ui:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "apps/workspace-ui/proxy.conf.json"
-      }
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -79,23 +83,13 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ]
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/workspace-ui/jest.config.ts"
-      }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "workspace-ui:build"
       }
     }
   }
