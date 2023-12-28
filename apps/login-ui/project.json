@@ -2,19 +2,20 @@
   "name": "login-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "agamis-ws-login",
+  "prefix": "agamis",
   "sourceRoot": "apps/login-ui/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@angular-architects/native-federation:build",
       "outputs": [
         "{options.outputPath}"
       ],
       "options": {
+        "target": "login-ui:build:development",
         "outputPath": "dist/apps/login-ui",
         "index": "apps/login-ui/src/index.html",
-        "browser": "apps/login-ui/src/main.ts",
+        "main": "apps/login-ui/src/main.ts",
         "polyfills": [
           "zone.js"
         ],
@@ -57,9 +58,12 @@
           "outputHashing": "all"
         },
         "development": {
+          "buildOptimizer": false,
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "vendorChunk": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"

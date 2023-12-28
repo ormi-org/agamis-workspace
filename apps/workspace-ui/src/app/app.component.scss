@@ -1,0 +1,38 @@
+@import '../styles/constants';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.navbar {
+  height: 53px;
+  background-color: map-get($colors, primary-one);
+  display: flex;
+  justify-content: space-between;
+
+  > .logo {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin-left: 15px;
+    column-gap: 6px;
+
+    > agamis-ws-svg-agamis-logo {
+      height: 32px;
+    }
+
+    > agamis-ws-svg-agamis-text {
+      height: 29px;
+    }
+  }
+}

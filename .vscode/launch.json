@@ -2,6 +2,12 @@
   "configurations": [
     {
       "type": "chrome",
+      "name": "Debug 4200 (Workspace UI)",
+      "request": "launch",
+      "url": "http://localhost:4200"
+    },
+    {
+      "type": "chrome",
       "name": "Debug 4201 (login UI - standalone)",
       "request": "launch",
       "url": "http://localhost:4201"
