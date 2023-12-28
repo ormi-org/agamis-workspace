@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { environment } from '../environments/environment';
 import Context from './core/services/models/context';
 import { ContextService } from './core/services/context.service';
 import { LoginPageComponent } from './core/pages/login-page/login-page.component';
 import { ResetPageComponent } from './core/pages/reset-page/reset-page.component';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { Subject } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -18,15 +19,21 @@ import { AsyncPipe, CommonModule } from '@angular/common';
   styleUrl: './app.component.scss',
   imports: [CommonModule, LoginPageComponent, ResetPageComponent, AsyncPipe],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @Input()
   private readonly passedCtx: Context = {
     view: environment.defaultView,
     orgId: environment.defaultOrgId,
     orgName: environment.defaultOrgName,
   };
+  @Output()
+  private readonly loginDone: Subject<void> = new Subject<void>();
 
   constructor(public contextService: ContextService) {
+    this.contextService.whenLoginDone().subscribe(() => this.loginDone.next());
+  }
+
+  ngOnInit(): void {
     this.contextService.setContext(this.passedCtx);
   }
 }

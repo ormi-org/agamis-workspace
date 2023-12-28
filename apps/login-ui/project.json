@@ -71,6 +71,7 @@
           "buildTarget": "login-ui:build:production"
         },
         "development": {
+          "port": 4201,
           "buildTarget": "login-ui:build:development"
         }
       },

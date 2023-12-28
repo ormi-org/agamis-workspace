@@ -24,6 +24,7 @@ export class AuthenticationService {
   private handleLocalAuthError = (error: HttpErrorResponse) => {
     const apiError = error.error as ApiErrorResponse;
     if (!apiError) {
+      // catch and map generic http errors
       console.error(
         '-- AuthenticationService#localAuthenticate(string, string) < Had an unexpected error : ',
         error.message
@@ -45,7 +46,7 @@ export class AuthenticationService {
     return throwError(() => apiError);
   };
 
-  localAuthenticate(identifier: string, password: string): Observable<void> {
+  localAuthenticate(identifier: string, password: string, orgId: string): Observable<void> {
     console.debug(
       '-- AuthenticationService#localAuthenticate(string, string) > entering method'
     );
@@ -54,8 +55,9 @@ export class AuthenticationService {
     );
     return this.http
       .post<void>(API_ROUTES.localAuth, <LocalAuthenticationRequest>{
-        identifier: identifier,
-        password: password,
+        identifier,
+        password,
+        orgId
       })
       .pipe(catchError(this.handleLocalAuthError));
   }

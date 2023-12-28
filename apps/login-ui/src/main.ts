@@ -1,4 +1,5 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+import { createApplication } from '@angular/platform-browser';
+import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 import { isDevMode } from '@angular/core';
@@ -13,6 +14,12 @@ async function prepare() {
   return Promise.resolve();
 }
 
-prepare().then(() => {
-  bootstrapApplication(AppComponent, appConfig);
+prepare().then(async () => {
+  const app = await createApplication(appConfig);
+
+  const appElement = createCustomElement(AppComponent, {
+    injector: app.injector,
+  });
+
+  customElements.define('agamis-ws-login-root', appElement);
 });

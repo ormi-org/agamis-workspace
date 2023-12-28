@@ -1,5 +1,7 @@
+import ViewType from "./view-type";
+
 export default interface Context {
-  view: "login" | "reset";
+  view: ViewType;
   orgId?: string;
   orgName?: string;
 }

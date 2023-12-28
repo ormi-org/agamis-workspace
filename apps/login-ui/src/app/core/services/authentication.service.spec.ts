@@ -30,10 +30,11 @@ describe('AuthenticationService', () => {
       // given
       const identifier = 'test';
       const password = 'password';
+      const orgId = '4f02da7a-d3a3-4384-8ee4-5b1cc49467ce';
 
       // when
       service
-        .localAuthenticate(identifier, password)
+        .localAuthenticate(identifier, password, orgId)
         .pipe(
           catchError((error: ApiErrorResponse) => {
             // then
@@ -49,7 +50,7 @@ describe('AuthenticationService', () => {
         API_ROUTES.localAuth
       );
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({ identifier, password });
+      expect(req.request.body).toEqual({ identifier, password, orgId });
       req.flush(null, { status: 404, statusText: "Not found" });
     });
 
@@ -57,10 +58,11 @@ describe('AuthenticationService', () => {
       // given
       const identifier = 'test';
       const password = 'password';
+      const orgId = '4f02da7a-d3a3-4384-8ee4-5b1cc49467ce';
 
       // when
       service
-        .localAuthenticate(identifier, password)
+        .localAuthenticate(identifier, password, orgId)
         .pipe(
           catchError((error: ApiErrorResponse) => {
             // then
@@ -75,7 +77,7 @@ describe('AuthenticationService', () => {
         API_ROUTES.localAuth
       );
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual({ identifier, password });
+      expect(req.request.body).toEqual({ identifier, password, orgId });
       req.flush({ code: 401, message: 'Invalid credentials' }, { status: 401, statusText: "Unauthorized" });
     });
   });

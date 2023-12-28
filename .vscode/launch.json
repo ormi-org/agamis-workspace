@@ -2,9 +2,9 @@
   "configurations": [
     {
       "type": "chrome",
-      "name": "http://localhost:4200",
+      "name": "Debug 4201 (login UI - standalone)",
       "request": "launch",
-      "url": "http://localhost:4200"
+      "url": "http://localhost:4201"
     }
   ]
 }

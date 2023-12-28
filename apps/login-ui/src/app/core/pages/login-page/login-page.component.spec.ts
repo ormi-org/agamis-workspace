@@ -4,6 +4,9 @@ import { FormControl } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication.service';
 import { LoginPageComponent } from './login-page.component';
+import { ContextService } from '../../services/context.service';
+import Context from '../../services/models/context';
+import ViewType from '../../services/models/view-type';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -32,7 +35,9 @@ describe('LoginPageComponent', () => {
 
   it('should call localAuthenticate when handleLocalLogin is called', () => {
     const authenticationService = TestBed.inject(AuthenticationService);
+    const contextService = TestBed.inject(ContextService);
     jest.spyOn(authenticationService, 'localAuthenticate');
+    jest.spyOn(contextService, 'getContext').mockImplementation(() => of(<Context>{view: <ViewType>'login', orgId: '7a49fc73-d38b-478a-b8bf-8c9521973157'}));
     component.loginForm.setControl('identifier', new FormControl('test'));
     component.loginForm.setControl('password', new FormControl('test'));
     component.handleLocalLogin();
@@ -48,7 +53,9 @@ describe('LoginPageComponent', () => {
 
   it('should set an error message when local authentication fails', () => {
     const authenticationService = TestBed.inject(AuthenticationService);
+    const contextService = TestBed.inject(ContextService);
     jest.spyOn(authenticationService, 'localAuthenticate').mockReturnValue(throwError(() => { return { message: 'error' }}));
+    jest.spyOn(contextService, 'getContext').mockImplementation(() => of(<Context>{view: <ViewType>'login', orgId: '7a49fc73-d38b-478a-b8bf-8c9521973157'}));
     component.loginForm.setControl('identifier', new FormControl('test'));
     component.loginForm.setControl('password', new FormControl('test'));
     component.handleLocalLogin();

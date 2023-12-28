@@ -7,7 +7,8 @@ import { Observable, ReplaySubject, Subject } from 'rxjs';
 })
 export class ContextService {
 
-  private context: Subject<Context> = new ReplaySubject<Context>();
+  private readonly context: Subject<Context> = new ReplaySubject<Context>();
+  private readonly loginDone: Subject<void> = new Subject<void>();
 
   setContext(passedCtx: Context): void {
     if (!passedCtx.orgId || !passedCtx.orgName) {
@@ -18,5 +19,14 @@ export class ContextService {
 
   getContext(): Observable<Context> {
     return this.context.asObservable();
+  }
+
+  dispatchLoginDone(): void {
+    console.debug("-- ContextService#dispatchLoginDone() > dispatching login done action");
+    this.loginDone.next();
+  }
+
+  whenLoginDone(): Observable<void> {
+    return this.loginDone.asObservable();
   }
 }

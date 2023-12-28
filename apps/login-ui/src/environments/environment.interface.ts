@@ -1,7 +1,9 @@
+import ViewType from "../app/core/services/models/view-type";
+
 interface Environment {
   production: boolean;
   apiBaseUrl: string;
-  defaultView: "login" | "reset";
+  defaultView: ViewType;
   defaultOrgName?: string;
   defaultOrgId?: string;
 }

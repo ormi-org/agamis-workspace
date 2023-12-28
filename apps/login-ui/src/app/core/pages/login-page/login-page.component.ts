@@ -7,18 +7,27 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { Observable, catchError, take, throwError } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  combineLatest,
+  map,
+  mergeMap,
+  of,
+  take,
+  throwError
+} from 'rxjs';
 import Color from '../../../common/color';
+import LogApiErrorResponse from '../../../common/functions/log-api-error-response';
 import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
+import { GithubLogoSvgComponent } from '../../../shared/svg/github-logo.svg.component';
+import { GoogleLogoSvgComponent } from '../../../shared/svg/google-logo.svg.component';
 import { LoadingSpinSvgComponent } from '../../../shared/svg/loading-spin.svg.component';
 import { OpenedEyeSvgComponent } from '../../../shared/svg/opened-eye.svg.component';
 import ApiErrorResponse from '../../models/api-error-response';
 import { AuthenticationService } from '../../services/authentication.service';
-import LogApiErrorResponse from '../../../common/functions/log-api-error-response';
 import { ContextService } from '../../services/context.service';
 import Context from '../../services/models/context';
-import { GoogleLogoSvgComponent } from '../../../shared/svg/google-logo.svg.component';
-import { GithubLogoSvgComponent } from '../../../shared/svg/github-logo.svg.component';
 
 @Component({
   selector: 'agamis-ws-login-page-login',
@@ -74,7 +83,9 @@ import { GithubLogoSvgComponent } from '../../../shared/svg/github-logo.svg.comp
             </button>
           </div>
           <div class="actions">
-            <button type="button" class="lost-pass" (click)="goToResetView()">I lost my password</button>
+            <button type="button" class="lost-pass" (click)="goToResetView()">
+              I lost my password
+            </button>
             <div>
               <span class="error-msg">{{ errorMessage }}</span>
               <agamis-ws-login-svg-loading-spin *ngIf="loading" />
@@ -147,17 +158,19 @@ export class LoginPageComponent {
 
   goToResetView(): void {
     console.debug('-- LoginPageComponent#goToResetView() > entering method');
-    this.contextService.getContext()
-    .pipe(
-      take(1)
-    )
-    .subscribe((ctx: Context) => {
-      console.debug('-- LoginPageComponent#goToResetView() - pushing context');
-      this.contextService.setContext({
-        ...ctx,
-        view: 'reset',
-      });
-    }).unsubscribe();
+    this.contextService
+      .getContext()
+      .pipe(take(1))
+      .subscribe((ctx: Context) => {
+        console.debug(
+          '-- LoginPageComponent#goToResetView() - pushing context'
+        );
+        this.contextService.setContext({
+          ...ctx,
+          view: 'reset',
+        });
+      })
+      .unsubscribe();
   }
 
   handleLocalLogin() {
@@ -179,11 +192,38 @@ export class LoginPageComponent {
     console.debug(
       '-- LoginPageComponent#handleLocalLogin() - using local authentication'
     );
-    this.authenticationService
-      .localAuthenticate(identifier, password)
+    combineLatest({
+      credentials: of({ identifier, password }),
+      orgId: this.contextService.getContext().pipe(
+        map((ctx: Context) => {
+          if (ctx.orgId === undefined) {
+            throw new Error('No orgId supplied');
+          }
+          return ctx.orgId;
+        })
+      ),
+    })
       .pipe(
+        take(1),
+        catchError((error: Error) => {
+          console.error(
+            '-- LoginPageComponent#handleLocalLogin() - ',
+            error.message
+          );
+          return throwError(
+            () => <ApiErrorResponse>{ code: 0, message: error.message }
+          );
+        }),
+        mergeMap(({ credentials, orgId }) => {
+          return this.authenticationService
+            .localAuthenticate(
+              credentials.identifier,
+              credentials.password,
+              orgId
+            )
+        }),
         catchError((error: ApiErrorResponse) => {
-          console.debug(
+          console.error(
             '<< LoginPageComponent#handleLocalLogin() < catched an error : ' +
               this.logApiErrorResponse.apply(error)
           );
@@ -196,7 +236,7 @@ export class LoginPageComponent {
         console.debug(
           '<< LoginPageComponent#handleLocalLogin() < successful login'
         );
-        this.loading = false;
-      });
+        this.contextService.dispatchLoginDone();
+      })
   }
 }
