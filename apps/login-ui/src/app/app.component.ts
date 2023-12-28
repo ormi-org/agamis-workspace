@@ -21,13 +21,13 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   @Input()
-  private readonly passedCtx: Context = {
+  passedCtx: Context = {
     view: environment.defaultView,
     orgId: environment.defaultOrgId,
     orgName: environment.defaultOrgName,
   };
   @Output()
-  private readonly loginDone: Subject<void> = new Subject<void>();
+  loginDone: Subject<void> = new Subject<void>();
 
   constructor(public contextService: ContextService) {
     this.contextService.whenLoginDone().subscribe(() => this.loginDone.next());

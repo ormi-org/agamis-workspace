@@ -66,6 +66,9 @@ importers:
         specifier: 0.14.2
         version: 0.14.2
     devDependencies:
+      '@angular-architects/module-federation':
+        specifier: ^17.0.1
+        version: 17.0.1(@angular/common@17.0.8)(@angular/core@17.0.8)
       '@angular-architects/native-federation':
         specifier: 17.0.7
         version: 17.0.7
@@ -201,6 +204,9 @@ importers:
       typescript:
         specifier: 5.2.2
         version: 5.2.2
+      webpack:
+        specifier: link:@angular-architects/module-federation/webpack
+        version: 5.89.0(@swc/core@1.3.101)
 
 packages:
 
@@ -219,6 +225,31 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
+    dev: true
+
+  /@angular-architects/module-federation-runtime@17.0.1(@angular/common@17.0.8)(@angular/core@17.0.8):
+    resolution: {integrity: sha512-k/FbYrkLj0B+o0VT/5oaDabBUPQK3zVqOu0RGaNzLUbjvUbHAkFz4X94LSYk5wrPxa1Kjl+4mg0jA/5UKBJ1eA==}
+    peerDependencies:
+      '@angular/common': '>=17.0.0'
+      '@angular/core': '>=17.0.0'
+    dependencies:
+      '@angular/common': 17.0.8(@angular/core@17.0.8)(rxjs@7.8.1)
+      '@angular/core': 17.0.8(rxjs@7.8.1)(zone.js@0.14.2)
+      tslib: 2.6.2
+    dev: true
+
+  /@angular-architects/module-federation@17.0.1(@angular/common@17.0.8)(@angular/core@17.0.8):
+    resolution: {integrity: sha512-XEikBjz+cOx5Dq0XLfP+qxgvBC4f0T3BBAl054xMAwt0+1fQrSe+pSQ9d2O7Q8DeC0CySGetOjxppWJrJ+KXaw==}
+    dependencies:
+      '@angular-architects/module-federation-runtime': 17.0.1(@angular/common@17.0.8)(@angular/core@17.0.8)
+      callsite: 1.0.0
+      node-fetch: 2.7.0
+      semver: 7.5.4
+      word-wrap: 1.2.5
+    transitivePeerDependencies:
+      - '@angular/common'
+      - '@angular/core'
+      - encoding
     dev: true
 
   /@angular-architects/native-federation@17.0.7:
@@ -6908,6 +6939,10 @@ packages:
       function-bind: 1.1.2
       get-intrinsic: 1.2.2
       set-function-length: 1.1.1
+
+  /callsite@1.0.0:
+    resolution: {integrity: sha512-0vdNRFXn5q+dtOqjfFtmtlI9N2eVZ7LMyEV2iKC5mEEFvSg/69Ml6b/WU2qF8W1nLRa0wiSrDT3Y5jOHZCwKPQ==}
+    dev: true
 
   /callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -14116,6 +14151,11 @@ packages:
 
   /wildcard@2.0.1:
     resolution: {integrity: sha512-CC1bOL87PIWSBhDcTrdeLo6eGT7mCFtrg0uIJtqJUFyK+eJnzl8A1niH56uu7KMa5XFrtiV+AQuHO3n7DsHnLQ==}
+    dev: true
+
+  /word-wrap@1.2.5:
+    resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /wrap-ansi@6.2.0:

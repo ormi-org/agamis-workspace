@@ -15,7 +15,9 @@ import { RouterOutlet } from '@angular/router';
           <agamis-ws-svg-agamis-text [fillColor]="Color.LIGHT"></agamis-ws-svg-agamis-text>
         </div>
       </div>
-      <router-outlet></router-outlet>
+      <div class="outlet">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   `,
     styleUrl: './app.component.scss',

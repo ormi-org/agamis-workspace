@@ -6,7 +6,6 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import {
   Observable,
   catchError,
@@ -68,7 +67,7 @@ import Context from '../../services/models/context';
               name="password"
               [type]="hidePassword ? 'password' : 'text'"
               formControlName="password"
-              autocomplete="current-password"
+              autocomplete="current-password" 
             />
             <button
               type="button"
@@ -129,7 +128,6 @@ import Context from '../../services/models/context';
     AgamisLogoSvgComponent,
     OpenedEyeSvgComponent,
     LoadingSpinSvgComponent,
-    RouterLink,
     GoogleLogoSvgComponent,
     GithubLogoSvgComponent,
   ],

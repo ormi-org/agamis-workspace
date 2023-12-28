@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "login/Routes": ["apps/login/src/app/remote-entry/entry.routes.ts"]
+      "LoginUI": ["apps/login-ui/src/app/app.component.ts"],
+      "@login-ui/*": ["apps/login-ui/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

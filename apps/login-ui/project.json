@@ -117,16 +117,16 @@
       "executor": "@nx/web:file-server",
       "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "login:build",
+        "buildTarget": "login-ui:build",
         "port": 4201,
         "watch": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "login:build:development"
+          "buildTarget": "login-ui:build:development"
         },
         "production": {
-          "buildTarget": "login:build:production"
+          "buildTarget": "login-ui:build:production"
         }
       }
     }

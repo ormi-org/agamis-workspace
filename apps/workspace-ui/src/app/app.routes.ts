@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { LoginPageComponent } from './core/pages/login-page/LoginPage.component';
+import { LoginPageComponent } from './core/pages/login-page/login-page.component';
 
 export const APP_ROUTES: Route[] = [
   {

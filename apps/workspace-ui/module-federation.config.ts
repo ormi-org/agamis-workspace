@@ -15,6 +15,74 @@ const config: ModuleFederationConfig = {
    *
    */
   remotes: ['login-ui'],
+  additionalShared: [
+    {
+      libraryName: '@angular/core',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@angular/common',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@angular/router',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@angular/common/http',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@angular/forms',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@angular/core',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@angular/core/primitives/signals',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@angular/platform-browser',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: 'rxjs',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: 'rxjs/operators',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: 'LoginUI',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+  ]
 };
 
 export default config;
