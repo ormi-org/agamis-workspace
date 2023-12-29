@@ -15,8 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "LoginUI": ["apps/login-ui/src/app/app.component.ts"],
-      "@login-ui/*": ["apps/login-ui/src/*"]
+      "@login-ui/*": ["apps/login-ui/src/*"],
+      "login-ui/Component": ["apps/login-ui/src/app/app.component.ts"],
+      "login-ui/Context": [
+        "apps/login-ui/src/app/core/services/models/context.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

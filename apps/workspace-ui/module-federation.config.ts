@@ -76,12 +76,12 @@ const config: ModuleFederationConfig = {
         singleton: true, eager: true
       }
     },
-    {
-      libraryName: 'LoginUI',
-      sharedConfig: {
-        singleton: true, eager: true
-      }
-    },
+    // {
+    //   libraryName: 'LoginUI',
+    //   sharedConfig: {
+    //     singleton: true, eager: true
+    //   }
+    // },
   ]
 };
 

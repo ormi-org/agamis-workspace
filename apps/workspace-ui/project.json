@@ -18,7 +18,8 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/workspace-ui/src/favicon.ico",
-          "apps/workspace-ui/src/assets"
+          "apps/workspace-ui/src/assets",
+          "apps/workspace-ui/src/mockServiceWorker.js"
         ],
         "styles": [
           "node_modules/normalize.css/normalize.css",

@@ -4,7 +4,7 @@
       "type": "chrome",
       "name": "Debug 4200 (Workspace UI)",
       "request": "launch",
-      "url": "http://localhost:4200"
+      "url": "http://localhost:4200/?orgId=e89c708f-462a-4d11-bf87-487f9fc01889"
     },
     {
       "type": "chrome",
