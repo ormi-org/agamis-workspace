@@ -1,7 +1,7 @@
-export default interface ApiErrorResponse {
+export interface ApiErrorResponse {
   code: number;
   message: string;
-  cause?: string;
+  cause: string;
 }
 
 export const isApiErrorResponse = (error: ApiErrorResponse): error is ApiErrorResponse => {

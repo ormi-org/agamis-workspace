@@ -1,3 +1,6 @@
+import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
+import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
+import { Context } from '@agamis/workspace/shared/login/types';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
@@ -17,16 +20,13 @@ import {
   throwError
 } from 'rxjs';
 import Color from '../../../common/color';
-import LogApiErrorResponse from '../../../common/functions/log-api-error-response';
 import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
 import { GithubLogoSvgComponent } from '../../../shared/svg/github-logo.svg.component';
 import { GoogleLogoSvgComponent } from '../../../shared/svg/google-logo.svg.component';
 import { LoadingSpinSvgComponent } from '../../../shared/svg/loading-spin.svg.component';
 import { OpenedEyeSvgComponent } from '../../../shared/svg/opened-eye.svg.component';
-import ApiErrorResponse from '../../models/api-error-response';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ContextService } from '../../services/context.service';
-import Context from '../../services/models/context';
 
 @Component({
   selector: 'agamis-ws-login-page-login',

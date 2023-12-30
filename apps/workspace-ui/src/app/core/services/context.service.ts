@@ -1,3 +1,6 @@
+import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
+import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   Observable,
@@ -6,12 +9,9 @@ import {
   catchError,
   throwError,
 } from 'rxjs';
+import API_ROUTES from '../../common/api-routes';
 import Context from './models/context';
 import User from './models/user';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import ApiErrorResponse from '../models/api-error-response';
-import LogApiErrorResponse from '../../common/functions/log-api-error-response';
-import API_ROUTES from '../../common/api-routes';
 
 /**
  * A singleton service for managing application global context.

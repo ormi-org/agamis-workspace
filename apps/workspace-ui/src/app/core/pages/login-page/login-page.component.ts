@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// TODO: make Context class publicly accessible (dedicated package)
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import LoginContext from '@login-ui/app/core/services/models/context';
+import { Context as LoginContext } from '@agamis/workspace/shared/login/types';
 import { Subject, map, take } from 'rxjs';
 import { Router } from '@angular/router';
 import { ContextService } from '../../services/context.service';

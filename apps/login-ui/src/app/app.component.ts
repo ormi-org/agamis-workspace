@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { environment } from '../environments/environment';
-import Context from './core/services/models/context';
+import { Context } from '@agamis/workspace/shared/login/types';
 import { ContextService } from './core/services/context.service';
 import { LoginPageComponent } from './core/pages/login-page/login-page.component';
 import { ResetPageComponent } from './core/pages/reset-page/reset-page.component';

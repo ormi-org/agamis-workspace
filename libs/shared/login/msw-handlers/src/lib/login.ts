@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw';
-import UrlWrappers from '../common/url-wrappers';
+import { UrlWrappers } from '@agamis/workspace/shared/common/msw-handlers';
 
 interface LocalAuthBody {
   identifier: string

@@ -1,10 +1,10 @@
+import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
+import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import Organization from './models/organization';
 import API_ROUTES from '../../common/api-routes';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import ApiErrorResponse from '../models/api-error-response';
-import LogApiErrorResponse from '../../common/functions/log-api-error-response';
+import Organization from './models/organization';
 
 /**
  * A singleton service for retrieving organization informations.
@@ -20,7 +20,7 @@ export class OrganizationService {
 
   /**
    * A private method to handle error logging and transform to universal api error response.
-   * 
+   *
    * @param error - the http error to handle
    * @returns - the api error response
    */
@@ -37,7 +37,7 @@ export class OrganizationService {
         () =>
           <ApiErrorResponse>{
             code: error.status,
-            message: error.message || 'A technical error occured'
+            message: error.message || 'A technical error occured',
           }
       );
     }
@@ -47,11 +47,11 @@ export class OrganizationService {
     );
     console.trace(this.logApiErrorResponse.applyWithDetails(apiError));
     return throwError(() => apiError);
-  }
+  };
 
   /**
    * A method for getting an organization by its id.
-   * 
+   *
    * @param orgId - the id of the organization to retrieve
    * @returns - an observable of the organization as a result of a rest request
    */

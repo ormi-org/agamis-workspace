@@ -1,11 +1,11 @@
+import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
+import { ApiErrorResponse, isApiErrorResponse } from '@agamis/workspace/shared/common/types';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, combineLatest, of, startWith, take, throwError } from 'rxjs';
 import { ContextService } from '../../services/context.service';
 import { OrganizationService } from '../../services/organization.service';
-import ApiErrorResponse, { isApiErrorResponse } from '../../models/api-error-response';
-import LogApiErrorResponse from '../../../common/functions/log-api-error-response';
 
 @Component({
   selector: 'agamis-ws-page-splash-screen',

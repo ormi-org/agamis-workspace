@@ -1,4 +1,4 @@
-import { handlers as loginHandlers } from 'apps/login-ui/src/mocks/handlers/login';
+import { handlers as loginHandlers } from '@agamis/workspace/shared/login/msw-handlers';
 import { handlers as orgHandlers } from './organization';
 import { handlers as userHandlers } from './user';
 

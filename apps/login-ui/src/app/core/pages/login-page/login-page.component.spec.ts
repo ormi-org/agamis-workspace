@@ -5,8 +5,7 @@ import { of, throwError } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication.service';
 import { LoginPageComponent } from './login-page.component';
 import { ContextService } from '../../services/context.service';
-import Context from '../../services/models/context';
-import ViewType from '../../services/models/view-type';
+import { Context, ViewType } from '@agamis/workspace/shared/login/types';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;

@@ -1,4 +1,4 @@
-import ViewType from "../app/core/services/models/view-type";
+import { ViewType } from "@agamis/workspace/shared/login/types";
 
 interface Environment {
   production: boolean;

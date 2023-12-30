@@ -16,12 +16,7 @@ const config: ModuleFederationConfig = {
    */
   remotes: ['login-ui'],
   additionalShared: [
-    {
-      libraryName: '@angular/core',
-      sharedConfig: {
-        singleton: true, eager: true
-      }
-    },
+    // vendors
     {
       libraryName: '@angular/common',
       sharedConfig: {
@@ -29,13 +24,13 @@ const config: ModuleFederationConfig = {
       }
     },
     {
-      libraryName: '@angular/router',
+      libraryName: '@angular/common/http',
       sharedConfig: {
         singleton: true, eager: true
       }
     },
     {
-      libraryName: '@angular/common/http',
+      libraryName: '@angular/router',
       sharedConfig: {
         singleton: true, eager: true
       }
@@ -76,12 +71,37 @@ const config: ModuleFederationConfig = {
         singleton: true, eager: true
       }
     },
-    // {
-    //   libraryName: 'LoginUI',
-    //   sharedConfig: {
-    //     singleton: true, eager: true
-    //   }
-    // },
+    {
+      libraryName: 'tslib',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: 'msw',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    // custom
+    {
+      libraryName: '@agamis/workspace/shared/common/msw-handlers',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@agamis/workspace/shared/common/types',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    },
+    {
+      libraryName: '@agamis/workspace/shared/common/angular',
+      sharedConfig: {
+        singleton: true, eager: true
+      }
+    }
   ]
 };
 

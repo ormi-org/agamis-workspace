@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Context from './models/context';
+import { Context } from '@agamis/workspace/shared/login/types';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({

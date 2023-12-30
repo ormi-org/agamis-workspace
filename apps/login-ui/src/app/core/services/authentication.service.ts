@@ -1,10 +1,10 @@
+import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
+import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import API_ROUTES from '../../common/api-routes';
-import ApiErrorResponse from '../models/api-error-response';
 import LocalAuthenticationRequest from '../models/local-authentication-request';
-import LogApiErrorResponse from '../../common/functions/log-api-error-response';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +34,7 @@ export class AuthenticationService {
         () =>
           <ApiErrorResponse>{
             code: error.status,
-            message: 'A technical error occured'
+            message: 'A technical error occured',
           }
       );
     }
@@ -46,7 +46,11 @@ export class AuthenticationService {
     return throwError(() => apiError);
   };
 
-  localAuthenticate(identifier: string, password: string, orgId: string): Observable<void> {
+  localAuthenticate(
+    identifier: string,
+    password: string,
+    orgId: string
+  ): Observable<void> {
     console.debug(
       '-- AuthenticationService#localAuthenticate(string, string) > entering method'
     );
@@ -57,7 +61,7 @@ export class AuthenticationService {
       .post<void>(API_ROUTES.localAuth, <LocalAuthenticationRequest>{
         identifier,
         password,
-        orgId
+        orgId,
       })
       .pipe(catchError(this.handleLocalAuthError));
   }
