@@ -17,7 +17,7 @@ import {
   mergeMap,
   of,
   take,
-  throwError
+  throwError,
 } from 'rxjs';
 import Color from '../../../common/color';
 import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
@@ -53,6 +53,7 @@ import { ContextService } from '../../services/context.service';
           <div class="field">
             <label for="identifier">Username - or - email</label>
             <input
+              data-cy="login-identifier"
               id="identifier"
               name="identifier"
               type="text"
@@ -63,11 +64,12 @@ import { ContextService } from '../../services/context.service';
           <div class="field">
             <label for="password">Password</label>
             <input
+              data-cy="login-password"
               id="password"
               name="password"
               [type]="hidePassword ? 'password' : 'text'"
               formControlName="password"
-              autocomplete="current-password" 
+              autocomplete="current-password"
             />
             <button
               type="button"
@@ -88,7 +90,12 @@ import { ContextService } from '../../services/context.service';
             <div>
               <span class="error-msg">{{ errorMessage }}</span>
               <agamis-ws-login-svg-loading-spin *ngIf="loading" />
-              <button type="submit" class="submit" [disabled]="loading">
+              <button
+                data-cy="login-submit"
+                type="submit"
+                class="submit"
+                [disabled]="loading"
+              >
                 Sign in
               </button>
             </div>
@@ -213,12 +220,11 @@ export class LoginPageComponent {
           );
         }),
         mergeMap(({ credentials, orgId }) => {
-          return this.authenticationService
-            .localAuthenticate(
-              credentials.identifier,
-              credentials.password,
-              orgId
-            )
+          return this.authenticationService.localAuthenticate(
+            credentials.identifier,
+            credentials.password,
+            orgId
+          );
         }),
         catchError((error: ApiErrorResponse) => {
           console.error(
@@ -235,6 +241,6 @@ export class LoginPageComponent {
           '<< LoginPageComponent#handleLocalLogin() < successful login'
         );
         this.contextService.dispatchLoginDone();
-      })
+      });
   }
 }

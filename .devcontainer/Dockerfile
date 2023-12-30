@@ -23,4 +23,7 @@ RUN mkdir -p /root/bin/plantuml &&\
 curl -fsSL https://github.com/plantuml/plantuml/releases/download/v${PLANTUML_VERSION}/plantuml-${PLANTUML_VERSION}.jar \
 --output /root/bin/plantuml/plantuml.jar
 
+# Install Cypress dependencies
+RUN apt install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+
 CMD tail -f /dev/null

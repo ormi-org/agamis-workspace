@@ -1,13 +1,7 @@
-import { getGreeting } from '../support/app.po';
-
 describe('workspace-ui', () => {
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => cy.visit('/?orgId=e89c708f-462a-4d11-bf87-487f9fc01889'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome workspace-ui');
+  it('should display splash-screen on visit', () => {
+    cy.get('agamis-ws-page-splash-screen').should('exist');
   });
 });

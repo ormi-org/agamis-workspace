@@ -14,6 +14,10 @@ const config: ModuleFederationConfig = {
    * declare module 'my-external-remote';
    *
    */
+  library: {
+    name: 'workspace-ui',
+    type: 'module'
+  },
   remotes: ['login-ui'],
   additionalShared: [
     // vendors
