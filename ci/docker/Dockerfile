@@ -5,16 +5,18 @@ LABEL name="agamis-workspace-ci:0124"
 LABEL version="0124"
 LABEL description="An image for ci environment packed with Node 18, PNPM, Git"
 
-ARG NODEJS_VERSION=18
-ARG SHELL=/bin/bash
+ARG NODE_MAJOR=18
+ARG SHELL=bash
 
-# Install JDK & dependencies
+# Install pre-requisites
 RUN apt update && apt install -y ca-certificates curl gnupg git
-# Install NODE
 RUN mkdir -p /etc/apt/keyrings
 RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODEJS_VERSION.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+
+# Install NODE
 RUN apt update && apt install nodejs -y
+
 # Install PNPM
 RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
 
