@@ -20,6 +20,7 @@ RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesourc
 # Install NODE
 RUN apt update
 RUN apt install nodejs -y
+RUN npm install -g corepack
 
 # Install PNPM
 RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
