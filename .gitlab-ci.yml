@@ -52,8 +52,16 @@ docker-prepare:
 lint:
   stage: lint
   image: $DOCKER_IMAGE
+  extends: .distributed
   script:
     - pnpm nx affected --base=$NX_BASE --head=$NX_HEAD -t lint --parallel=4
+
+build:
+  image: $DOCKER_IMAGE
+  stage: build
+  extends: .distributed
+  script:
+    - pnpm nx affected --base=$NX_BASE --head=$NX_HEAD -t build --parallel=4
 
 sonarqube-check:
   stage: static-analysis
