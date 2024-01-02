@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SvgLogoNotificationComponent } from './svg-logo-notification.component';
+import { SvgLogoNotificationComponent } from '../../../shared/svg/svg-logo-notification.component';
 
 describe('SvgLogoNotificationComponent', () => {
   let component: SvgLogoNotificationComponent;

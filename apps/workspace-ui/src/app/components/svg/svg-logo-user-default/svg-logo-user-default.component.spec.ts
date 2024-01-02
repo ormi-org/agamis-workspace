@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SvgLogoUserDefaultComponent } from './svg-logo-user-default.component';
+import { SvgLogoUserDefaultComponent } from '../../../shared/svg/svg-logo-user-default.component';
 
 describe('SvgLogoUserDefaultComponent', () => {
   let component: SvgLogoUserDefaultComponent;

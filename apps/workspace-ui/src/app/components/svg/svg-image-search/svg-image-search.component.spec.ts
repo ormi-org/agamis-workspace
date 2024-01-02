@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SvgImageSearchComponent } from './svg-image-search.component';
+import { SvgImageSearchComponent } from '../../../shared/svg/svg-image-search.component';
 
 describe('SvgImageSearchComponent', () => {
   let component: SvgImageSearchComponent;

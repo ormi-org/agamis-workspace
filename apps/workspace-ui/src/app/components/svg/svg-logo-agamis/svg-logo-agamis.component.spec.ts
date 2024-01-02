@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SvgLogoAgamisComponent } from './svg-logo-agamis.component';
+import { SvgLogoAgamisComponent } from '../../../shared/svg/svg-logo-agamis.component';
 
 describe('SvgLogoAgamisComponent', () => {
   let component: SvgLogoAgamisComponent;

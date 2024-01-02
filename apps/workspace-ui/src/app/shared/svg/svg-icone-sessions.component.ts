@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
+  
   selector: 'app-svg-icone-sessions',
-  templateUrl: './svg-icone-sessions.component.html',
-  styleUrls: ['./svg-icone-sessions.component.sass'],
+  templateUrl: '../../../assets/images/svg/svg-icone-sessions.svg',
+  
 })
 export class SvgIconeSessionsComponent {}

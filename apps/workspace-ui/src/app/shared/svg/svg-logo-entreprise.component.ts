@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
+
   selector: 'app-svg-logo-entreprise',
-  templateUrl: './svg-logo-entreprise.component.html',
-  styleUrls: ['./svg-logo-entreprise.component.sass'],
+  templateUrl: '../../../assets/images/svg/svg-logo-entreprise.svg',
+ 
 })
 export class SvgLogoEntrepriseComponent {}

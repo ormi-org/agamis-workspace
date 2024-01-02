@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SvgIconeNotificationOutlineComponent } from './svg-icone-notification-outline.component';
+import { SvgIconeNotificationOutlineComponent } from '../../../shared/svg/svg-icone-notification-outline.component';
 
 describe('SvgIconeNotificationOutlineComponent', () => {
   let component: SvgIconeNotificationOutlineComponent;

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
+  
   selector: 'app-svg-logo-agamis',
-  templateUrl: './svg-logo-agamis.component.html',
-  styleUrls: ['./svg-logo-agamis.component.sass'],
+  templateUrl: '../../../assets/images/svg/svg-logo-agamis.svg',
+
 })
 export class SvgLogoAgamisComponent {}
