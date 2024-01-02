@@ -6,7 +6,7 @@ stages:
   - e2e
 
 variables:
-  NODE_VERSION: '16.8.1' # ou la version que vous utilisez
+  NODE_VERSION: '16.14.0' # ou la version que vous utilisez
 
 prepare:
   stage: prepare
@@ -16,11 +16,15 @@ prepare:
   only:
     - /^feat\/.*$/
 
+before_script:
+  - npm install -g pnpm # Installe pnpm globalement
+
 lint:
   stage: lint
   image: node:$NODE_VERSION
   script:
-    - npx nx lint
+    - pnpm install
+    - npx nx lint --fix workspace-ui
   only:
     - /^feat\/.*$/
 
@@ -28,7 +32,8 @@ test:
   stage: test
   image: node:$NODE_VERSION
   script:
-    - npx nx test
+    - pnpm install
+    - npx nx test workspace-ui
   only:
     - /^feat\/.*$/
 
@@ -36,14 +41,24 @@ build:
   stage: build
   image: node:$NODE_VERSION
   script:
-    - npx nx build
+    - pnpm install
+    - npx nx build workspace-ui
   only:
     - /^feat\/.*$/
     
 e2e:
   stage: e2e
-  image: node:$NODE_VERSION
+  image: cypress/browsers:latest
+  cache:
+    paths:
+      - node_modules/
+      - /root/.cache/Cypress
   script:
-    - npx nx e2e workspace-ui-e2e
+    - pnpm install
+    - npx nx serve workspace-ui --port=4200 & # Lance le serveur en arrière-plan
+    - sleep 30 # Attend que le serveur soit opérationnel
+    - cd apps/workspace-ui-e2e
+    - npx cypress install
+    - npx cypress run --config-file cypress.config.ts
   only:
     - /^feat\/.*$/

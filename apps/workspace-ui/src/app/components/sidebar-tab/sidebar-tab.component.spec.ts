@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidebarComponent } from './sidebar-tab.component';
+import { AppModule } from '../../app.module'; 
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -7,7 +8,7 @@ describe('SidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SidebarComponent],
+      imports: [AppModule] 
     }).compileComponents();
 
     fixture = TestBed.createComponent(SidebarComponent);

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfileTabComponent } from './profile-tab.component';
+import { AppModule } from '../../app.module'; 
 
 describe('ProfileTabComponent', () => {
   let component: ProfileTabComponent;
@@ -7,7 +8,7 @@ describe('ProfileTabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfileTabComponent],
+      imports: [AppModule] 
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProfileTabComponent);

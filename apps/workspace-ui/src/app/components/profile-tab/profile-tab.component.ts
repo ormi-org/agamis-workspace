@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component} from '@angular/core';
 import { AvatarService } from '../../services/avatar-service';
 
 @Component({
@@ -12,11 +12,12 @@ export class ProfileTabComponent {
 
   avatarSrc: string | ArrayBuffer | null = null;
 
-  onFileSelected(event: any): void {
-   const file = event.target.files[0];
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files ? input.files[0] : null;
     if (file) {
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = () => {
         this.avatarSrc = reader.result;
         this.avatarService.changeAvatar(this.avatarSrc);
       };

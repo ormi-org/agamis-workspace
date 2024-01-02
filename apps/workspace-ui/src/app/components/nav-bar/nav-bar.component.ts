@@ -25,7 +25,7 @@ export class NavBarComponent {
   constructor(
     private router: Router,
     private tabService: TabManagementService,
-    private avatarService: AvatarService
+    private avatarService: AvatarService,
   ) {
     // Initialisation de l'Observable avec celui du service
     this.activeTab$ = this.tabService.activeTabId$;

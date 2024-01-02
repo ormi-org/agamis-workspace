@@ -13,8 +13,8 @@ export class SearchService {
    * @param query La requête de recherche.
    * @return Un Observable des résultats de la recherche.
    */
-  search(query: string): Observable<any> { // On remplacera any par le type de reponse qui sera renvoyer par l'API
+  search(query: string): Observable<string> { // On remplacera any par le type de reponse qui sera renvoyer par l'API
     // Adaptez l'URL selon votre backend/API
-    return this.http.get<any>(`/api/search?query=${encodeURIComponent(query)}`);
+    return this.http.get<string>(`/api/search?query=${encodeURIComponent(query)}`);
   }
 }

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavBarComponent } from './nav-bar.component';
+import { AppModule } from '../../app.module'; 
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -7,7 +8,7 @@ describe('NavBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NavBarComponent],
+      imports: [AppModule] 
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavBarComponent);
@@ -18,4 +19,6 @@ describe('NavBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+ 
 });
