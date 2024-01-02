@@ -91,19 +91,19 @@ const config: ModuleFederationConfig = {
     {
       libraryName: '@agamis/workspace/shared/common/msw-handlers',
       sharedConfig: {
-        singleton: true, eager: true
+        singleton: true, eager: true, requiredVersion: '^0.0.1'
       }
     },
     {
       libraryName: '@agamis/workspace/shared/common/types',
       sharedConfig: {
-        singleton: true, eager: true
+        singleton: true, eager: true, requiredVersion: '^0.0.1'
       }
     },
     {
       libraryName: '@agamis/workspace/shared/common/angular',
       sharedConfig: {
-        singleton: true, eager: true
+        singleton: true, eager: true, requiredVersion: '^0.0.1'
       }
     }
   ]
