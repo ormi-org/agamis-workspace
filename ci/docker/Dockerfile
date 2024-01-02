@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM debian:12-slim
 
 LABEL org.openrichmedia="The Open Rich Media Initiative"
 LABEL name="agamis-workspace-ci:0124"
