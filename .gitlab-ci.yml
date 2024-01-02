@@ -29,7 +29,6 @@ variables:
       - .pnpm-store/
       - .nx/
   before_script:
-    - SHELL="$(which bash)" pnpm setup
     - corepack enable
     - corepack prepare pnpm@latest-8 --activate
     - pnpm config set store-dir .pnpm-store
