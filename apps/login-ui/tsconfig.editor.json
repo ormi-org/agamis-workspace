@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts", "../../libs/workspace/feature-context/src/models/context.ts", "../../libs/workspace/feature-context/src/models/view-type.ts", "../../libs/shared/common/msw-handlers/src/lib/common/url-wrappers.ts"],
+  "compilerOptions": {
+    "types": ["jest", "node"]
+  }
+}
