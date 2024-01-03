@@ -14,7 +14,24 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@agamis/workspace/shared/common/angular": [
+        "libs/shared/common/angular/src/index.ts"
+      ],
+      "@agamis/workspace/shared/common/types": [
+        "libs/shared/common/types/src/index.ts"
+      ],
+      "@agamis/workspace/shared/login/types": [
+        "libs/shared/login/types/src/index.ts"
+      ],
+      "@agamis/workspace/shared/common/msw-handlers": [
+        "libs/shared/common/msw-handlers/src/index.ts"
+      ],
+      "@agamis/workspace/shared/login/msw-handlers": [
+        "libs/shared/login/msw-handlers/src/index.ts"
+      ],
+      "login-ui/Component": ["apps/login-ui/src/app/app.component.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

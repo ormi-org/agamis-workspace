@@ -2,12 +2,12 @@
   "name": "workspace-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "agamis-ws",
   "sourceRoot": "apps/workspace-ui/src",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/workspace-ui",
@@ -15,28 +15,39 @@
         "main": "apps/workspace-ui/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/workspace-ui/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
         "assets": [
           "apps/workspace-ui/src/favicon.ico",
-          "apps/workspace-ui/src/assets"
+          "apps/workspace-ui/src/assets",
+          "apps/workspace-ui/src/mockServiceWorker.js"
         ],
-        "styles": ["apps/workspace-ui/src/styles.sass"],
-        "scripts": []
+        "styles": [
+          "node_modules/normalize.css/normalize.css",
+          "apps/workspace-ui/src/styles.scss"
+        ],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/workspace-ui/webpack.config.ts"
+        }
       },
       "configurations": {
         "production": {
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "10kb",
+              "maximumError": "40kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/workspace-ui/webpack.prod.config.ts"
+          }
         },
         "development": {
           "buildOptimizer": false,
@@ -50,54 +61,36 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:module-federation-dev-server",
+      "options": {
+        "port": 4200,
+        "publicHost": "http://localhost:4200"
+      },
       "configurations": {
         "production": {
-          "browserTarget": "workspace-ui:build:production"
+          "buildTarget": "workspace-ui:build:production"
         },
         "development": {
-          "browserTarget": "workspace-ui:build:development"
+          "buildTarget": "workspace-ui:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "apps/workspace-ui/proxy.conf.json"
-      }
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "workspace-ui:build"
+        "buildTarget": "workspace-ui:build"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/workspace-ui/**/*.ts",
-          "apps/workspace-ui/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/workspace-ui/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "workspace-ui:build"
+        "jestConfig": "apps/workspace-ui/jest.config.ts"
       }
     }
   }

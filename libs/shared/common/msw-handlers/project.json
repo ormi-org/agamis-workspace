@@ -1,0 +1,23 @@
+{
+  "name": "libs-shared-common-msw-handlers",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/common/msw-handlers/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/common/msw-handlers",
+        "main": "libs/shared/common/msw-handlers/src/index.ts",
+        "tsConfig": "libs/shared/common/msw-handlers/tsconfig.lib.json",
+        "assets": ["libs/shared/common/msw-handlers/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}
