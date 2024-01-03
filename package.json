@@ -48,6 +48,7 @@
     "jest-environment-node": "^29.4.1",
     "jest-preset-angular": "~13.1.0",
     "jsonc-eslint-parser": "^2.1.0",
+    "msw": "^2.0.11",
     "nx": "16.8.1",
     "nx-cloud": "latest",
     "prettier": "^2.6.2",

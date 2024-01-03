@@ -15,6 +15,7 @@ import { SvgLogoUserDefaultComponent } from './shared/svg/svg-logo-user-default.
 import { SvgIconeAccountComponent } from './shared/svg/svg-icone-account.component';
 import { SvgIconeNotificationOutlineComponent } from './shared/svg/svg-icone-notification-outline.component';
 import { SvgIconeSessionsComponent } from './shared/svg/svg-icone-sessions.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { Authservice } from './services/auth-service';
 // import { OrganisationService } from './services/organisation-service';
@@ -39,6 +40,8 @@ import { SvgIconeSessionsComponent } from './shared/svg/svg-icone-sessions.compo
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+    FormsModule,
+    HttpClientModule,
     FormsModule,
   ],
   providers: [],

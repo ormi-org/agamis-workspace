@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TabManagementService, Tab } from '../../services/tab-management-service';
 import { Observable } from 'rxjs';
 import { AvatarService } from '../../services/avatar-service';
+import { UserInfoService } from '../../services/user-info-service';
+
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.sass']
 })
-export class NavBarComponent {
-  newTabTitle: string = '';
+export class NavBarComponent implements OnInit {
+  userInfo: any;
+
+  newTabTitle = '';
   showNewTabInput = false;
   showUserMenu = false;
   // Propriété Observable pour suivre l'onglet actif
@@ -26,13 +30,22 @@ export class NavBarComponent {
     private router: Router,
     private tabService: TabManagementService,
     private avatarService: AvatarService,
+    private userInfoService: UserInfoService,
   ) {
     // Initialisation de l'Observable avec celui du service
     this.activeTab$ = this.tabService.activeTabId$;
     this.avatarService.currentAvatar.subscribe(avatar => {
     this.avatarSrc = avatar; 
   });}
-
+  
+  ngOnInit() {
+    
+    this.userInfoService.userInfos$.subscribe(data => {
+     
+      this.userInfo = data;
+      
+    })
+  }
   /**
    * Active un onglet spécifié par son ID.
    * @param tabId L'ID de l'onglet à activer. Peut être null pour indiquer aucun onglet actif.

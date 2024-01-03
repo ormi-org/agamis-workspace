@@ -23,7 +23,7 @@
   <div class="nav-item">
       <a href="#" name="entreprise">
         <app-svg-logo-entreprise class="icons"></app-svg-logo-entreprise>
-        <label for="entreprise">Mon Entreprise</label>
+        <label for="entreprise">{{userInfo.orgName}}</label>
       </a>
     </div>
 
@@ -43,7 +43,7 @@
         <div  class="dropdown-toggle" (click)="toggleUserMenu($event)">
           <!-- Avatar et nom d'utilisateur -->
           <div class="user-details">
-            <p class="pseudo">Chauncey</p>
+            <p class="pseudo">{{userInfo.identifier}}</p>
             <img *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" class="avatar-icon-nav">
             <ng-template #defaultAvatar>
               <app-svg-logo-user-default class="icons"></app-svg-logo-user-default>
@@ -55,8 +55,8 @@
         <!-- Menu déroulant utilisateur qui apparaît au clic -->
         <div class="dropdown-menu" *ngIf="showUserMenu" style="display: block; position: absolute; z-index: 1000; background: white; border: 1px solid black;">
           <div class="user-info">
-            <span class="user-email">chauncey.von@snuffies.com</span>
-            <span class="user-projects">Projects: 4</span>
+            <span class="user-email">{{userInfo.email}}</span>
+            <span class="user-projects">Projects: {{ userInfo.projectsNbr}}</span>
           </div>
           <ul class="menu-items">
             <li><button (click)="openProfile()">Profile</button></li>

@@ -17,7 +17,8 @@
         "tsConfig": "apps/workspace-ui/tsconfig.app.json",
         "assets": [
           "apps/workspace-ui/src/favicon.ico",
-          "apps/workspace-ui/src/assets"
+          "apps/workspace-ui/src/assets",
+          "apps/workspace-ui/src/mockServiceWorker.js"
         ],
         "styles": [
           "apps/workspace-ui/src/styles.sass"
@@ -61,10 +62,8 @@
           "browserTarget": "workspace-ui:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "apps/workspace-ui/proxy.conf.json"
-      }
+      "defaultConfiguration": "development"
+      
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

@@ -30,7 +30,7 @@
     <div class="div-timezone">
       <label for="timezone">Timezone</label>
       <div class="select-timezone">
-      <select  class="input_timezone" name="timezone" id="timezone">
+      <select  class="input_timezone" name="timezone" id="timezone" [(ngModel)]="selectedTimezone">
         <option value="" disabled selected>Select Timezone</option>
         <option value="Europe/Paris">Paris, France</option>
         <option value="America/New_York">New York, USA</option>
@@ -45,7 +45,7 @@
       <div class="div-language">
         <label for="language">Language</label>
           <div class="select-language">
-            <select class="input_language" name="language" id="language" >
+            <select class="input_language" name="language" id="language" [(ngModel)]="selectedLanguage">
               <option value="" disabled selected>Select language</option>
               <option value="en">English</option>
               <option value="fr">French</option>
@@ -70,21 +70,21 @@
       <div class="fullname-grp-1 ">
         <label class="timezone-label-3" for="fullname">Fullname</label>
         <div>
-          <input class="rect-45" type="text" name="fullname" id="fullname" placeholder=" Chauncey Von Snuffies">
+          <input class="rect-45" type="text" name="fullname" id="fullname" placeholder=" Chauncey Von Snuffies" [(ngModel)]="inputFullname">
         </div>
         <p class="desc-5">this is your name, display as is, so people can know who you are.</p>
       </div>
       <div class="email-grp-1 ">
         <label class="timezone-label-2" for="email">Email</label>
         <div>
-          <input class="rect-45" type="email" name="email" id="email" placeholder=" Chauncey.vonanulapi@divinityareacritics.com">
+          <input class="rect-45" type="email" name="email" id="email" placeholder=" Chauncey.vonanulapi@divinityareacritics.com" [(ngModel)]="inputEmail">
         </div>
       </div> 
       <div class="general-job-title">
         <label for="jobtitle">Job title</label>
         
         <div>
-          <input class="rect-45" type="text" name="jobtitle" id="jobtitle" placeholder=" The Notorious Cat of Divinity's Area Critics">
+          <input class="rect-45" type="text" name="jobtitle" id="jobtitle" placeholder=" The Notorious Cat of Divinity's Area Critics" [(ngModel)]="inputJobTitle">
         </div>
       </div>
       <div class="general-bio">
