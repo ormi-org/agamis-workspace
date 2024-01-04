@@ -18,7 +18,7 @@ export class NavBarComponent implements OnInit {
   showNewTabInput = false;
   showUserMenu = false;
   // Propriété Observable pour suivre l'onglet actif
-  activeTab$: Observable<number | null>;
+  activeTab$: Observable<string | null>;
   avatarSrc: string | ArrayBuffer | null | undefined;
 
   /**
@@ -50,7 +50,7 @@ export class NavBarComponent implements OnInit {
    * Active un onglet spécifié par son ID.
    * @param tabId L'ID de l'onglet à activer. Peut être null pour indiquer aucun onglet actif.
    */
-  selectTab(tabNumber: number): void {
+  selectTab(tabNumber: string): void {
     this.tabService.setActiveTab(tabNumber);
   }
 
@@ -69,7 +69,7 @@ export class NavBarComponent implements OnInit {
    * Supprime un onglet spécifié par son ID.
    * @param tabId L'ID de l'onglet à supprimer.
    */
-  removeTab(tabId: number): void {
+  removeTab(tabId: string): void {
     this.tabService.removeTab(tabId);
   }
 

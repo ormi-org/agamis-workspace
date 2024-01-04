@@ -17,14 +17,14 @@ prepare:
     - /^feat\/.*$/
 
 before_script:
-  - npm install -g pnpm # Installe pnpm globalement
+  - npm install -g pnpm # Install pnpm globaly
 
 lint:
   stage: lint
   image: node:$NODE_VERSION
   script:
     - pnpm install
-    - npx nx lint --fix workspace-ui
+    - npx nx lint workspace-ui
   only:
     - /^feat\/.*$/
 

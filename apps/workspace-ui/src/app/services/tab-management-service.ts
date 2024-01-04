@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 export interface Tab {
-  id: number;
+  id: string; // L'ID de l'onglet est maintenant un UUID de type string
   title: string;
   component: string;
 }
@@ -11,16 +14,15 @@ export interface Tab {
   providedIn: 'root'
 })
 export class TabManagementService {
-  private activeTabSubject = new BehaviorSubject<number | null>(null);
+  private activeTabSubject = new BehaviorSubject<string | null>(null);
   public activeTabId$ = this.activeTabSubject.asObservable();
-  private tabs = new Map<number, Tab>();
-  private nextId = 1; // Un compteur pour générer des ID uniques
+  private tabs = new Map<string, Tab>();
 
   /**
    * Définit l'onglet actif par son ID.
    * @param tabId L'ID de l'onglet à activer. Si null, aucun onglet n'est actif.
    */
-  setActiveTab(tabId: number | null): void {
+  setActiveTab(tabId: string | null): void {
     this.activeTabSubject.next(tabId);
   }
 
@@ -28,7 +30,7 @@ export class TabManagementService {
    * Obtient l'ID de l'onglet actif.
    * @return L'ID de l'onglet actuellement actif, ou null si aucun onglet n'est actif.
    */
-  getActiveTab(): number | null {
+  getActiveTab(): string | null {
     return this.activeTabSubject.value;
   }
 
@@ -38,7 +40,7 @@ export class TabManagementService {
    * @param componentName Le nom du composant Angular à associer avec le nouvel onglet.
    */
   addTabWithComponent(title: string, componentName: string): void {
-    const newTab: Tab = { id: this.nextId++, title, component: componentName };
+    const newTab: Tab = { id: uuidv4(), title, component: componentName };
     this.tabs.set(newTab.id, newTab);
     this.setActiveTab(newTab.id);
   }
@@ -47,7 +49,7 @@ export class TabManagementService {
    * Supprime un onglet par son ID et ajuste l'onglet actif si nécessaire.
    * @param tabId L'ID de l'onglet à supprimer.
    */
-  removeTab(tabId: number): void {
+  removeTab(tabId: string): void {
     this.tabs.delete(tabId);
     if (this.getActiveTab() === tabId) {
       const tabsArray = Array.from(this.tabs.values());
