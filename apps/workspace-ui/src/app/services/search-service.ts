@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class SearchService {
    * @return Un Observable des résultats de la recherche.
    */
   search(query: string): Observable<string> { // On remplacera any par le type de reponse qui sera renvoyer par l'API
-    // Adaptez l'URL selon votre backend/API
-    return this.http.get<string>(`/api/search?query=${encodeURIComponent(query)}`);
+    const params = new HttpParams().set('query', query);
+    return this.http.get<string>('/api/search', { params });
   }
 }
