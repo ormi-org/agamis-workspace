@@ -10,7 +10,7 @@ describe('NavBarComponent', () => {
 
   beforeEach(async () => {
     const userInfoServiceMock = {
-      userInfo$: of({
+      userInfos$: of({
         identifier:'Chauncey',
         orgName:"Tyria's heroes",
         email:'chauncey.vonsnuffles@divinitysreach.tyria',
@@ -24,7 +24,7 @@ describe('NavBarComponent', () => {
     };
     await TestBed.configureTestingModule({
       imports: [AppModule],
-      declarations: [ NavBarComponent ],
+      declarations: [NavBarComponent],
       providers: [
         { provide: UserInfoService, useValue: userInfoServiceMock }
       ]
