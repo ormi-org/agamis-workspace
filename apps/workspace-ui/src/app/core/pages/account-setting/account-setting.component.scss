@@ -1,0 +1,45 @@
+$color_1: #cb2828;
+$color_2: white;
+$background-color_1: #E8E9EA;
+$background-color_2: #cb2828;
+
+html {
+	width: 100vw;
+	height: 100vh;
+}
+main {
+	background-color: $background-color_1;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+section {
+	padding: 10px;
+	width: 95%;
+	display: flex;
+	border-bottom: 2px #929292 solid;
+	justify-content: start;
+}
+.part_left {
+	padding-right: 10%;
+}
+.identity {
+	>.part_left {
+		>h2 {
+			margin-top: 0px;
+		}
+	}
+}
+.danger {
+	color: $color_1;
+}
+.delete_button {
+	background-color: $background-color_2;
+	color: $color_2;
+	padding: 5px;
+	border-radius: 5px;
+	border-style: none;
+}

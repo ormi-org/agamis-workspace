@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { LoginPageComponent } from './core/pages/login-page/login-page.component';
 import { SplashScreenComponent } from './core/pages/splash-screen/splash-screen.component';
 import { NotFoundComponent } from './core/pages/error/not-found/not-found.component';
+import { AccountSettingComponent } from './core/pages/account-setting/account-setting.component'
 
 export const APP_ROUTES: Route[] = [
   {
@@ -21,5 +22,9 @@ export const APP_ROUTES: Route[] = [
     path: '**',
     redirectTo: '/not-found',
     pathMatch: 'full'
+  },
+  {
+    path:'account-settings',
+    component: AccountSettingComponent,
   }
 ];
