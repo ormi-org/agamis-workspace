@@ -62,7 +62,7 @@
       <nav class="sidebar-nav">
         <ul>
           <li>
-            <a id="projectsButton" onclick="sidebarProjects()">
+            <a id="projectsButton" onclick="sidebarProjects()" (click)="toggleProjects()">
               <span>Projects</span>
 
               <svg class="small_arrow_buttons" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" width="7.03" xmlns="http://www.w3.org/2000/svg" style="-webkit-print-color-adjust:exact" id="screenshot-07bfee2c-9922-11ed-86ae-6b73ddd7d7b4" version="1.1" viewBox="5103.985 214.985 7.03 11.03" height="11.03">
@@ -83,7 +83,7 @@
             </a>
           </li>
           <li>
-            <a id="collabButton" onclick="sidebarCollab()">
+            <a id="collabButton" onclick="sidebarCollab()" (click)="toggleCollab()">
               <span class="hover">Collaborators</span>
 
               <svg class="small_arrow_buttons" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" width="7.03" xmlns="http://www.w3.org/2000/svg" style="-webkit-print-color-adjust:exact" id="screenshot-07bfee2c-9922-11ed-86ae-6b73ddd7d7b4" version="1.1" viewBox="5103.985 214.985 7.03 11.03" height="11.03">
@@ -107,7 +107,7 @@
       </nav>
     </aside>
 
-    <div class="nav-flyout" id="projects">
+    <div class="nav-flyout" id="projects" [style.display]="projectsVisible ? 'block' : 'none'">
       <h2 class="projects_title">Projects</h2>
       <ul>
         <li>
@@ -128,7 +128,7 @@
       </ul>
     </div>
 
-    <div class="nav-flyout" id="collab">
+    <div class="nav-flyout" id="collab" [style.display]="collabVisible ? 'block' : 'none'">
       <h2 class="projects_title">Collaborators</h2>
       <ul>
         <li>
