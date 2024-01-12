@@ -13,7 +13,7 @@ $color-grey-light: #444 // Gris clair pour les bordures
   justify-content: space-between
   align-items: center
   background-color: $color-navbar-background
-
+  z-index: 999
   .navbar-left 
     display: flex
     align-items: center
@@ -242,6 +242,16 @@ $color-grey-light: #444 // Gris clair pour les bordures
   justify-content: flex-start
   background-color: $color-primary
   min-height: 50px
+  z-index: 10
+
+.with-sidebar
+  .custom-tabs
+    margin-left: 17em  // Décale la bande d'onglets lorsque la barre latérale est visible
+  .sidebar 
+  // Styles pour l'aside
+  width: 200px // Ajustez la largeur selon vos besoins
+  // Plus de styles si nécessaire
+  
 
 .pseudo
   color: #fff
@@ -251,11 +261,7 @@ $color-grey-light: #444 // Gris clair pour les bordures
   display: flex
   align-items: stretch // Assure que les enfants s'étendent sur toute la hauteur
 
-.sidebar 
-  // Styles pour l'aside
-  width: 200px // Ajustez la largeur selon vos besoins
-  // Plus de styles si nécessaire
-  
+
 
 app-profile-tab 
   flex-grow: 1 // Permet à ProfileTabComponent de remplir l'espace restant

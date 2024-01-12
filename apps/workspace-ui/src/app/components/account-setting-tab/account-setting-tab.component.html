@@ -1,0 +1,52 @@
+<section class = 'identity'>
+    <div class = 'part_left'>
+        <h2>Identity</h2>
+        <p>Manage your global identity on the platform</p>
+    </div>
+    <div class = 'part_right'>
+        <form>
+            <label for = 'username'>Username</label>
+            <input type = 'text' name = 'username' id = 'username' placeholder = 'enter a username' required />
+            <p>This is your global username for the platform</p>
+            <label for = 'email'>Main email</label>
+            <input type = 'email'name = 'email' id = 'email' placeholder = 'mail@example.com' required/>
+            <p>This is your main email for the platform, used excusively as notification means, authentification and recovery medium</p>
+        </form>
+    </div>
+</section>
+
+<section class = 'authentification'>
+    <div class = 'part_left'>
+        <h2>Authentification</h2>
+        <p>Manage your authentification means</p>
+    </div>
+    <div class = 'part_right'>
+        <h2>Local Authentification (password)</h2>
+        <form>
+            <p>Change your password for local authentification</p>
+            <label for = 'current_password'>Current password</label>
+            <input type = 'password' name = 'current_password' id = 'current_password' required />
+            <p>Provide your current password for security purpose</p>
+            <label for = 'new_password'>New Password</label>
+            <input type = 'password'name = 'new_password' id = 'new_password'/>
+            <p> </p>
+            <label for = 'comfirm_password'>Password comfirmation</label>
+            <input type = 'password'name = 'comfirm_password' id = 'comfirm_password' />
+        </form>
+    </div>
+</section>
+
+<section class = 'delete'>
+    <div class = 'part_left'>
+        <h2 class = 'danger'>Delete Account</h2>
+        <p>Delete your account on the platform</p>
+    </div>
+
+    <div class = 'part_right'>
+        <form>
+            <p class  = 'danger'>Deleting your account is uncoverable !</p>
+            <input type= 'submit' class = 'delete_button' value = 'Delete my account'/>
+        </form>
+        
+    </div>
+</section>

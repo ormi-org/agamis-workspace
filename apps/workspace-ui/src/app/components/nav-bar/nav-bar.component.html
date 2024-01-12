@@ -1,11 +1,14 @@
 <!-- Partie NavBar -->
 <nav class="custom-navbar">
   <!-- Section gauche de la barre de navigation : contient le logo et le titre -->
-  <div class="navbar-left">
+  <div class="navbar-left" (click)="toggleSideMenu($event)">
     <!-- Icône SVG du logo agamis -->
     <app-svg-logo-agamis class="icons"></app-svg-logo-agamis>
     <h2>agamis</h2>
   </div>
+
+
+
 <!-- Barre de recherche -->
 <form class="navbar-search">
   <!-- Conteneur pour la barre de recherche -->
@@ -60,8 +63,8 @@
           </div>
           <ul class="menu-items">
             <li><button (click)="openProfile()">Profile</button></li>
-            <!-- <li><button (click)="openAccountSettings()">Account settings</button></li>
-            <li><button (click)="openNotifications()">Notifications</button></li>
+            <li><button (click)="openAccountSettings()">Account settings</button></li>
+            <!-- <li><button (click)="openNotifications()">Notifications</button></li>
             <li><button (click)="openOrganization()">My organization</button></li>
             <li><button (click)="openSessions()">Sessions</button></li>
             <li><button (click)="openLogout()">Logout</button></li> -->
@@ -73,9 +76,12 @@
   </div>
 </nav>
 
+<aside *ngIf="showSideMenu" >
+  <app-side-bar-menu></app-side-bar-menu>
+</aside>
 
 <!-- Conteneur pour les onglets dynamiques -->
-<div class="custom-tabs">
+<div [class.with-sidebar]="showSideMenu" class="custom-tabs">
  <!-- Boucle pour afficher les onglets dynamiquement -->
 <ng-container *ngIf="!(isTabListEmpty())">
     <!-- Bouton pour chaque onglet -->
@@ -132,6 +138,14 @@
           <app-sidebar-tab></app-sidebar-tab>
         </aside>
         <app-profile-tab></app-profile-tab>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="tab.component === 'AccountSettingTabComponent'">
+      <div class="profile-layout">
+        <aside class="sidebar">
+          <app-sidebar-tab></app-sidebar-tab>
+        </aside>
+        <app-account-setting-tab></app-account-setting-tab>
       </div>
     </ng-container>
   </div>

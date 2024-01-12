@@ -16,6 +16,8 @@ import { SvgIconeAccountComponent } from './shared/svg/svg-icone-account.compone
 import { SvgIconeNotificationOutlineComponent } from './shared/svg/svg-icone-notification-outline.component';
 import { SvgIconeSessionsComponent } from './shared/svg/svg-icone-sessions.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountSettingTabComponent } from './components/account-setting-tab/account-setting-tab.component';
+import { SideBarMenuComponent } from './components/side-bar-menu/side-bar-menu.component';
 
 // import { Authservice } from './services/auth-service';
 // import { OrganisationService } from './services/organisation-service';
@@ -27,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavBarComponent,
     ProfileTabComponent,
     SidebarComponent,
+    AccountSettingTabComponent,
+    SideBarMenuComponent,
     SvgLogoAgamisComponent,
     SvgLogoNotificationComponent,
     SvgImageSearchComponent,

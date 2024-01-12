@@ -17,6 +17,8 @@ export class NavBarComponent implements OnInit {
   newTabTitle = '';
   showNewTabInput = false;
   showUserMenu = false;
+  showSideMenu = false;
+
   // Propriété Observable pour suivre l'onglet actif
   activeTab$: Observable<string | null>;
   avatarSrc: string | ArrayBuffer | null | undefined;
@@ -99,6 +101,10 @@ export class NavBarComponent implements OnInit {
     this.showUserMenu = !this.showUserMenu;
   }
 
+  toggleSideMenu(event: MouseEvent): void {
+    event.stopPropagation();
+    this.showSideMenu = !this.showSideMenu;
+  }
   /**
    * Ouvre un onglet et crée le composant associé à cet onglet.
    * @param title Le titre de l'onglet.
@@ -117,9 +123,9 @@ export class NavBarComponent implements OnInit {
     this.openAndCreateTab('Profile', 'ProfileTabComponent', '/profile');
   }
 
-  // openAccountSettings(): void {
-  //   this.openAndCreateTab('Account Settings', '/account-settings');
-  // }
+  openAccountSettings(): void {
+    this.openAndCreateTab('Account Settings','AccountSettingTabComponent', '/account-settings');
+  }
 
   // openSessions(): void {
   //   this.openAndCreateTab('Sessions', '/sessions');
