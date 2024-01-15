@@ -4,6 +4,7 @@ import { TabManagementService, Tab } from '../../services/tab-management-service
 import { Observable } from 'rxjs';
 import { AvatarService } from '../../services/avatar-service';
 import { UserInfoService } from '../../services/user-info-service';
+import { SideBarService } from '../../services/sideBar-service';
 
 
 @Component({
@@ -33,11 +34,15 @@ export class NavBarComponent implements OnInit {
     private tabService: TabManagementService,
     private avatarService: AvatarService,
     private userInfoService: UserInfoService,
+    private sideBarService: SideBarService
   ) {
     // Initialisation de l'Observable avec celui du service
     this.activeTab$ = this.tabService.activeTabId$;
     this.avatarService.currentAvatar.subscribe(avatar => {
     this.avatarSrc = avatar; 
+    this.sideBarService.showSideMenu$.subscribe(show => {
+      this.showSideMenu = show;
+    });
   });}
   
   ngOnInit() {
@@ -103,7 +108,7 @@ export class NavBarComponent implements OnInit {
 
   toggleSideMenu(event: MouseEvent): void {
     event.stopPropagation();
-    this.showSideMenu = !this.showSideMenu;
+    this.sideBarService.toggleSideMenu();
   }
   /**
    * Ouvre un onglet et crée le composant associé à cet onglet.

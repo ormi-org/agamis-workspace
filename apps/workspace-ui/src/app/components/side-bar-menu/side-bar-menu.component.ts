@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SideBarService } from '../../services/sideBar-service'
 
 @Component({
   selector: 'app-side-bar-menu',
@@ -9,6 +10,8 @@ export class SideBarMenuComponent {
 // Variables to control the visibility of the div elements
 projectsVisible = false;
 collabVisible = false;
+
+constructor(private sideBarService: SideBarService) {}
 
 // Function to toggle the visibility of the projects div
 toggleProjects() {
@@ -21,5 +24,9 @@ toggleCollab() {
   this.collabVisible = !this.collabVisible;
   this.projectsVisible = false; // Hide projects div when showing collab div
 }
+
+closeSideMenu() {
+  this.sideBarService.closeSideMenu();
+  }
 }
 
