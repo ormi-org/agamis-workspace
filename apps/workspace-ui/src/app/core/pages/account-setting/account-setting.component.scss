@@ -36,10 +36,28 @@ section {
 .danger {
 	color: $color_1;
 }
+
 .delete_button {
 	background-color: $background-color_2;
 	color: $color_2;
 	padding: 5px;
 	border-radius: 5px;
 	border-style: none;
+}
+
+form {
+  display: flex;
+	flex-direction: column;
+}
+
+
+input {
+  width: 452px;
+  height: 31px;
+  border-radius: 5px;
+}
+
+
+p{
+  color: slategray;
 }

@@ -18,11 +18,11 @@ export const APP_ROUTES: Route[] = [
     component: NotFoundComponent,
     pathMatch: 'full'
   },
-  {
-    path: '**',
-    redirectTo: '/not-found',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '/not-found',
+  //   pathMatch: 'full'
+  // },
   {
     path:'account-settings',
     component: AccountSettingComponent,
