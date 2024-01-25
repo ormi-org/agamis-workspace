@@ -19,7 +19,7 @@
           "apps/workspace-ui/src/favicon.ico",
           "apps/workspace-ui/src/assets"
         ],
-        "styles": ["apps/workspace-ui/src/styles.sass"],
+        "styles": ["apps/workspace-ui/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
