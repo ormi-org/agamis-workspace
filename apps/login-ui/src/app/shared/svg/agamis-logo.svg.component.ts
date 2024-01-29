@@ -6,9 +6,7 @@ import Color from '../../common/color';
   selector: 'agamis-ws-login-svg-agamis-logo',
   templateUrl: '../../../assets/images/svg/agamis-logo.svg',
   styles: `
-    :host {
-        display: flex
-    }
+    
   `,
 })
 export class AgamisLogoSvgComponent {

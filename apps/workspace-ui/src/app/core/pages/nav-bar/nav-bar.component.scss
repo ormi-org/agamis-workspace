@@ -1,0 +1,233 @@
+@import '../../../../styles/constants';
+
+.custom-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:map-get($colors, primary-one);
+ 
+  
+  /* LOGO_AGAMIS */
+  .logo-agamis {
+   padding: 10px;
+  }
+
+  .navbar-search {
+    .search-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+  
+      
+      .imageSearch {
+        position: absolute;
+        left: 0px;
+        height: 30px;
+        width: 10px;
+      }
+
+      input[type="search"] {
+        padding: 8px 30px;
+        border: none;
+        border-radius: 18px 18px 2px 18px;
+        background-color: map-get($colors, light);
+        color: map-get($colors,primary-one);
+        width: 600px;
+      }
+    }
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+
+    .nav-item {
+      margin-left: 10px;
+
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: map-get($colors,primary-one);
+
+        label {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .custom-tabs {
+    display: flex;
+    justify-content: flex-start;
+    background-color: map-get($colors,soft-anchoring);
+
+    button {
+      background-color: map-get($colors,soft-emphasis);
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: map-get($colors,primary-one);
+
+      &.active {
+        background-color: map-get($colors,soft-anchoring);
+        color: map-get($colors,primary-one);
+      }
+    }
+  }
+
+  .tab-content {
+    background-color: map-get($colors,primary-two);
+  }
+
+  // Styles du menu déroulant de la nav-bar
+  .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    .user-details {
+      display: flex;
+      align-items: center;
+
+      svg {
+        width: 100px;
+        height: 30px;
+      }
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: fixed;
+      right: 0;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      background-color: map-get($colors,primary-one);
+      color: map-get($colors,light);
+      border: 1px solid map-get($colors,strong-emphasis);
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: auto;
+
+      .user-info {
+        padding: 10px;
+        background-color: map-get($colors,primary-one);
+        border-bottom: 1px solid map-get($colors,strong-emphasis);
+
+        span {
+          display: block;
+        }
+
+        .user-email {
+          white-space: nowrap; // Empêche le retour à la ligne
+          overflow: hidden; // Cache le contenu débordant
+          text-overflow: ellipsis; // Affiche des points de suspension si le texte déborde
+          max-width: 100%; // Limite la largeur du texte à celle du conteneur
+          display: block; // Assurez-vous que l'élément prend toute la largeur disponible
+          font-size: 1vw; // Ajuste dynamiquement en fonction de la largeur de la vue
+          min-font-size: 12px; // Taille minimale pour la lisibilité
+        }
+
+        .menu-items {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          li {
+            button {
+              display: block;
+              width: 100%;
+              background-color: map-get($colors,primary-one);
+              
+              text-align: left;
+              padding: 10px;
+              border: none;
+              cursor: pointer;
+
+              &:hover {
+                background-color: map-get($colors,strong-emphasis);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .showUserMenu .dropdown-menu {
+    display: block;
+  }
+
+  // Conservation des styles existants pour les éléments SVG
+  .svg-path {
+    position: absolute;
+    width: 27px;
+    height: 31px;
+    left: 14.93px;
+    top: 10.56px;
+    background-color: map-get($colors,light);
+  }
+
+  .notif-button {
+    position: absolute;
+    width: 31.96px;
+    height: 34.93px;
+    left: 1713px;
+    top: 8px;
+    margin-right: 5px;
+  }
+
+  .svg-path-29 {
+    position: absolute;
+    width: 24px;
+    height: 23px;
+    left: 1541px;
+    top: 15px;
+    background-color: map-get($colors,light);
+  }
+
+  .icons {
+    padding-right: 5px;
+  }
+
+
+  .pseudo {
+    color: #fff;
+  }
+
+  .profile-layout {
+    display: flex;
+    align-items: stretch; // Assure que les enfants s'étendent sur toute la hauteur
+
+    .sidebar {
+      // Styles pour l'aside
+      width: 200px; // Ajustez la largeur selon vos besoins
+      // Plus de styles si nécessaire
+    }
+
+    app-profile-tab {
+      flex-grow: 1; // Permet à ProfileTabComponent de remplir l'espace restant
+      // Plus de styles si nécessaire
+    }
+
+    .avatar-icon-nav {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+}
