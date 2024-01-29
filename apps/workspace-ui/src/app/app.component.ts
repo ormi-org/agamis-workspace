@@ -4,6 +4,7 @@ import { AgamisTextSvgComponent } from "./shared/svg/agamis-text.svg.component";
 import Color from './common/color';
 import { RouterOutlet } from '@angular/router';
 
+
 @Component({
     standalone: true,
     selector: 'agamis-ws-root',

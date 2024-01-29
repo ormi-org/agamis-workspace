@@ -1,0 +1,52 @@
+<!-- Conteneur pour les onglets dynamiques -->
+<div class="custom-tabs">
+  <!-- Boucle pour afficher les onglets dynamiquement -->
+ <ng-container *ngIf="!(isTabListEmpty())">
+     <!-- Bouton pour chaque onglet -->
+   <button class="button" *ngFor="let tab of tabs" (click)="selectTab(tab.id)" [class.active]="(activeTab$ | async) === tab.id">
+     {{ tab.title }}
+     <!-- Bouton pour fermer l'onglet -->
+     <span class="remove-tab" (click)="removeTab(tab.id)">×</span>
+   </button>
+   
+ </ng-container>
+ 
+   <!-- Bouton et formulaire pour ajouter un nouvel onglet -->
+   <div class="add-tab-button">
+     <!-- Bouton pour afficher le formulaire d'ajout d'un nouvel onglet -->
+     <button class="button" *ngIf="!showNewTabInput" (click)="showNewTabInput = true">+</button>
+     <!-- Formulaire pour entrer le titre du nouvel onglet -->
+     <div *ngIf="showNewTabInput" class="add-tab-form">
+       <input type="text" [(ngModel)]="newTabTitle"  placeholder="Nom du nouvel onglet"  >
+       <!-- Bouton pour ajouter l'onglet -->
+       <button class='button' (click)="addTab()">Ajouter</button>
+       <!-- Bouton pour annuler l'ajout d'un nouvel onglet -->
+       <button class='button' (click)="showNewTabInput = false">Annuler</button>
+     </div>
+   </div>
+   
+ </div>
+ 
+ <!-- Message indiquant qu'aucun onglet n'est présent -->
+ <div *ngIf="isTabListEmpty()" class="empty-tab-message">
+   <p>Aucun onglet présent. Cliquez sur '+' pour ajouter un nouvel onglet.</p>
+ </div>
+ 
+ 
+
+ 
+ <!-- Affichage conditionnel du contenu de l'onglet actif -->
+ <ng-container *ngFor="let tab of tabs">
+   <div class="tab-content" *ngIf="(activeTab$ | async) === tab.id">
+      <!-- Charge le ProfileTabComponent si le composant associé à l'onglet est ProfileTabComponent -->
+     <ng-container *ngIf="tab.component === 'ProfileTabComponent'">
+       <div class="profile-layout">
+         <!-- <aside class="sidebar">
+           <app-sidebar-tab></app-sidebar-tab>
+         </aside> -->
+         <!-- <app-profile-tab></app-profile-tab> -->
+       </div>
+     </ng-container>
+   </div>
+ </ng-container>
+ 
