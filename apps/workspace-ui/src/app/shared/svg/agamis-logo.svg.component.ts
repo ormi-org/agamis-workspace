@@ -6,12 +6,10 @@ import Color from '../../common/color';
   selector: 'agamis-ws-svg-agamis-logo',
   templateUrl: '../../../assets/images/svg/agamis-logo.svg',
   styles: `
-    :host {
-        display: flex
-    }
+    
   `,
 })
 export class AgamisLogoSvgComponent {
   @Input()
-  fillColor: string = Color.PRIMARY_ONE;
+  fillColor: string = Color.LIGHT;
 }

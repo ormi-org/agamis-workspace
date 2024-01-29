@@ -1,28 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AgamisLogoSvgComponent } from "./shared/svg/agamis-logo.svg.component";
 import { AgamisTextSvgComponent } from "./shared/svg/agamis-text.svg.component";
+import { UserInfoService } from './core/services/user-info-service';
 import Color from './common/color';
 import { RouterOutlet } from '@angular/router';
+import { NavBarComponent} from "./core/pages/nav-bar/nav-bar.component"
 
 @Component({
     standalone: true,
     selector: 'agamis-ws-root',
     template: `
-    <div class="container">
-      <div class="navbar">
-        <div class="logo">
-          <agamis-ws-svg-agamis-logo [fillColor]="Color.LIGHT"></agamis-ws-svg-agamis-logo>
-          <agamis-ws-svg-agamis-text [fillColor]="Color.LIGHT"></agamis-ws-svg-agamis-text>
-        </div>
-      </div>
+     <agamis-ws-nav-bar></agamis-ws-nav-bar>
       <div class="outlet">
         <router-outlet></router-outlet>
       </div>
-    </div>
+    
   `,
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, AgamisLogoSvgComponent, AgamisTextSvgComponent]
+    imports: [RouterOutlet,NavBarComponent, AgamisLogoSvgComponent, AgamisTextSvgComponent]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  constructor(private userInfoService: UserInfoService){}
+  ngOnInit() {
+    this.userInfoService.fetchData();
+  }
   Color = Color;
 }

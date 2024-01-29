@@ -5,13 +5,12 @@ import Color from '../../common/color';
   standalone: true,
   selector: 'agamis-ws-svg-agamis-text',
   templateUrl: '../../../assets/images/svg/agamis-text.svg',
-  styles: `
-    :host {
-        display: flex
-    }
+  styles: `:host{
+   padding: 5px;
+  }
   `,
 })
 export class AgamisTextSvgComponent {
   @Input()
-  fillColor: string = Color.PRIMARY_ONE;
+  fillColor: string = Color.LIGHT;
 }
