@@ -10,7 +10,6 @@ export const handlers = [
         orgName:"Tyria's heroes",
         email:'chauncey.vonsnuffles@divinitysreach.tyria',
         projectsNbr:'8', 
-        avatarSrc:'',
         timeZone:'America/New_York',
         Language:'en',
         Fullname:'@chauncey.vonsnuffles',
