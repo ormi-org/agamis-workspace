@@ -1,0 +1,157 @@
+<div class="profile-tab-component">
+  <!-- Profile Picture Section -->
+  <section class="profile-picture">
+    <div class="profile-text-container">
+      <h2>Profile picture</h2>
+      <p>
+        This setting lets you change your avatar for the curent
+        organization(Tyria's heroes). You can also remove it to use default
+        avatar (Initials of your fullname).
+      </p>
+    </div>
+    <!-- Emplacement pour afficher l'image téléchargée -->
+    <div class="img-avatar">
+      <img [src]="avatarSrc" *ngIf="avatarSrc" class="avatar-icon" />
+    </div>
+    <div class="profile-picture-container">
+      <p>Upload another avatar</p>
+      <!-- Input pour télécharger une image -->
+      
+      <div class="parent-div">
+        <button class="btn-upload">Choose file...</button>
+        <input
+        class="frame"
+        type="file"
+        accept="image/*,.pdf"
+        (change)="onFileSelected($event)"
+        />
+      </div>
+      <p class="label-5">Maximum file size allowed : 500KB</p>
+    </div>
+  </section>
+
+  <div class="separator-1"></div>
+
+  <!-- Localization Section -->
+  <section class="localization">
+    <div class="localization-text-container">
+      <h2>Localization</h2>
+      <p>
+        Change the localization of your application experience. You can change
+        the default language as well as Timezone.
+      </p>
+    </div>
+    <div class="localization-container">
+      <div class="div-timezone">
+        <label for="timezone">Timezone</label>
+        <div class="select-timezone">
+          <select
+            class="input_timezone"
+            name="timezone"
+            id="timezone"
+            [(ngModel)]="selectedTimezone"
+          >
+            <option value="" disabled selected>Select Timezone</option>
+            <option value="Europe/Paris">Paris, France</option>
+            <option value="America/New_York">New York, USA</option>
+            <option value="Asia/Tokyo">Tokyo, Japan</option>
+            <!-- Additional timezone options -->
+          </select>
+          <p class="label-5">Controls workspace and applications timezone.</p>
+        </div>
+      </div>
+
+      <div class="div-language">
+        <label for="language">Language</label>
+        <div class="select-language">
+          <select
+            class="input_language"
+            name="language"
+            id="language"
+            [(ngModel)]="selectedLanguage"
+          >
+            <option value="" disabled selected>Select language</option>
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="ja">Japanese</option>
+            <!-- Additional language options -->
+          </select>
+          <p class="label-5">Controls workspace language & default language for applications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="separator-1"></div>
+
+  <!-- General Profile Settings Section -->
+  <section class="frame-12">
+    <div class="general-text-settings-container">
+      <h2>General profile settings</h2>
+      <p>
+        These informations are visible from the collaborators of your
+        organization.
+      </p>
+    </div>
+    <div class="general-profile-settings-container">
+      <div class="fullname-grp-1">
+        <label class="timezone-label-3" for="fullname">Fullname</label>
+        <div>
+          <input
+            class="rect-45"
+            type="text"
+            name="fullname"
+            id="fullname"
+            placeholder=" Chauncey Von Snuffies"
+            [(ngModel)]="inputFullname"
+          />
+        </div>
+        <p class="desc-5">
+          this is your name, display as is, so people can know who you are.
+        </p>
+      </div>
+      <div class="email-grp-1">
+        <label class="timezone-label-2" for="email">Email</label>
+        <div>
+          <input
+            class="rect-45"
+            type="email"
+            name="email"
+            id="email"
+            placeholder=" Chauncey.vonanulapi@divinityareacritics.com"
+            [(ngModel)]="inputEmail"
+          />
+        </div>
+        <p class="desc-5">
+          This is your main email address for this organization. It is used as
+          identifier for login and for sending your notifications.
+        </p>
+      </div>
+      <div class="general-job-title">
+        <label class="timezone-label-4"for="jobtitle">Job title</label>
+
+        <div>
+          <input
+            class="rect-45"
+            type="text"
+            name="jobtitle"
+            id="jobtitle"
+            placeholder=" The Notorious Cat of Divinity's Area Critics"
+            [(ngModel)]="inputJobTitle"
+          />
+        </div>
+      </div>
+      <div class="general-bio">
+        <div><label class="timezone-label-5"for="bio">Bio</label></div>
+
+        <textarea class="bio" id="bio"></textarea>
+        <!-- Added Bio textarea -->
+
+        <p class="desc-5">Max : 250 characters.</p>
+      </div>
+      
+    </div>
+  </section>
+  <div class="separator-1"></div>
+</div>
