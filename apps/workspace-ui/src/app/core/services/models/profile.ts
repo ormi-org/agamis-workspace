@@ -7,4 +7,6 @@ export default interface Profile {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
+  projectsNbr: number;
+  orgId: string;
 }

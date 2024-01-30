@@ -4,8 +4,8 @@
   <!-- Section gauche de la barre de navigation : contient le logo et le titre -->
   <div class="logo-agamis">
     <!-- Icône SVG du logo agamis -->
-      <agamis-ws-svg-agamis-logo></agamis-ws-svg-agamis-logo>
-      <agamis-ws-svg-agamis-text ></agamis-ws-svg-agamis-text>
+      <agamis-ws-svg-agamis-logo [fillColor]="Color.LIGHT"></agamis-ws-svg-agamis-logo>
+      <agamis-ws-svg-agamis-text [fillColor]="Color.LIGHT" ></agamis-ws-svg-agamis-text>
   </div>
 <!-- Barre de recherche -->
 <form class="navbar-search">
@@ -14,7 +14,10 @@
      <!-- Icône de recherche SVG à l'intérieur de la barre de recherche -->
       <agamis-ws-svg-search class="imageSearch"></agamis-ws-svg-search>
        <!-- Champ de saisie pour la recherche -->
-      <input type="search" >
+      <input type="search" [(ngModel)]="searchText" placeholder="Entrer le nom d'un fichier" [ngModelOptions]="{standalone: true}" >
+       <!-- Button to clear the search field or close -->
+      <button class="clear-search" (click)="clearSearch()" >×</button>
+    
     </div>
   </form>
 
@@ -23,8 +26,8 @@
   <!-- Item pour 'Mon Entreprise' avec icône et texte -->
   <div class="nav-item">
       <a href="#" name="entreprise">
-        <agamis-ws-svg-entreprise class="icons"></agamis-ws-svg-entreprise>
-        <label for="entreprise">{{userInfo.orgName}}</label>
+        <agamis-ws-svg-entreprise class=""></agamis-ws-svg-entreprise>
+        <label for="entreprise">{{orgInfo?.label}}</label>
       </a>
     </div>
 
@@ -44,7 +47,7 @@
         <div  class="dropdown-toggle" (click)="toggleUserMenu($event)">
           <!-- Avatar et nom d'utilisateur -->
           <div class="user-details">
-            <p class="pseudo">{{userInfo.identifier}}</p>
+            <p class="pseudo">{{userInfo?.username}}</p>
             <img *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" class="avatar-icon-nav">
             <ng-template #defaultAvatar>
               <agamis-ws-svg-user-default></agamis-ws-svg-user-default>
@@ -56,8 +59,8 @@
         <!-- Menu déroulant utilisateur qui apparaît au clic -->
         <div class="dropdown-menu" *ngIf="showUserMenu" style="display: block; position: absolute; z-index: 1000; background: white; border: 1px solid black;">
           <div class="user-info">
-            <span class="user-email">{{userInfo.email}}</span>
-            <span class="user-projects">Projects: {{ userInfo.projectsNbr}}</span>
+            <span class="user-email">{{userInfo?.profile?.mainEmail}}</span>
+            <span class="user-projects">Projects: {{ userInfo?.profile?.projectsNbr}}</span>
           </div>
           <ul class="menu-items">
             <li><button >Profile</button></li>

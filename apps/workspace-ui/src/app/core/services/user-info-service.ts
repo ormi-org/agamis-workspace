@@ -1,21 +1,37 @@
 import { Injectable } from '@angular/core';
+import { ContextService } from './context.service';
+import { Observable, switchMap, map, of } from 'rxjs';
+import User from './models/user';
+import Organization from './models/organization';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import API_ROUTES from '../../common/api-routes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserInfoService {
+  constructor(
+    private contextService: ContextService,
+    private http: HttpClient
+  ) {}
 
-  private dataSubject = new BehaviorSubject<any>(null);
-  userInfos$: Observable<any> = this.dataSubject.asObservable();
-
-  constructor(private httpClient: HttpClient) {}
-
-  fetchData() {
-    this.httpClient.get('/api/user/infos').subscribe(data => {
-      this.dataSubject.next(data);
-    });
+  fetchUserData(): Observable<{ user: User; org: Organization | null }> {
+    return this.contextService.getWhoAmI().pipe(
+      switchMap((user: User) => {
+        const orgId = user.profile?.orgId;
+        if (orgId) {
+          return this.getOrganization(orgId).pipe(
+            map((org: Organization) => ({ user, org }))
+          );
+        } else {
+          
+          return of({ user, org: null });
+        }
+      })
+    );
   }
-  
+
+  private getOrganization(orgId: string): Observable<Organization> {
+    return this.http.get<Organization>(`${API_ROUTES.organizations}/${orgId}`);
+  }
 }

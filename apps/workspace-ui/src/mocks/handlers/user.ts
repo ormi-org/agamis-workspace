@@ -28,7 +28,10 @@ export const handlers = [
           lastLogin: Date.now().toString(),
           createdAt: Date.now().toString(),
           updatedAt: Date.now().toString(),
-        }
+          projectsNbr: 8,
+          orgId: '82174475-f6a5-416e-915d-b975c433523e'
+        },
+        
       }, {
         status: 200
       });
