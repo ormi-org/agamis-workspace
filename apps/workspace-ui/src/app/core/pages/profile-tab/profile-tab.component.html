@@ -14,16 +14,16 @@
       <img [src]="avatarSrc" *ngIf="avatarSrc" class="avatar-icon" />
     </div>
     <div class="profile-picture-container">
-      <p>Upload another avatar</p>
+      <p class="label-2">Upload another avatar</p>
       <!-- Input pour télécharger une image -->
-      
+
       <div class="parent-div">
         <button class="btn-upload">Choose file...</button>
         <input
-        class="frame"
-        type="file"
-        accept="image/*,.pdf"
-        (change)="onFileSelected($event)"
+          class="frame"
+          type="file"
+          accept="image/*,.pdf"
+          (change)="onFileSelected($event)"
         />
       </div>
       <p class="label-5">Maximum file size allowed : 500KB</p>
@@ -43,7 +43,7 @@
     </div>
     <div class="localization-container">
       <div class="div-timezone">
-        <label for="timezone">Timezone</label>
+        <label class="label-2" for="timezone">Timezone</label>
         <div class="select-timezone">
           <select
             class="input_timezone"
@@ -62,7 +62,7 @@
       </div>
 
       <div class="div-language">
-        <label for="language">Language</label>
+        <label class="label-2" for="language">Language</label>
         <div class="select-language">
           <select
             class="input_language"
@@ -76,7 +76,8 @@
             <option value="ja">Japanese</option>
             <!-- Additional language options -->
           </select>
-          <p class="label-5">Controls workspace language & default language for applications.
+          <p class="label-5">
+            Controls workspace language & default language for applications.
           </p>
         </div>
       </div>
@@ -107,6 +108,7 @@
             [(ngModel)]="inputFullname"
           />
         </div>
+
         <p class="desc-5">
           this is your name, display as is, so people can know who you are.
         </p>
@@ -122,14 +124,21 @@
             placeholder=" Chauncey.vonanulapi@divinityareacritics.com"
             [(ngModel)]="inputEmail"
           />
+          
+          <!-- Rounded switch -->
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
         </div>
+
         <p class="desc-5">
           This is your main email address for this organization. It is used as
           identifier for login and for sending your notifications.
         </p>
       </div>
       <div class="general-job-title">
-        <label class="timezone-label-4"for="jobtitle">Job title</label>
+        <label class="timezone-label-4" for="jobtitle">Job title</label>
 
         <div>
           <input
@@ -143,14 +152,13 @@
         </div>
       </div>
       <div class="general-bio">
-        <div><label class="timezone-label-5"for="bio">Bio</label></div>
+        <div><label class="timezone-label-5" for="bio">Bio</label></div>
 
         <textarea class="bio" id="bio"></textarea>
         <!-- Added Bio textarea -->
 
         <p class="desc-5">Max : 250 characters.</p>
       </div>
-      
     </div>
   </section>
   <div class="separator-1"></div>
