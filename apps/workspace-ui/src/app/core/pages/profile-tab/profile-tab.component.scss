@@ -33,6 +33,13 @@ body {
   margin-bottom: 20px;
 }
 
+/* separator-1 */
+.separator-1 {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
 //profile picture
 .profile-picture {
   display: flex;
@@ -91,7 +98,12 @@ body {
 }
 .img-avatar {
   margin-right: 2%;
+  
 }
+.avatar-icon{
+  width: 6vw;
+}
+
 
 //localization
 .localization {
@@ -112,6 +124,7 @@ body {
   .select-timezone {
     display: flex;
     margin: 5px;
+    align-items: center;
     select {
       margin-right: 10px;
     }
@@ -123,6 +136,7 @@ body {
     .select-language {
       display: flex;
       margin: 5px;
+      align-items: center;
       select {
         margin-right: 10px;
       }
@@ -235,13 +249,20 @@ body {
   text-decoration: none;
   text-transform: none;
 }
-/* separator-1 */
-.separator-1 {
-  width: 100%;
-  height: 1px;
-  background-color: black;
-}
 
+.label-13{
+  color: rgba(30, 30, 30, 1);
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  text-decoration: none;
+  text-transform: none;
+  margin-left : 5px;
+  
+}
 .general-bio {
   padding-top: 1%;
 }
@@ -262,7 +283,9 @@ body {
   .div-area-slider {
     display: flex;
     margin: 5px;
+    align-items: center;
   }
+
   /* The switch - the box around the slider */
   .switch {
     position: relative;
