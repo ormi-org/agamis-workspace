@@ -174,6 +174,7 @@ body {
   background-color: rgba(245, 241, 228, 1);
   border: 1px solid rgba(212, 206, 191, 1);
   box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.18);
+  margin-right: 5px;
 }
 
 .timezone-label-3 {
@@ -258,7 +259,10 @@ body {
     box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.18);
   }
 
-  
+  .div-area-slider {
+    display: flex;
+    margin: 5px;
+  }
   /* The switch - the box around the slider */
   .switch {
     position: relative;
@@ -282,7 +286,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+
+    background-color: #ff0000;
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
@@ -294,13 +299,13 @@ body {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
 
   input:checked + .slider {
-    background-color: #2196f3;
+    background-color: #67f321;
   }
 
   input:focus + .slider {

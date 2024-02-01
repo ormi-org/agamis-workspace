@@ -115,7 +115,7 @@
       </div>
       <div class="email-grp-1">
         <label class="timezone-label-2" for="email">Email</label>
-        <div>
+        <div class="div-area-slider">
           <input
             class="rect-45"
             type="email"
@@ -140,7 +140,7 @@
       <div class="general-job-title">
         <label class="timezone-label-4" for="jobtitle">Job title</label>
 
-        <div>
+        <div class="div-area-slider">
           <input
             class="rect-45"
             type="text"
@@ -149,6 +149,11 @@
             placeholder=" The Notorious Cat of Divinity's Area Critics"
             [(ngModel)]="inputJobTitle"
           />
+           <!-- Rounded switch -->
+           <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
         </div>
       </div>
       <div class="general-bio">
