@@ -3,15 +3,15 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   standalone: true,
-  selector: 'agamis-ws-login-svg-opened-eye',
-  templateUrl: '../../../assets/images/svg/opened-eye.svg',
+  selector: 'agamis-ws-lib-svg-agamis-text',
+  templateUrl: '../assets/images/svg/agamis-text.svg',
   styles: `
     :host {
         display: flex
     }
   `,
 })
-export class OpenedEyeSvgComponent {
+export class AgamisTextSvgComponent {
   @Input()
-  fillColor: string = Color.PRIMARY_ONE;
+  fillColor: string = Color.LIGHT;
 }

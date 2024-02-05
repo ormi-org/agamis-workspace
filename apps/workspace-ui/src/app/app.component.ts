@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AgamisLogoSvgComponent } from "../../../../libs/shared/common/svg-components/type/agamis-logo.svg.component";
-import { AgamisTextSvgComponent } from "../../../../libs/shared/common/svg-components/type/agamis-text.svg.component";
-import { UserInfoService } from './core/services/user-info-service';
-import Color from './common/color';
+import { UserInfoService } from './core/services/user-info-service';;
 import { RouterOutlet } from '@angular/router';
-import { NavBarComponent} from "./core/pages/nav-bar/nav-bar.component"
+import { NavBarComponent} from "./shared/components/nav-bar/nav-bar.component"
 
 @Component({
     standalone: true,
@@ -17,12 +14,11 @@ import { NavBarComponent} from "./core/pages/nav-bar/nav-bar.component"
     
   `,
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet,NavBarComponent, AgamisLogoSvgComponent, AgamisTextSvgComponent]
+    imports: [RouterOutlet,NavBarComponent]
 })
 export class AppComponent implements OnInit{
   constructor(private userInfoService: UserInfoService){}
   ngOnInit() {
     this.userInfoService.fetchUserData();
   }
-  Color = Color;
 }

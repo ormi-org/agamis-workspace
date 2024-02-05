@@ -4,7 +4,7 @@ import { Observable, switchMap, map, of } from 'rxjs';
 import User from './models/user';
 import Organization from './models/organization';
 import { HttpClient } from '@angular/common/http';
-import API_ROUTES from '../../common/api-routes';
+import { API_ROUTES } from '@agamis/workspace/shared/common/types';
 
 @Injectable({
   providedIn: 'root',

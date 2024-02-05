@@ -18,19 +18,21 @@
       "@agamis/workspace/shared/common/angular": [
         "libs/shared/common/angular/src/index.ts"
       ],
-      "@agamis/workspace/shared/common/types": [
-        "libs/shared/common/types/src/index.ts"
-      ],
-      "@agamis/workspace/shared/login/types": [
-        "libs/shared/login/types/src/index.ts"
-      ],
       "@agamis/workspace/shared/common/msw-handlers": [
         "libs/shared/common/msw-handlers/src/index.ts"
+      ],
+      "@agamis/workspace/shared/common/types": [
+        "libs/shared/common/types/src/index.ts"
       ],
       "@agamis/workspace/shared/login/msw-handlers": [
         "libs/shared/login/msw-handlers/src/index.ts"
       ],
-      "login-ui/Component": ["apps/login-ui/src/app/app.component.ts"]
+      "@agamis/workspace/shared/login/types": [
+        "libs/shared/login/types/src/index.ts"
+      ],
+      "@myorg/nested/my-lib": ["libs/nested/my-lib/my-lib/src/index.ts"],
+      "login-ui/Component": ["apps/login-ui/src/app/app.component.ts"],
+      "my-ui-lib": ["libs/my-ui-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

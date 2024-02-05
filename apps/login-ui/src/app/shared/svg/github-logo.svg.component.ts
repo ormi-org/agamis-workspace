@@ -1,5 +1,5 @@
+import { Color } from '@agamis/workspace/shared/common/types';
 import { Component, Input } from "@angular/core";
-import Color from "../../common/color";
 
 @Component({
     standalone: true,

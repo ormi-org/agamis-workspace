@@ -2,7 +2,6 @@
   "name": "agamis-workspace-shared-common-angular",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/common/angular/src",
-  "prefix": "lib",
   "tags": [],
   "projectType": "library",
   "targets": {
