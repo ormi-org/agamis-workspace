@@ -127,10 +127,11 @@
 
           <!-- Rounded switch -->
           <label class="switch">
-            <input type="checkbox" />
+            <input (click)="toggleShowPublicyEmail($event)" type="checkbox" />
             <span class="slider round"></span>
           </label>
-          <label class="label-13">Show publicy ?</label>
+          <label class="label-13-1" *ngIf="ShowPublicyEmail">Show publicy ?</label>
+          <label class="label-13-2" *ngIf="!ShowPublicyEmail">Show publicy ?</label>
         </div>
 
         <p class="desc-5">
@@ -152,10 +153,12 @@
           />
           <!-- Rounded switch -->
           <label class="switch">
-            <input type="checkbox" />
+            <input (click)="toggleShowPublicyJob($event)" type="checkbox" />
             <span class="slider round"></span>
           </label>
-          <label class="label-13">Show publicy ?</label>
+
+          <label class="label-13-1" *ngIf="ShowPublicyJob">Show publicy ?</label>
+          <label class="label-13-2" *ngIf="!ShowPublicyJob">Show publicy ?</label>
         </div>
       </div>
       <div class="general-bio">

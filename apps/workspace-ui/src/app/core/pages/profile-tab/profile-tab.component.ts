@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'agamis-ws-profile-tab',
   standalone: true,
-  imports: [CommonModule,FormsModule,],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profile-tab.component.html',
   styleUrls: ['./profile-tab.component.scss'],
 })
@@ -19,6 +19,8 @@ export class ProfileTabComponent implements OnInit {
   inputEmail: string | undefined;
   inputJobTitle: string | undefined;
   avatarSrc: string | ArrayBuffer | null | undefined;
+  ShowPublicyJob = false;
+  ShowPublicyEmail = false;
 
   constructor(
     private avatarService: AvatarService,
@@ -48,5 +50,16 @@ export class ProfileTabComponent implements OnInit {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  /**
+  Bascule la visibilité du label show publicy.*/
+  toggleShowPublicyEmail(event: MouseEvent): void {
+    event.stopPropagation();
+    this.ShowPublicyEmail = !this.ShowPublicyEmail;
+  }
+  toggleShowPublicyJob(event: MouseEvent): void {
+    event.stopPropagation();
+    this.ShowPublicyJob = !this.ShowPublicyJob;
   }
 }
