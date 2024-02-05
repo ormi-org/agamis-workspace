@@ -30,8 +30,6 @@
     </div>
   </section>
 
-  <div class="separator-1"></div>
-
   <!-- Localization Section -->
   <section class="localization">
     <div class="localization-text-container">
@@ -84,10 +82,8 @@
     </div>
   </section>
 
-  <div class="separator-1"></div>
-
   <!-- General Profile Settings Section -->
-  <section class="frame-12">
+  <section class="general-profile-settings">
     <div class="general-text-settings-container">
       <h2>General profile settings</h2>
       <p>
@@ -130,8 +126,12 @@
             <input (click)="toggleShowPublicyEmail($event)" type="checkbox" />
             <span class="slider round"></span>
           </label>
-          <label class="label-13-1" *ngIf="ShowPublicyEmail">Show publicy ?</label>
-          <label class="label-13-2" *ngIf="!ShowPublicyEmail">Show publicy ?</label>
+          <label class="label-13-1" *ngIf="ShowPublicyEmail"
+            >Show publicy ?</label
+          >
+          <label class="label-13-2" *ngIf="!ShowPublicyEmail"
+            >Show publicy ?</label
+          >
         </div>
 
         <p class="desc-5">
@@ -157,8 +157,12 @@
             <span class="slider round"></span>
           </label>
 
-          <label class="label-13-1" *ngIf="ShowPublicyJob">Show publicy ?</label>
-          <label class="label-13-2" *ngIf="!ShowPublicyJob">Show publicy ?</label>
+          <label class="label-13-1" *ngIf="ShowPublicyJob"
+            >Show publicy ?</label
+          >
+          <label class="label-13-2" *ngIf="!ShowPublicyJob"
+            >Show publicy ?</label
+          >
         </div>
       </div>
       <div class="general-bio">
@@ -171,5 +175,4 @@
       </div>
     </div>
   </section>
-  <div class="separator-1"></div>
 </div>

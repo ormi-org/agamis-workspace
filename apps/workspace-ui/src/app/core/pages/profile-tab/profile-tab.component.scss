@@ -45,7 +45,8 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 50px;
+  margin-left: 20px;
+  border-bottom: 2px #828792 solid;
 
   img {
     border-radius: 50%;
@@ -108,7 +109,8 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 50px;
+  margin-left: 20px;
+  border-bottom: 2px #828792 solid;
 }
 .localization-text-container {
   width: 500px;
@@ -166,14 +168,16 @@ body {
 }
 
 //general profile settings
-.general-text-settings-container {
-  width: 500px;
-}
-/* frame-12 */
-.frame-12 {
-  margin: 50px;
+.general-profile-settings {
+  margin-left: 20px;
+  margin-bottom: 20px;
   background-color: rgba(234, 229, 214, 1);
   display: flex;
+  border-bottom: 2px #828792 solid;
+}
+
+.general-text-settings-container {
+  width: 500px;
 }
 
 /* Rect-45 */
