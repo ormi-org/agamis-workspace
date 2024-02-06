@@ -15,7 +15,7 @@ export const handlers = [
     const { identifier, password, orgId } = (await request.json());
     await delay(1000);
     if (!identifier ||!password ||!orgId) {
-      return new HttpResponse(null, { status: 400 });
+      return new HttpResponse(undefined, { status: 400 });
     }
     if (identifier !== 'admin' || password!== 'admin') {
       return HttpResponse.json({
@@ -25,7 +25,7 @@ export const handlers = [
         status: 401
       });
     }
-    return HttpResponse.json(null, {
+    return HttpResponse.json(undefined, {
       status: 200,
       headers: {
         'access_token': 'an.access.token',

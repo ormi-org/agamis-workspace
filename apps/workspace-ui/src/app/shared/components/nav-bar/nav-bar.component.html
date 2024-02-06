@@ -25,7 +25,7 @@
  <div class="navbar-right">
   <!-- Item pour 'Mon Entreprise' avec icône et texte -->
   <div class="nav-item">
-      <a href="#" name="entreprise">
+      <a href="#" id="entreprise">
         <agamis-ws-svg-community/>
         <label for="entreprise">{{orgInfo?.label}}</label>
       </a>
@@ -33,7 +33,7 @@
 
     <!-- Item pour 'Notifications' avec icône et texte -->
     <div class="nav-item">
-      <a href="#" name="notif">
+      <a href="#" id="notif">
         <agamis-ws-svg-notification/>
       </a>
     </div>
@@ -47,7 +47,7 @@
           <!-- Avatar et nom d'utilisateur -->
           <div class="user-details">
             <p class="pseudo">{{userInfo?.username}}</p>
-            <img *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" class="avatar-icon-nav">
+            <img alt="icone" *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" class="avatar-icon-nav">
             <ng-template #defaultAvatar>
               <agamis-ws-svg-user-default></agamis-ws-svg-user-default>
             </ng-template>
@@ -63,12 +63,8 @@
           </div>
           <ul class="menu-items">
             <li><button >Profile</button></li>
-            <!-- <li><button (click)="openAccountSettings()">Account settings</button></li>
-            <li><button (click)="openNotifications()">Notifications</button></li>
-            <li><button (click)="openOrganization()">My organization</button></li>
-            <li><button (click)="openSessions()">Sessions</button></li>
-            <li><button (click)="openLogout()">Logout</button></li> -->
-          </ul>
+            <li><button (click)="openAccountSettings()">Account settings</button></li>
+            </ul>
         </div>
       </div>
       

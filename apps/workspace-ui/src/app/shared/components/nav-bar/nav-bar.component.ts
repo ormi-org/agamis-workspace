@@ -31,13 +31,13 @@ import User from '../../../core/services/models/user';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-  userInfo: User | null = null;
-  orgInfo: Organization | null = null;
+  userInfo: User | undefined;
+  orgInfo: Organization | undefined;
   Color = Color;
   newTabTitle = '';
   showNewTabInput = false;
   showUserMenu = false;
-  avatarSrc: string | ArrayBuffer | null | undefined;
+  avatarSrc: string | ArrayBuffer | undefined;
   searchText: string = '';
 
   /**
@@ -83,5 +83,13 @@ export class NavBarComponent implements OnInit {
   toggleUserMenu(event: MouseEvent): void {
     event.stopPropagation();
     this.showUserMenu = !this.showUserMenu;
+  }
+
+
+  /**
+   * Ouvre l'onglet de settings et crée le `AccountSettingsComponent`.
+   */
+  openAccountSettings(): void {
+   //créer un nouvelle onglet avec la methode OpenAndCreate tab Ajouter dans la partie gestion des onglets
   }
 }

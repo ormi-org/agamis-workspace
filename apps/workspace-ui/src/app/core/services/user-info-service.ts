@@ -1,37 +1,25 @@
 import { Injectable } from '@angular/core';
 import { ContextService } from './context.service';
-import { Observable, switchMap, map, of } from 'rxjs';
+import { Observable, switchMap, map } from 'rxjs';
 import User from './models/user';
 import Organization from './models/organization';
-import { HttpClient } from '@angular/common/http';
-import { API_ROUTES } from '@agamis/workspace/shared/common/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserInfoService {
   constructor(
-    private contextService: ContextService,
-    private http: HttpClient
+    private contextService: ContextService
   ) {}
 
-  fetchUserData(): Observable<{ user: User; org: Organization | null }> {
+  fetchUserData(): Observable<{ user: User; org: Organization | undefined }> {
     return this.contextService.getWhoAmI().pipe(
-      switchMap((user: User) => {
-        const orgId = user.profile?.orgId;
-        if (orgId) {
-          return this.getOrganization(orgId).pipe(
-            map((org: Organization) => ({ user, org }))
-          );
-        } else {
-          
-          return of({ user, org: null });
-        }
-      })
+      switchMap((user: User) => this.contextService.getContext().pipe(
+        map(ctx => ({
+          user: user,
+          org: ctx.org
+        }))
+      ))
     );
-  }
-
-  private getOrganization(orgId: string): Observable<Organization> {
-    return this.http.get<Organization>(`${API_ROUTES.organizations}/${orgId}`);
   }
 }
