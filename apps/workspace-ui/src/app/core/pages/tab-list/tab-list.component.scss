@@ -2,18 +2,18 @@
 
 .custom-tabs {
   display: flex;
-  height: 53px;
+  height: 44px;
+  align-items: flex-end;
   justify-content: flex-start;
   background-color: map-get($colors, primary-two);
- 
+  position: relative; 
+
   .button {
-    align-self: flex-end; // Aligner le bouton à la fin (bas) du conteneur flex
-    background-color: map-get($colors, soft-emphasis);
+    background-color: map-get($colors, soft-anchoring);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    font-weight: bold;
-    color:  map-get($colors, primary-three);
+    color:  map-get($colors, primary-one);
     clip-path: polygon(
       0% 100%, 
       10% 0%, 
@@ -22,6 +22,7 @@
     ); // Applique une forme ondulée aux côtés des boutons
     border-top-left-radius: 20px; // Arrondit le coin supérieur gauche
     border-top-right-radius: 20px; // Arrondit le coin supérieur droit
+    
 
     &.active {
       background-color: map-get($colors,soft-anchoring);

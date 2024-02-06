@@ -6,7 +6,7 @@
    <button class="button" *ngFor="let tab of tabs" (click)="selectTab(tab.id)" [class.active]="(activeTab$ | async) === tab.id">
      {{ tab.title }}
      <!-- Bouton pour fermer l'onglet -->
-     <span class="remove-tab" (click)="removeTab(tab.id)">×</span>
+     <span class="remove-tab" (click)="removeTab(tab.id); $event.stopPropagation()">×</span>
    </button>
    
  </ng-container>
