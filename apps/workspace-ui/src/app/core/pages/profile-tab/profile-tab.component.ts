@@ -12,13 +12,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./profile-tab.component.scss'],
 })
 export class ProfileTabComponent implements OnInit {
-  userInfo: any;
   selectedTimezone: string | undefined;
   selectedLanguage: string | undefined;
   inputFullname: string | undefined;
   inputEmail: string | undefined;
   inputJobTitle: string | undefined;
-  avatarSrc: string | ArrayBuffer | null | undefined;
+  avatarSrc: string | ArrayBuffer | undefined;
   ShowPublicyJob = false;
   ShowPublicyEmail = false;
 
@@ -29,7 +28,6 @@ export class ProfileTabComponent implements OnInit {
 
   ngOnInit() {
     this.userInfoService.userInfos$.subscribe((data) => {
-      this.userInfo = data;
       this.selectedTimezone = data.timeZone;
       this.selectedLanguage = data.Language;
       this.inputFullname = data.Fullname;
