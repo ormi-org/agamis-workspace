@@ -12,7 +12,7 @@ export const handlers = [
       const { access_token, refresh_token } = cookies;
       await delay(1000);
       if (!access_token && !refresh_token) {
-        return new HttpResponse(null, { status: 401 });
+        return new HttpResponse(undefined, { status: 401 });
       }
       return HttpResponse.json(<User>{
         id: "5fc21c59-9af3-4efa-b386-73d94f6d2ad7",

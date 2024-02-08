@@ -18,8 +18,8 @@ export class ProfileTabComponent implements OnInit {
   inputEmail: string | undefined;
   inputJobTitle: string | undefined;
   avatarSrc: string | ArrayBuffer | undefined;
-  ShowPublicyJob = false;
-  ShowPublicyEmail = false;
+  ShowPubliclyJob = false;
+  ShowPubliclyEmail = false;
 
   constructor(
     private avatarService: AvatarService,
@@ -27,19 +27,28 @@ export class ProfileTabComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userInfoService.userInfos$.subscribe((data) => {
-      this.selectedTimezone = data.timeZone;
-      this.selectedLanguage = data.Language;
-      this.inputFullname = data.Fullname;
-      this.inputEmail = data.email;
-      this.inputJobTitle = data.JobTitle;
-      this.avatarSrc = data.avatarSrc;
+    this.userInfoService.fetchUserData().subscribe({
+      next: ({ user }) => {
+        this.selectedTimezone = user.profile?.metaProfile?.timeZone;
+        this.selectedLanguage = user.profile?.metaProfile?.Language;
+        this.inputFullname = user.username;
+        this.inputEmail = user.profile?.mainEmail;
+        this.inputJobTitle = user.profile?.metaProfile?.JobTitle;
+        this.avatarSrc = user.profile?.metaProfile?.avatarSrc;
+        console.log(user);
+      },
+      error: (err) => {
+        console.error(
+          'Erreur lors de la récupération des données utilisateur',
+          err
+        );
+      },
     });
   }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
-    const file = input.files ? input.files[0] : null;
+    const file = input.files ? input.files[0] : undefined;
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -52,12 +61,12 @@ export class ProfileTabComponent implements OnInit {
 
   /**
   Bascule la visibilité du label show publicy.*/
-  toggleShowPublicyEmail(event: MouseEvent): void {
+  toggleShowPubliclyEmail(event: MouseEvent): void {
     event.stopPropagation();
-    this.ShowPublicyEmail = !this.ShowPublicyEmail;
+    this.ShowPubliclyEmail = !this.ShowPubliclyEmail;
   }
-  toggleShowPublicyJob(event: MouseEvent): void {
+  toggleShowPubliclyJob(event: MouseEvent): void {
     event.stopPropagation();
-    this.ShowPublicyJob = !this.ShowPublicyJob;
+    this.ShowPubliclyJob = !this.ShowPubliclyJob;
   }
 }

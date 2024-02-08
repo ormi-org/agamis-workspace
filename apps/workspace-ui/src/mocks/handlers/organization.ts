@@ -16,7 +16,7 @@ export const handlers = [
       const { id } = params;
       await delay(1000);
       if (!id) {
-        return new HttpResponse(null, { status: 400 });
+        return new HttpResponse(undefined, { status: 400 });
       }
       return HttpResponse.json(<Organization>{
         id,

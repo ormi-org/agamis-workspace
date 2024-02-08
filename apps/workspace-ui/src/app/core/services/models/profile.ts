@@ -1,3 +1,5 @@
+import MetaProfile from "./meta-profile";
+
 export default interface Profile {
   id: string;
   firstname: string;
@@ -7,4 +9,5 @@ export default interface Profile {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
+  metaProfile?: MetaProfile;
 }
