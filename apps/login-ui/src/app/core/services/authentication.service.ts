@@ -2,9 +2,20 @@ import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
 import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
-import API_ROUTES from '../../common/api-routes';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { API_ROUTES } from '@agamis/workspace/shared/common/types';
 import LocalAuthenticationRequest from '../models/local-authentication-request';
+import { AltLoginMap } from '@agamis/workspace/shared/login/types';
+
+interface LocalAuthentResponse {
+  code: number;
+  action: 'ok' | '2fa';
+  txId?: string;
+  otpMean?: {
+    type: 'mail',
+    mail?: string,
+  },
+}
 
 @Injectable({
   providedIn: 'root',
@@ -44,13 +55,50 @@ export class AuthenticationService {
     );
     console.trace(this.logApiErrorResponse.applyWithDetails(apiError));
     return throwError(() => apiError);
-  };
+  }
 
+  /**
+   * Get specific organization's authentication configuration
+   *
+   * @param orgId the id of the organization to retrieve the configuration from
+   */
+  getOrgAuthConfig(orgId: string): Observable<AltLoginMap> {
+    console.debug(
+      '-- AuthenticationService#getOrgAuthConfig(string) > entering method'
+    );
+    console.debug(
+      '-- AuthenticationService#getOrgAuthConfig(string) - getting authentication config'
+    );
+    return this.http
+      .get<{
+        code: number,
+        data: AltLoginMap
+      }>(`${API_ROUTES.organizations}/${orgId}/auth-config`)
+      .pipe(
+        map((resp) => resp.data),
+        catchError((err) => {
+        console.error(
+          '-- AuthenticationService#getOrgAuthConfig(string) < ',
+          this.logApiErrorResponse.apply(err.error as ApiErrorResponse)
+        );
+        console.trace(this.logApiErrorResponse.applyWithDetails(err.error as ApiErrorResponse));
+        return throwError(() => err.error as ApiErrorResponse);
+      }));
+  }
+
+  /**
+   * Perform a local authentication request
+   *
+   * @param identifier identifier of the user
+   * @param password password of the user
+   * @param orgId organization to log in to
+   * @returns
+   */
   localAuthenticate(
     identifier: string,
     password: string,
     orgId: string
-  ): Observable<void> {
+  ): Observable<LocalAuthentResponse> {
     console.debug(
       '-- AuthenticationService#localAuthenticate(string, string) > entering method'
     );
@@ -58,11 +106,41 @@ export class AuthenticationService {
       '-- AuthenticationService#localAuthenticate(string, string) - submitting authentication request'
     );
     return this.http
-      .post<void>(API_ROUTES.localAuth, <LocalAuthenticationRequest>{
+      .post<LocalAuthentResponse>(API_ROUTES.localAuth, <LocalAuthenticationRequest>{
         identifier,
         password,
         orgId,
       })
       .pipe(catchError(this.handleLocalAuthError));
+  }
+
+  /**
+   * Sends a OTP validation request to the backend
+   * 
+   * @param otp 
+   * @returns 
+   */
+  validateOtp(otp: string): Observable<LocalAuthentResponse> {
+    console.debug(
+      '-- AuthenticationService#validateOtp(string) > entering method'
+    );
+    console.debug(
+      '-- AuthenticationService#validateOtp(string) - submitting otp validation request'
+    );
+    return this.http
+     .post<LocalAuthentResponse>(API_ROUTES.otpAuth, { otp })
+     .pipe(catchError(this.handleLocalAuthError));
+  }
+
+  resendOtp(txId: string): Observable<LocalAuthentResponse> {
+    console.debug(
+      '-- AuthenticationService#resendOtp(string) > entering method'
+    );
+    console.debug(
+      '-- AuthenticationService#resendOtp(string) - submitting otp resend request'
+    );
+    return this.http
+   .post<LocalAuthentResponse>(API_ROUTES.otpAuth+'/resend', { txId })
+   .pipe(catchError(this.handleLocalAuthError));
   }
 }

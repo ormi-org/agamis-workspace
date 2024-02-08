@@ -3,7 +3,7 @@ import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import API_ROUTES from '../../common/api-routes';
+import { API_ROUTES } from '@agamis/workspace/shared/common/types';
 import Organization from './models/organization';
 
 /**

@@ -9,7 +9,7 @@ import {
   catchError,
   throwError,
 } from 'rxjs';
-import API_ROUTES from '../../common/api-routes';
+import { API_ROUTES } from '@agamis/workspace/shared/common/types';
 import Context from './models/context';
 import User from './models/user';
 

@@ -71,7 +71,8 @@
           "buildTarget": "workspace-ui:build:production"
         },
         "development": {
-          "buildTarget": "workspace-ui:build:development"
+          "buildTarget": "workspace-ui:build:development",
+          "hmr": true
         }
       },
       "defaultConfiguration": "development"

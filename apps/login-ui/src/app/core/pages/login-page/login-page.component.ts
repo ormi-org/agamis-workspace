@@ -1,8 +1,8 @@
 import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
 import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
-import { Context } from '@agamis/workspace/shared/login/types';
+import { AltLoginMap, Context } from '@agamis/workspace/shared/login/types';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -11,15 +11,17 @@ import {
 } from '@angular/forms';
 import {
   Observable,
+  Subject,
   catchError,
   combineLatest,
+  concatMap,
   map,
-  mergeMap,
   of,
   take,
+  takeUntil,
   throwError,
 } from 'rxjs';
-import Color from '../../../common/color';
+import { Color } from '@agamis/workspace/shared/common/types';
 import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
 import { GithubLogoSvgComponent } from '../../../shared/svg/github-logo.svg.component';
 import { GoogleLogoSvgComponent } from '../../../shared/svg/google-logo.svg.component';
@@ -101,29 +103,38 @@ import { ContextService } from '../../services/context.service';
             </div>
           </div>
         </form>
-        <div class="or-separator">
-          <div class="separator"></div>
-          <span>OR</span>
-          <div class="separator"></div>
-        </div>
-        <div class="alt-login">
-          <h2>{{ (getLoginContext() | async)?.orgName }}</h2>
-          <div class="group">
-            <a [href]="">keycloak main instance</a>
+        <ng-container *ngIf="altLoginMap">
+          <div class="or-separator">
+            <div class="separator"></div>
+            <span>OR</span>
+            <div class="separator"></div>
           </div>
-          <div class="separator"></div>
-          <h2>Third parties</h2>
-          <div class="group">
-            <a [href]=""
-              ><agamis-ws-login-svg-google-logo class="icon" />
-              <span>Google</span></a
-            >
-            <a [href]=""
-              ><agamis-ws-login-svg-github-logo class="icon" />
-              <span>GitHub</span></a
-            >
+          <div class="alt-login">
+            <h2 *ngIf="altLoginMap.oidc">
+              {{ (getLoginContext() | async)?.orgName }}
+            </h2>
+            <div class="group" *ngIf="altLoginMap.oidc">
+              <a *ngFor="let oidc of altLoginMap.oidc" [href]="oidc.url">{{
+                oidc.label
+              }}</a>
+            </div>
+            <div class="separator"></div>
+            <h2 *ngIf="altLoginMap.oauth2">Third parties</h2>
+            <div class="group" *ngIf="altLoginMap.oauth2">
+              <a *ngFor="let oauth2 of altLoginMap.oauth2" [href]="oauth2.url">
+                <ng-container [ngSwitch]="oauth2.id" ]>
+                  <ng-container *ngSwitchCase="'oauth2-google'">
+                    <agamis-ws-login-svg-google-logo />
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'oauth2-github'">
+                    <agamis-ws-login-svg-github-logo />
+                  </ng-container>
+                </ng-container>
+                <span>{{ oauth2.label | titlecase }}</span>
+              </a>
+            </div>
           </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   `,
@@ -139,7 +150,7 @@ import { ContextService } from '../../services/context.service';
     GithubLogoSvgComponent,
   ],
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
   Color = Color;
 
   loginForm = new FormGroup({
@@ -149,7 +160,8 @@ export class LoginPageComponent {
 
   hidePassword: boolean = true;
   loading: boolean = false;
-  errorMessage: string | undefined = undefined;
+  errorMessage?: string;
+  altLoginMap?: AltLoginMap;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -157,15 +169,55 @@ export class LoginPageComponent {
     private logApiErrorResponse: LogApiErrorResponse
   ) {}
 
+  ngOnInit(): void {
+    this.contextService
+      .getContext()
+      .pipe(
+        take(1),
+        concatMap((ctx: Context) => {
+          if (!ctx.orgId) {
+            console.error(
+              '<< LoginPageComponent#ngOnInit < No orgId in context'
+            );
+            return throwError(() => new Error('No orgId in context'));
+          }
+          return this.authenticationService.getOrgAuthConfig(ctx.orgId).pipe(
+            take(1),
+            catchError((error: Error) => {
+              console.error(
+                '-- LoginPageComponent#ngOnInit() - ',
+                error.message
+              );
+              return throwError(
+                () => <ApiErrorResponse>{ code: 0, message: error.message }
+              );
+            })
+          );
+        }),
+        catchError((err: ApiErrorResponse) => {
+          this.logApiErrorResponse.apply(err);
+          return of(<AltLoginMap>{
+            oidc: [],
+            oauth2: [],
+          });
+        })
+      )
+      .subscribe((map) => {
+        console.debug('<< LoginPageComponent#ngOnInit < found following config', map.toString());
+        this.altLoginMap = map
+      });
+  }
+
   getLoginContext(): Observable<Context> {
     return this.contextService.getContext();
   }
 
   goToResetView(): void {
     console.debug('-- LoginPageComponent#goToResetView() > entering method');
+    const unsubscribe$ = new Subject<void>();
     this.contextService
       .getContext()
-      .pipe(take(1))
+      .pipe(takeUntil(unsubscribe$))
       .subscribe((ctx: Context) => {
         console.debug(
           '-- LoginPageComponent#goToResetView() - pushing context'
@@ -174,8 +226,9 @@ export class LoginPageComponent {
           ...ctx,
           view: 'reset',
         });
-      })
-      .unsubscribe();
+        // unsubscribe after first emit
+        unsubscribe$.next();
+      });
   }
 
   handleLocalLogin() {
@@ -197,19 +250,22 @@ export class LoginPageComponent {
     console.debug(
       '-- LoginPageComponent#handleLocalLogin() - using local authentication'
     );
+    // combine credentials and login context
     combineLatest({
       credentials: of({ identifier, password }),
-      orgId: this.contextService.getContext().pipe(
+      ctx: this.contextService.getContext().pipe(
         map((ctx: Context) => {
           if (ctx.orgId === undefined) {
             throw new Error('No orgId supplied');
           }
-          return ctx.orgId;
+          return ctx;
         })
       ),
     })
       .pipe(
+        // take first
         take(1),
+        // catch eventual error (eg: no orgId)
         catchError((error: Error) => {
           console.error(
             '-- LoginPageComponent#handleLocalLogin() - ',
@@ -219,12 +275,22 @@ export class LoginPageComponent {
             () => <ApiErrorResponse>{ code: 0, message: error.message }
           );
         }),
-        mergeMap(({ credentials, orgId }) => {
-          return this.authenticationService.localAuthenticate(
-            credentials.identifier,
-            credentials.password,
-            orgId
-          );
+        concatMap(({ credentials, ctx }) => {
+          // combine local authent result with context
+          return this.authenticationService
+            .localAuthenticate(
+              credentials.identifier,
+              credentials.password,
+              ctx.orgId!
+            )
+            .pipe(
+              map((resp) => {
+                return {
+                  resp,
+                  ctx,
+                };
+              })
+            );
         }),
         catchError((error: ApiErrorResponse) => {
           console.error(
@@ -236,11 +302,33 @@ export class LoginPageComponent {
           return throwError(() => error);
         })
       )
-      .subscribe(() => {
-        console.debug(
-          '<< LoginPageComponent#handleLocalLogin() < successful login'
-        );
-        this.contextService.dispatchLoginDone();
+      .subscribe(({ resp, ctx }) => {
+        // resolve response with context based on authentication action
+        if (resp.action === 'ok') {
+          // no more actions needed: validate login
+          console.debug(
+            '<< LoginPageComponent#handleLocalLogin() < successful login'
+          );
+          this.contextService.dispatchLoginDone();
+        } else if (resp.action === '2fa') {
+          // need 2FA (otp validation)
+          if (!resp.otpMean || !resp.txId) {
+            console.error(
+              '<< LoginPageComponent#handleLocalLogin() < API did not provide txId and otpMean'
+            );
+            this.errorMessage = 'No otpMean or txId provided';
+            return;
+          }
+          console.debug(
+            '<< LoginPageComponent#handleLocalLogin() < authentication process requires 2FA validation with OTP'
+          );
+          this.contextService.setContext({
+            ...ctx,
+            view: 'otp',
+            txId: resp.txId,
+            otpMean: resp.otpMean,
+          });
+        }
       });
   }
 }
