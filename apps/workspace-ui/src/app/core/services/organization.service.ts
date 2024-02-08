@@ -1,9 +1,8 @@
 import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
-import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
+import { API_ROUTES, ApiErrorResponse } from '@agamis/workspace/shared/common/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { API_ROUTES } from '@agamis/workspace/shared/common/types';
 import Organization from './models/organization';
 
 /**

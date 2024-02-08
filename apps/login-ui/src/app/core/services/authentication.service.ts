@@ -1,11 +1,10 @@
 import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
-import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
+import { API_ROUTES, ApiErrorResponse } from '@agamis/workspace/shared/common/types';
+import { AltLoginMap } from '@agamis/workspace/shared/login/types';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { API_ROUTES } from '@agamis/workspace/shared/common/types';
 import LocalAuthenticationRequest from '../models/local-authentication-request';
-import { AltLoginMap } from '@agamis/workspace/shared/login/types';
 
 interface LocalAuthentResponse {
   code: number;

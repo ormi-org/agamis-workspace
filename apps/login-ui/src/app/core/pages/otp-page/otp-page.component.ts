@@ -193,7 +193,7 @@ export class OtpPageComponent implements OnInit {
             );
           }
           this.resetTimer();
-          return this.authenticationService.resendOtp(ctx.txId!);
+          return this.authenticationService.resendOtp(ctx.txId);
         })
       )
       .subscribe(() => {

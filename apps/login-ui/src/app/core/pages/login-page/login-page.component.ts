@@ -1,5 +1,5 @@
 import { LogApiErrorResponse } from '@agamis/workspace/shared/common/angular';
-import { ApiErrorResponse } from '@agamis/workspace/shared/common/types';
+import { ApiErrorResponse, Color } from '@agamis/workspace/shared/common/types';
 import { AltLoginMap, Context } from '@agamis/workspace/shared/login/types';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -21,7 +21,6 @@ import {
   takeUntil,
   throwError,
 } from 'rxjs';
-import { Color } from '@agamis/workspace/shared/common/types';
 import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
 import { GithubLogoSvgComponent } from '../../../shared/svg/github-logo.svg.component';
 import { GoogleLogoSvgComponent } from '../../../shared/svg/google-logo.svg.component';
@@ -203,8 +202,11 @@ export class LoginPageComponent implements OnInit {
         })
       )
       .subscribe((map) => {
-        console.debug('<< LoginPageComponent#ngOnInit < found following config', map.toString());
-        this.altLoginMap = map
+        console.debug(
+          '<< LoginPageComponent#ngOnInit < found following config',
+          map.toString()
+        );
+        this.altLoginMap = map;
       });
   }
 
