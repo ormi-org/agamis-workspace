@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AvatarService } from '../../services/avatar-service';
-import { UserInfoService } from '../../services/user-info-service';
+import { AvatarService } from '../../services/avatar.service';
+import { UserInfoService } from '../../services/user-info.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
