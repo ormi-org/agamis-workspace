@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import LocalAuthenticationRequest from '../models/local-authentication-request';
 
-interface LocalAuthentResponse {
+export interface LocalAuthentResponse {
   code: number;
   action: 'ok' | '2fa';
   txId?: string;

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OtpPageComponent } from './otp-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('OtpPageComponent', () => {
   let component: OtpPageComponent;
@@ -7,7 +8,7 @@ describe('OtpPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OtpPageComponent],
+      imports: [OtpPageComponent, HttpClientModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OtpPageComponent);

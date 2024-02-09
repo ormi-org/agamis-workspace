@@ -5,8 +5,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { catchError, throwError } from 'rxjs';
-import API_ROUTES from '../../common/api-routes';
-import ApiErrorResponse from '../models/api-error-response';
+import { API_ROUTES, ApiErrorResponse } from '@agamis/workspace/shared/common/types';
 import { AuthenticationService } from './authentication.service';
 
 describe('AuthenticationService', () => {
