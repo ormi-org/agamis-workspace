@@ -74,6 +74,16 @@
 
         label {
           cursor: pointer;
+          color:map-get($colors, light);
+          font-family: 'Poppins';
+          font-style: normal;
+          font-size: 17px;
+          font-weight: 400;
+          top: 15px;
+          letter-spacing: 0px;
+          padding-right: 5px;
+          padding-left: 5px;
+
         }
       }
     }
@@ -96,7 +106,7 @@
     .user-details {
       display: flex;
       align-items: center;
-
+      width: 162px;
       svg {
         width: 100px;
         height: 30px;
@@ -104,65 +114,72 @@
     }
 
     .dropdown-menu {
-      display: none;
-      position: fixed;
+      display: none; // Le menu sera caché par défaut et affiché en ajoutant la classe `.show`
+      position: absolute;
       right: 0;
-      top: 100%;
-      left: 0;
-      z-index: 1000;
-      background-color: map-get($colors, primary-one);
-      color: map-get($colors, light);
-      border: 1px solid map-get($colors, strong-emphasis);
+      width: 162px;
+      top: 100%; // Pour afficher le menu juste en dessous de l'élément de déclenchement
+      background-color: map-get($colors, 'primary-one'); // Assurez-vous que cette couleur est noire
       box-sizing: border-box;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: auto;
-
+      z-index: 1000;
       .user-info {
         padding: 10px;
         background-color: map-get($colors, primary-one);
         border-bottom: 1px solid map-get($colors, strong-emphasis);
-
+    
         span {
           display: block;
         }
-
+        .user-name {
+          white-space: nowrap; // Empêche le retour à la ligne
+          overflow: hidden; // Cache le contenu débordant
+          text-overflow: ellipsis; // Affiche des points de suspension si le texte déborde
+          max-width: 100%; // Limite la largeur du texte à celle du conteneur
+          display: block; // Assurez-vous que l'élément prend toute la largeur disponible
+          font-size: 0.6vw; // Ajuste dynamiquement en fonction de la largeur de la vue
+          color: map-get($colors, light);
+          font-style:bold;
+        }
         .user-email {
           white-space: nowrap; // Empêche le retour à la ligne
           overflow: hidden; // Cache le contenu débordant
           text-overflow: ellipsis; // Affiche des points de suspension si le texte déborde
           max-width: 100%; // Limite la largeur du texte à celle du conteneur
           display: block; // Assurez-vous que l'élément prend toute la largeur disponible
-          font-size: 1vw; // Ajuste dynamiquement en fonction de la largeur de la vue
+          font-size: 0.6vw; // Ajuste dynamiquement en fonction de la largeur de la vue
+          padding-top: 2px;
+          color: map-get($colors, strong-emphasis);
+      
         }
+      }
+      .menu-items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        width: 100%; // La liste prend toute la largeur du menu
 
-        .menu-items {
-          list-style: none;
-          margin: 0;
-          padding: 0;
+        li {
+          width: 100%; // Chaque élément de liste prend toute la largeur
 
-          li {
-            button {
-              display: block;
-              width: 100%;
-              background-color: map-get($colors, primary-one);
-
-              text-align: left;
-              padding: 10px;
-              border: none;
-              cursor: pointer;
-
-              &:hover {
-                background-color: map-get($colors, strong-emphasis);
-              }
+          button {
+            display: block;
+            width: 100%; // Le bouton prend toute la largeur de l'élément li
+            background-color: map-get($colors, primary-one);
+            color: map-get($colors, light);
+            padding: 15px; // Espacement interne pour le bouton
+            border: none;
+            text-align: left; // Texte aligné à gauche
+            cursor: pointer;
+            font-size:14px;
+            &:hover {
+              background-color: map-get($colors, strong-emphasis);
             }
           }
         }
       }
     }
   }
-
+  
   .showUserMenu .dropdown-menu {
     display: block;
   }
@@ -191,7 +208,15 @@
   }
 
   .pseudo {
-    color: #fff;
+    color:map-get($colors, light);
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0px;
+    text-decoration: none;
+    text-transform: none;
   }
 
   .profile-layout {

@@ -27,6 +27,7 @@
   <div class="nav-item">
       <a href="#" id="entreprise">
         <agamis-ws-svg-community/>
+        <label for="entreprise">Tyria's heroes</label>
         <label for="entreprise">{{orgInfo?.label}}</label>
       </a>
     </div>
@@ -46,7 +47,8 @@
         <div  class="dropdown-toggle" (click)="toggleUserMenu($event)">
           <!-- Avatar et nom d'utilisateur -->
           <div class="user-details">
-            <p class="pseudo">{{userInfo?.username}}</p>
+            <label class="pseudo">{{userInfo?.username}}</label>
+            <label class="pseudo">Chauncey</label>
             <img alt="icone" *ngIf="avatarSrc; else defaultAvatar" [src]="avatarSrc" class="avatar-icon-nav">
             <ng-template #defaultAvatar>
               <agamis-ws-svg-user-default></agamis-ws-svg-user-default>
@@ -56,15 +58,23 @@
         </div>
         
         <!-- Menu déroulant utilisateur qui apparaît au clic -->
-        <div class="dropdown-menu" *ngIf="showUserMenu" style="display: block; position: absolute; z-index: 1000; background: white; border: 1px solid black;">
+        <div class="dropdown-menu" *ngIf="showUserMenu" style="display: block; position: absolute; z-index: 1000; border: 1px solid black;">
           <div class="user-info">
+            <span class="user-name">{{userInfo?.username}}</span>
+            <span class="user-name">&#64;chauncey.vonsnuffles</span>
             <span class="user-email">{{userInfo?.profile?.mainEmail}}</span>
-            <span class="user-projects">Projects: {{ userInfo?.profile?.projectsNbr}}</span>
+            <span class="user-email">chauncey.vonsnuffles&#64;divinitysreach.tyria</span>
+          
           </div>
           <ul class="menu-items">
             <li><button >Profile</button></li>
             <li><button (click)="openAccountSettings()">Account settings</button></li>
-            </ul>
+            <li><button >Notifications</button></li>
+            <li><button >My Organization</button></li>
+            <li><button >Sessions</button></li>
+            <li><button >Logout</button></li>
+            
+          </ul>
         </div>
       </div>
       
