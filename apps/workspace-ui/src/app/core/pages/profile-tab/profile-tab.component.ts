@@ -52,7 +52,7 @@ export class ProfileTabComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.avatarSrc = reader.result;
+        this.avatarSrc = reader.result ?? undefined;
         this.avatarService.changeAvatar(this.avatarSrc);
       };
       reader.readAsDataURL(file);
@@ -60,7 +60,7 @@ export class ProfileTabComponent implements OnInit {
   }
 
   /**
-  Bascule la visibilité du label show publicy.*/
+  Bascule la visibilité du label show publicly.*/
   toggleShowPubliclyEmail(event: MouseEvent): void {
     event.stopPropagation();
     this.ShowPubliclyEmail = !this.ShowPubliclyEmail;
