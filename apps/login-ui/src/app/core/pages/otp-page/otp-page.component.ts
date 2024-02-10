@@ -202,6 +202,7 @@ export class OtpPageComponent implements OnInit {
     if (event.key === 'Enter') {
       // Submit if Enter is pressed
       this.handleValidateOtp();
+      return;
     }
     if (event.key === 'Backspace') {
       // Erase previous if Backspace is pressed and not at the end
@@ -219,7 +220,6 @@ export class OtpPageComponent implements OnInit {
       // Set control value if charCode is a number and control is not filled
       this.otpForm.patchValue({ [index]: event.key });
       this.focusNextField(index);
-      return;
     }
   }
 
