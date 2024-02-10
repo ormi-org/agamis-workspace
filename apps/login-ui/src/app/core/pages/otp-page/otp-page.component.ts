@@ -37,7 +37,7 @@ import { ContextService } from '../../services/context.service';
             </div>
             <h1>Enter your passcode</h1>
           </div>
-          <div class="org-label">
+          <div class="org-label" *ngIf="(getLoginContext() | async)?.orgName">
             <p>{{ '@' + (getLoginContext() | async)?.orgName }}</p>
           </div>
         </div>

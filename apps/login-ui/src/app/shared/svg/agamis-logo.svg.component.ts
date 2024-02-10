@@ -7,7 +7,8 @@ import { Color } from '@agamis/workspace/shared/common/types';
   templateUrl: '../../../assets/images/svg/agamis-logo.svg',
   styles: `
     :host {
-        display: flex
+        display: flex;
+        height: 100%;
     }
   `,
 })

@@ -131,6 +131,12 @@ export class AuthenticationService {
      .pipe(catchError(this.handleLocalAuthError));
   }
 
+  /**
+   * Request API for OTP resend
+   * 
+   * @param txId transaction id corresponding to wanted OTP
+   * @returns 
+   */
   resendOtp(txId: string): Observable<LocalAuthentResponse> {
     console.debug(
       '-- AuthenticationService#resendOtp(string) > entering method'

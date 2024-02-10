@@ -38,6 +38,10 @@
       height: 51px;
       border-radius: 50%;
       background-color: map-get($colors, primary-two);
+
+      > agamis-ws-login-svg-agamis-logo {
+        height: 31px;
+      }
     }
   }
 

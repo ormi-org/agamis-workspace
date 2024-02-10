@@ -38,7 +38,23 @@
           "codeCoverage": true
         }
       }
+    },
+    "build-storybook": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/tsconfig.storybook.json"
+      ]
     }
   },
-  "nxCloudAccessToken": "MzY0YjBiZWEtMTgxZi00YThmLWIwOGMtZDE1ZTQ4YTNhMmNhfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MzY0YjBiZWEtMTgxZi00YThmLWIwOGMtZDE1ZTQ4YTNhMmNhfHJlYWQtd3JpdGU=",
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": ["build-storybook"]
+      }
+    }
+  }
 }
