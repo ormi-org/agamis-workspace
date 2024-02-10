@@ -119,7 +119,7 @@ export class AuthenticationService {
    * @param otp 
    * @returns 
    */
-  validateOtp(otp: string): Observable<LocalAuthentResponse> {
+  validateOtp(txId: string, otp: string): Observable<LocalAuthentResponse> {
     console.debug(
       '-- AuthenticationService#validateOtp(string) > entering method'
     );
@@ -127,7 +127,7 @@ export class AuthenticationService {
       '-- AuthenticationService#validateOtp(string) - submitting otp validation request'
     );
     return this.http
-     .post<LocalAuthentResponse>(API_ROUTES.otpAuth, { otp })
+     .post<LocalAuthentResponse>(API_ROUTES.otpAuth, { otp, txId })
      .pipe(catchError(this.handleLocalAuthError));
   }
 

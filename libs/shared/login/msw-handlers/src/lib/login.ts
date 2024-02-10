@@ -177,6 +177,7 @@ export const handlers = [
   http.post<object, { otp: string; txId: string }>(
     UrlWrappers.wrapWithFusionApi(AUTH_OTP),
     async ({ request }) => {
+      await delay(1000);
       const { otp, txId } = await request.json();
       if (!otp ||!txId) {
         return new HttpResponse(null, { status: 400 });

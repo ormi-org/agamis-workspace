@@ -19,6 +19,7 @@ import {
   of,
   take,
   takeUntil,
+  tap,
   throwError,
 } from 'rxjs';
 import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
@@ -256,11 +257,10 @@ export class LoginPageComponent implements OnInit {
     combineLatest({
       credentials: of({ identifier, password }),
       ctx: this.contextService.getContext().pipe(
-        map((ctx: Context) => {
+        tap((ctx: Context) => {
           if (ctx.orgId === undefined) {
             throw new Error('No orgId supplied');
           }
-          return ctx;
         })
       ),
     })
@@ -307,7 +307,7 @@ export class LoginPageComponent implements OnInit {
       .subscribe(({ resp, ctx }) => {
         // resolve response with context based on authentication action
         if (resp.action === 'ok') {
-          // no more actions needed: validate login
+          // no more action needed: validate login
           console.debug(
             '<< LoginPageComponent#handleLocalLogin() < successful login'
           );

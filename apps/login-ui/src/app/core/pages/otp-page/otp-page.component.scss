@@ -74,6 +74,7 @@
     justify-content: space-between;
     column-gap: 10px;
     > input {
+      caret-color: transparent;
       height: 65px;
       width: 50px;
       box-sizing: border-box;
@@ -81,6 +82,9 @@
       text-align: center;
       border-radius: 4px;
       border: 1px solid map-get($colors, soft-emphasis);
+      &:focus {
+        background-color: map-get($colors, soft-emphasis);
+      }
     }
   }
 
@@ -96,10 +100,8 @@
       display: flex;
       flex-direction: row;
       position: relative;
+      height: 34px;
       > span.timer {
-        position: absolute;
-        left: calc(-50% - 20px);
-        top: -50%;
         display: flex;
         align-items: center;
         flex-direction: row;
@@ -109,6 +111,7 @@
           flex-shrink: 0;
           animation: fadeIn 0.2s linear, spin 1s linear infinite;
         }
+        cursor: not-allowed;
       }
       > .resend {
         flex-wrap: nowrap;
@@ -118,13 +121,8 @@
         border: none;
         cursor: pointer;
         color: map-get($colors, primary-three);
-      }
-
-      &.disabled {
-        > .resend {
-          color: map-get($colors, strong-emphasis);
-          cursor: not-allowed;
-        }
+        align-items: center;
+        height: 100%;
       }
     }
 
@@ -133,6 +131,7 @@
       align-items: center;
       flex-direction: column;
       row-gap: 10px;
+      margin-top: 20px;
       > .error-msg {
         color: map-get($colors, error);
         text-align: right;
@@ -151,7 +150,7 @@
 
         &:disabled {
           background-color: map-get($colors, soft-emphasis);
-          cursor: progress;
+          cursor: not-allowed;
         }
       }
     }

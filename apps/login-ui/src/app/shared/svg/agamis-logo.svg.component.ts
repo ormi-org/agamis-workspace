@@ -8,7 +8,6 @@ import { Color } from '@agamis/workspace/shared/common/types';
   styles: `
     :host {
         display: flex;
-        height: 100%;
     }
   `,
 })
