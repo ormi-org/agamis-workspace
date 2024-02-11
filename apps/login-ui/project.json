@@ -96,12 +96,16 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/login-ui/jest.config.ts"
+        "jestConfig": "apps/login-ui/jest.config.ts",
+        "codeCoverage": true,
+        "coverageDirectory": "coverage/apps/login-ui"
       },
       "configurations": {
-        "with-coverage": {
-          "codeCoverage": true,
-          "coverageDirectory": "dist/apps/login-ui/tests/coverage"
+        "ci": {
+          "testResultsProcessor": "jest-sonar-reporter",
+          "coverageReporters": ["clover", "json", "lcov", "text", "text-summary"],
+          "collectCoverage": true,
+          "coverageDirectory": "{workspaceRoot}/coverage/{projectRoot}"
         }
       }
     },
