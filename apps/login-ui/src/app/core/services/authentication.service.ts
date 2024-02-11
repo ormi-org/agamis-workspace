@@ -75,14 +75,8 @@ export class AuthenticationService {
       }>(`${API_ROUTES.organizations}/${orgId}/auth-config`)
       .pipe(
         map((resp) => resp.data),
-        catchError((err) => {
-        console.error(
-          '-- AuthenticationService#getOrgAuthConfig(string) < ',
-          this.logApiErrorResponse.apply(err.error as ApiErrorResponse)
-        );
-        console.trace(this.logApiErrorResponse.applyWithDetails(err.error as ApiErrorResponse));
-        return throwError(() => err.error as ApiErrorResponse);
-      }));
+        catchError(this.handleLocalAuthError)
+      );
   }
 
   /**

@@ -29,11 +29,11 @@ import { OpenedEyeSvgComponent } from '../../../shared/svg/opened-eye.svg.compon
 import { AuthenticationService } from '../../services/authentication.service';
 import { ContextService } from '../../services/context.service';
 
-function isCharCodeLetter(charCode: number): boolean {
+export function isCharCodeLetter(charCode: number): boolean {
   return charCode >= 97 && charCode <= 122;
 }
 
-function isCharCodeNumber(charCode: number): boolean {
+export function isCharCodeNumber(charCode: number): boolean {
   return charCode >= 48 && charCode <= 57;
 }
 
