@@ -67,6 +67,9 @@ test:
   extends: .distributed
   script:
     - pnpm nx affected --base=$NX_BASE --head=$NX_HEAD -t test --ci --parallel=4
+  artifacts:
+    paths:
+      - ./coverage
 
 sonarqube-check:
   stage: static-analysis
@@ -83,3 +86,6 @@ sonarqube-check:
   script: 
     - sonar-scanner
   allow_failure: true
+  needs:
+    - job: test
+      artifacts: true
