@@ -61,6 +61,13 @@ build:
   script:
     - pnpm nx affected --base=$NX_BASE --head=$NX_HEAD -t build --parallel=4
 
+test:
+  image: $DOCKER_IMAGE
+  stage: test
+  extends: .distributed
+  script:
+    - pnpm nx affected --base=$NX_BASE --head=$NX_HEAD -t test --ci --parallel=4
+
 sonarqube-check:
   stage: static-analysis
   image: 
