@@ -210,6 +210,9 @@ importers:
       eslint-plugin-cypress:
         specifier: ^2.13.4
         version: 2.15.1(eslint@8.48.0)
+      glob:
+        specifier: ^10.3.10
+        version: 10.3.10
       jest:
         specifier: ^29.4.1
         version: 29.7.0(@types/node@18.16.9)(ts-node@10.9.1)

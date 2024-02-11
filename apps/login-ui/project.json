@@ -96,9 +96,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/login-ui/jest.config.ts",
-        "codeCoverage": true,
-        "coverageDirectory": "coverage/apps/login-ui"
+        "jestConfig": "apps/login-ui/jest.config.ts"
       },
       "configurations": {
         "ci": {
