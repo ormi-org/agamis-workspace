@@ -21,7 +21,7 @@ import {
   tap,
   throwError,
   timer,
-  withLatestFrom,
+  withLatestFrom
 } from 'rxjs';
 import { AgamisLogoSvgComponent } from '../../../shared/svg/agamis-logo.svg.component';
 import { LoadingSpinSvgComponent } from '../../../shared/svg/loading-spin.svg.component';
@@ -231,7 +231,7 @@ export class OtpPageComponent implements OnInit {
   focusNextField(index: string): void {
     const nextId = Math.min(
       parseInt(index) + 1,
-      Object.keys(this.otpForm.controls).length
+      Object.keys(this.otpForm.controls).length - 1
     );
     document.getElementById(`otp-${nextId}`)?.focus();
   }
@@ -272,22 +272,22 @@ export class OtpPageComponent implements OnInit {
               '-- OtpPageComponent#resendOtp() - no txId passed to context'
             );
             return throwError(
-              () =>
-                <ApiErrorResponse>{
-                  code: 0,
-                  message:
-                    'Context does not have the authentication transaction Id',
-                }
-            ).pipe(
-              tap(() => {
+              () => {
                 // come back to login screen if precondition failed because otp cannot complete without txId
                 this.contextService.setContext({
                   ...ctx,
                   txId: undefined,
                   view: 'login',
                 });
+                /* istanbul ignore next */
                 unsubscribe$.next();
-              })
+                /* istanbul ignore next */
+                return <ApiErrorResponse>{
+                  code: 0,
+                  message:
+                    'Context does not have the authentication transaction Id',
+                }
+              }
             );
           }
           this.resetTimer();
@@ -319,10 +319,11 @@ export class OtpPageComponent implements OnInit {
     combineLatest({
       otp: of(otpInput),
       ctx: this.getLoginContext().pipe(
-        tap((ctx: Context) => {
+        mergeMap((ctx: Context) => {
           if (ctx.txId === undefined) {
-            throw new Error('No txId in context');
+            return throwError(() => new Error('No txId in context'));
           }
+          return of(ctx);
         })
       ),
     })
@@ -361,7 +362,7 @@ export class OtpPageComponent implements OnInit {
           this.contextService.dispatchLoginDone();
           return;
         }
-        console.debug(
+        console.error(
           '<< OtpPageComponent#handleValidateOtp() - invalid action resolved from api after providing otp'
         );
       });
