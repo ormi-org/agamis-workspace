@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Color from '../../common/color';
+import { Color } from '@agamis/workspace/shared/common/types';
 
 @Component({
   standalone: true,
@@ -7,7 +7,7 @@ import Color from '../../common/color';
   templateUrl: '../../../assets/images/svg/agamis-logo.svg',
   styles: `
     :host {
-        display: flex
+        display: flex;
     }
   `,
 })

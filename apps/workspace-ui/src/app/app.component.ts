@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AgamisLogoSvgComponent } from "./shared/svg/agamis-logo.svg.component";
 import { AgamisTextSvgComponent } from "./shared/svg/agamis-text.svg.component";
-import Color from './common/color';
+import { Color } from '@agamis/workspace/shared/common/types';
 import { RouterOutlet } from '@angular/router';
 
 @Component({

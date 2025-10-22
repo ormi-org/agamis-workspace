@@ -71,7 +71,8 @@
           "buildTarget": "workspace-ui:build:production"
         },
         "development": {
-          "buildTarget": "workspace-ui:build:development"
+          "buildTarget": "workspace-ui:build:development",
+          "hmr": true
         }
       },
       "defaultConfiguration": "development"
@@ -91,6 +92,14 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/workspace-ui/jest.config.ts"
+      },
+      "configurations": {
+        "ci": {
+          "testResultsProcessor": "jest-sonar-reporter",
+          "coverageReporters": ["clover", "json", "lcov", "text", "text-summary"],
+          "collectCoverage": true,
+          "coverageDirectory": "{workspaceRoot}/coverage/{projectRoot}"
+        }
       }
     }
   }

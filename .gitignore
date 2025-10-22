@@ -44,3 +44,5 @@ Thumbs.db
 .pnpm-store/*
 
 .nx/cache
+
+storybook-static

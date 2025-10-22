@@ -7,7 +7,7 @@ import { Observable, ReplaySubject, Subject } from 'rxjs';
 })
 export class ContextService {
 
-  private readonly context: Subject<Context> = new ReplaySubject<Context>();
+  private readonly context: Subject<Context> = new ReplaySubject<Context>(1);
   private readonly loginDone: Subject<void> = new Subject<void>();
 
   setContext(passedCtx: Context): void {

@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { of, throwError } from 'rxjs';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService, LocalAuthentResponse } from '../../services/authentication.service';
 import { LoginPageComponent } from './login-page.component';
 import { ContextService } from '../../services/context.service';
 import { Context, ViewType } from '@agamis/workspace/shared/login/types';
@@ -63,7 +63,10 @@ describe('LoginPageComponent', () => {
 
   it('should not set an error message when local authentication succeeds', () => {
     const authenticationService = TestBed.inject(AuthenticationService);
-    jest.spyOn(authenticationService, 'localAuthenticate').mockReturnValue(of(void 0));
+    jest.spyOn(authenticationService, 'localAuthenticate').mockReturnValue(of(<LocalAuthentResponse>{
+      action: 'ok',
+      code: 200
+    }));
     component.loginForm.setControl('identifier', new FormControl('test'));
     component.loginForm.setControl('password', new FormControl('test'));
     component.handleLocalLogin();
